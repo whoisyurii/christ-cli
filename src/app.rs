@@ -1,10 +1,11 @@
 use crate::api::Resolver;
 use crate::store::state as session;
 use crate::ui::banner::{self, BannerState};
-use crate::ui::browser::{self, BrowserState};
+use crate::ui::browser::{self, BrowserState, SearchMode};
 use crate::ui::theme::{self, ThemeName};
 use crossterm::event::{self, Event, KeyCode, KeyEventKind};
 use ratatui::{DefaultTerminal, Frame};
+use ratatui::widgets::ListState;
 use std::time::{Duration, Instant};
 
 enum AppMode {
@@ -148,6 +149,20 @@ impl App {
                 state.done = true;
             }
             AppMode::Browser(state) => {
+                // Handle search input mode first
+                match &state.search {
+                    SearchMode::Input(_) => {
+                        self.handle_search_input(key).await;
+                        return;
+                    }
+                    SearchMode::Results { .. } => {
+                        self.handle_search_results(key).await;
+                        return;
+                    }
+                    SearchMode::Off => {}
+                }
+
+                // Normal browser mode
                 if key == KeyCode::Char('q') {
                     if self.quit_pending.is_some() {
                         self.should_quit = true;
@@ -159,6 +174,9 @@ impl App {
                 self.quit_pending = None;
 
                 match key {
+                    KeyCode::Char('/') => {
+                        state.search = SearchMode::Input(String::new());
+                    }
                     KeyCode::Char('t') => {
                         self.theme_name = self.theme_name.next();
                     }
@@ -186,6 +204,105 @@ impl App {
                     _ => {}
                 }
             }
+        }
+    }
+
+    async fn handle_search_input(&mut self, key: KeyCode) {
+        let state = match &mut self.mode {
+            AppMode::Browser(s) => s,
+            _ => return,
+        };
+
+        match key {
+            KeyCode::Esc => {
+                state.search = SearchMode::Off;
+            }
+            KeyCode::Enter => {
+                let query = match &state.search {
+                    SearchMode::Input(q) => q.clone(),
+                    _ => return,
+                };
+                if query.trim().is_empty() {
+                    state.search = SearchMode::Off;
+                    return;
+                }
+                // Perform search
+                match self.resolver.search(&query, "KJV").await {
+                    Ok(results) => {
+                        let mut list_state = ListState::default();
+                        if !results.is_empty() {
+                            list_state.select(Some(0));
+                        }
+                        state.search = SearchMode::Results {
+                            query,
+                            results,
+                            list_state,
+                        };
+                    }
+                    Err(_) => {
+                        state.search = SearchMode::Results {
+                            query,
+                            results: vec![],
+                            list_state: ListState::default(),
+                        };
+                    }
+                }
+            }
+            KeyCode::Backspace => {
+                if let SearchMode::Input(ref mut text) = state.search {
+                    text.pop();
+                }
+            }
+            KeyCode::Char(c) => {
+                if let SearchMode::Input(ref mut text) = state.search {
+                    text.push(c);
+                }
+            }
+            _ => {}
+        }
+    }
+
+    async fn handle_search_results(&mut self, key: KeyCode) {
+        let state = match &mut self.mode {
+            AppMode::Browser(s) => s,
+            _ => return,
+        };
+
+        match key {
+            KeyCode::Esc => {
+                state.search = SearchMode::Off;
+            }
+            KeyCode::Up => {
+                if let SearchMode::Results { list_state, .. } = &mut state.search {
+                    let i = list_state.selected().unwrap_or(0);
+                    if i > 0 {
+                        list_state.select(Some(i - 1));
+                    }
+                }
+            }
+            KeyCode::Down => {
+                if let SearchMode::Results { results, list_state, .. } = &mut state.search {
+                    let i = list_state.selected().unwrap_or(0);
+                    if i < results.len().saturating_sub(1) {
+                        list_state.select(Some(i + 1));
+                    }
+                }
+            }
+            KeyCode::Enter => {
+                // Jump to selected result
+                let target = state.selected_search_result().map(|r| {
+                    (r.book.clone(), r.chapter)
+                });
+                if let Some((book, chapter)) = target {
+                    state.jump_to_result(&book, chapter);
+                    self.load_chapter().await;
+                }
+            }
+            KeyCode::Char('/') => {
+                // Start a new search
+                state.search = SearchMode::Input(String::new());
+            }
+            _ => {}
         }
     }
 

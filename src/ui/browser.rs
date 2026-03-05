@@ -1,4 +1,4 @@
-use crate::api::types::Chapter;
+use crate::api::types::{Chapter, SearchResult};
 use crate::data::books::BOOKS;
 use crate::ui::theme::{Theme, ThemeName};
 use ratatui::{
@@ -19,6 +19,20 @@ pub enum Panel {
     Scripture,
 }
 
+#[derive(Debug, Clone, PartialEq)]
+pub enum SearchMode {
+    /// Not searching
+    Off,
+    /// Typing in the search input
+    Input(String),
+    /// Viewing search results
+    Results {
+        query: String,
+        results: Vec<SearchResult>,
+        list_state: ListState,
+    },
+}
+
 pub struct BrowserState {
     pub active_panel: Panel,
     pub book_list: ListState,
@@ -28,6 +42,7 @@ pub struct BrowserState {
     pub selected_chapter: u32,
     pub current_chapter: Option<Chapter>,
     pub loading: bool,
+    pub search: SearchMode,
 }
 
 impl BrowserState {
@@ -46,6 +61,7 @@ impl BrowserState {
             selected_chapter: 1,
             current_chapter: None,
             loading: false,
+            search: SearchMode::Off,
         }
     }
 
@@ -179,6 +195,30 @@ impl BrowserState {
             Panel::Scripture => false,
         }
     }
+
+    /// Get the selected search result (if in results mode).
+    pub fn selected_search_result(&self) -> Option<&SearchResult> {
+        if let SearchMode::Results { results, list_state, .. } = &self.search {
+            let idx = list_state.selected()?;
+            results.get(idx)
+        } else {
+            None
+        }
+    }
+
+    /// Navigate to a book and chapter from a search result.
+    pub fn jump_to_result(&mut self, book: &str, chapter: u32) {
+        // Find the book index
+        if let Some(idx) = BOOKS.iter().position(|b| b.name.eq_ignore_ascii_case(book)) {
+            self.selected_book_idx = idx;
+            self.book_list.select(Some(idx));
+            self.selected_chapter = chapter;
+            self.chapter_list.select(Some((chapter - 1) as usize));
+            self.scripture_scroll = 0;
+            self.active_panel = Panel::Scripture;
+            self.search = SearchMode::Off;
+        }
+    }
 }
 
 pub fn render_browser(
@@ -203,12 +243,22 @@ pub fn render_browser(
     let inner = outer_block.inner(area);
     frame.render_widget(outer_block, area);
 
-    // Layout: status bar at bottom
-    let main_and_status = Layout::vertical([
-        Constraint::Min(1),    // Main content
-        Constraint::Length(1), // Status bar
-    ])
-    .split(inner);
+    // Layout: main content + optional search bar + status bar
+    let has_search_input = matches!(state.search, SearchMode::Input(_));
+    let main_and_status = if has_search_input {
+        Layout::vertical([
+            Constraint::Min(1),    // Main content
+            Constraint::Length(3), // Search input
+            Constraint::Length(1), // Status bar
+        ])
+        .split(inner)
+    } else {
+        Layout::vertical([
+            Constraint::Min(1),    // Main content
+            Constraint::Length(1), // Status bar
+        ])
+        .split(inner)
+    };
 
     // Three panels
     let panels = Layout::horizontal([
@@ -220,8 +270,23 @@ pub fn render_browser(
 
     render_books_panel(frame, panels[0], state, theme);
     render_chapters_panel(frame, panels[1], state, theme);
-    render_scripture_panel(frame, panels[2], state, theme);
-    render_status_bar(frame, main_and_status[1], theme, theme_name);
+
+    // Scripture panel shows search results when in results mode
+    match &mut state.search {
+        SearchMode::Results { .. } => {
+            render_search_results_panel(frame, panels[2], state, theme);
+        }
+        _ => {
+            render_scripture_panel(frame, panels[2], state, theme);
+        }
+    }
+
+    if has_search_input {
+        render_search_input(frame, main_and_status[1], state, theme);
+        render_status_bar(frame, main_and_status[2], theme, theme_name);
+    } else {
+        render_status_bar(frame, main_and_status[1], theme, theme_name);
+    }
 
     // Quit confirmation popup
     if quit_pending {
@@ -238,7 +303,7 @@ fn panel_border_style(active: bool, theme: &Theme) -> Style {
 }
 
 fn render_books_panel(frame: &mut Frame, area: Rect, state: &mut BrowserState, theme: &Theme) {
-    let is_active = state.active_panel == Panel::Books;
+    let is_active = state.active_panel == Panel::Books && matches!(state.search, SearchMode::Off);
     let block = Block::default()
         .title(Span::styled(
             " Books ",
@@ -274,7 +339,7 @@ fn render_books_panel(frame: &mut Frame, area: Rect, state: &mut BrowserState, t
 }
 
 fn render_chapters_panel(frame: &mut Frame, area: Rect, state: &mut BrowserState, theme: &Theme) {
-    let is_active = state.active_panel == Panel::Chapters;
+    let is_active = state.active_panel == Panel::Chapters && matches!(state.search, SearchMode::Off);
     let block = Block::default()
         .title(Span::styled(
             " Ch ",
@@ -310,7 +375,7 @@ fn render_chapters_panel(frame: &mut Frame, area: Rect, state: &mut BrowserState
 }
 
 fn render_scripture_panel(frame: &mut Frame, area: Rect, state: &mut BrowserState, theme: &Theme) {
-    let is_active = state.active_panel == Panel::Scripture;
+    let is_active = state.active_panel == Panel::Scripture && matches!(state.search, SearchMode::Off);
 
     let title = if let Some(ref ch) = state.current_chapter {
         format!(" {} {} ", ch.book, ch.chapter)
@@ -424,11 +489,133 @@ fn render_scripture_panel(frame: &mut Frame, area: Rect, state: &mut BrowserStat
     }
 }
 
+fn render_search_results_panel(
+    frame: &mut Frame,
+    area: Rect,
+    state: &mut BrowserState,
+    theme: &Theme,
+) {
+    let (query, results, list_state) = match &mut state.search {
+        SearchMode::Results { query, results, list_state } => (query.clone(), results, list_state),
+        _ => return,
+    };
+
+    let title = format!(" Search: \"{}\" ({} results) ", query, results.len());
+
+    let block = Block::default()
+        .title(Span::styled(
+            title,
+            Style::default().fg(theme.accent).bold(),
+        ))
+        .borders(Borders::ALL)
+        .border_type(BorderType::Rounded)
+        .border_style(Style::default().fg(theme.border_active))
+        .padding(Padding::horizontal(1))
+        .style(Style::default().bg(theme.surface));
+
+    if results.is_empty() {
+        let empty = Paragraph::new(vec![
+            Line::default(),
+            Line::default(),
+            Line::from(Span::styled(
+                "No results found",
+                Style::default().fg(theme.text_dim),
+            )),
+            Line::default(),
+            Line::from(Span::styled(
+                "Press Esc to go back",
+                Style::default().fg(theme.text_muted),
+            )),
+        ])
+        .block(block)
+        .alignment(Alignment::Center);
+        frame.render_widget(empty, area);
+        return;
+    }
+
+    let query_lower = query.to_lowercase();
+    let items: Vec<ListItem> = results
+        .iter()
+        .enumerate()
+        .map(|(i, r)| {
+            let is_selected = Some(i) == list_state.selected();
+            let ref_style = if is_selected {
+                Style::default()
+                    .fg(theme.accent)
+                    .bg(theme.highlight_bg)
+                    .add_modifier(Modifier::BOLD)
+            } else {
+                Style::default().fg(theme.accent_soft).bold()
+            };
+            let text_style = if is_selected {
+                Style::default().fg(theme.text).bg(theme.highlight_bg)
+            } else {
+                Style::default().fg(theme.text_dim)
+            };
+
+            // Highlight matching text
+            let ref_str = format!("{} {}:{}", r.book, r.chapter, r.verse);
+            let text = truncate_result_text(&r.text, 60);
+
+            let mut spans = vec![
+                Span::styled(ref_str, ref_style),
+                Span::styled("  ", text_style),
+            ];
+
+            // Simple highlight: split on query match
+            let text_lower = text.to_lowercase();
+            if let Some(pos) = text_lower.find(&query_lower) {
+                let before = &text[..pos];
+                let matched = &text[pos..pos + query_lower.len()];
+                let after = &text[pos + query_lower.len()..];
+                spans.push(Span::styled(before.to_string(), text_style));
+                spans.push(Span::styled(
+                    matched.to_string(),
+                    Style::default().fg(theme.search_match).add_modifier(Modifier::BOLD),
+                ));
+                spans.push(Span::styled(after.to_string(), text_style));
+            } else {
+                spans.push(Span::styled(text, text_style));
+            }
+
+            ListItem::new(Line::from(spans))
+        })
+        .collect();
+
+    let list = List::new(items).block(block).highlight_symbol("  ");
+    frame.render_stateful_widget(list, area, list_state);
+}
+
+fn render_search_input(frame: &mut Frame, area: Rect, state: &BrowserState, theme: &Theme) {
+    let input_text = match &state.search {
+        SearchMode::Input(text) => text.as_str(),
+        _ => "",
+    };
+
+    let block = Block::default()
+        .title(Span::styled(" Search ", Style::default().fg(theme.accent).bold()))
+        .borders(Borders::ALL)
+        .border_type(BorderType::Rounded)
+        .border_style(Style::default().fg(theme.border_active))
+        .padding(Padding::horizontal(1))
+        .style(Style::default().bg(theme.surface));
+
+    let cursor = "\u{2588}"; // block cursor
+    let input = Paragraph::new(Line::from(vec![
+        Span::styled(input_text, Style::default().fg(theme.text)),
+        Span::styled(cursor, Style::default().fg(theme.accent_soft)),
+    ]))
+    .block(block);
+
+    frame.render_widget(input, area);
+}
+
 fn render_status_bar(frame: &mut Frame, area: Rect, theme: &Theme, theme_name: ThemeName) {
     let keybinds = vec![
         ("\u{2190}\u{2192}", "panels"),
         ("\u{2191}\u{2193}", "navigate"),
         ("Enter", "select"),
+        ("/", "search"),
         ("t", theme_name.label()),
         ("qq", "quit"),
     ];
@@ -483,4 +670,12 @@ fn render_quit_popup(frame: &mut Frame, area: Rect, theme: &Theme) {
     );
 
     frame.render_widget(popup, popup_area);
+}
+
+fn truncate_result_text(text: &str, max_len: usize) -> String {
+    if text.len() <= max_len {
+        text.to_string()
+    } else {
+        format!("{}...", &text[..max_len - 3])
+    }
 }
