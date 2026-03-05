@@ -254,10 +254,12 @@ fn format_verse_plain(verse: &api::types::Verse) -> String {
     )
 }
 
-fn truncate_text(text: &str, max_len: usize) -> String {
-    if text.len() <= max_len {
+fn truncate_text(text: &str, max_chars: usize) -> String {
+    let char_count = text.chars().count();
+    if char_count <= max_chars {
         text.to_string()
     } else {
-        format!("{}...", &text[..max_len - 3])
+        let truncated: String = text.chars().take(max_chars - 3).collect();
+        format!("{}...", truncated)
     }
 }

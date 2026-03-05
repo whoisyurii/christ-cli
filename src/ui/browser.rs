@@ -555,18 +555,25 @@ fn render_search_results_panel(
                 Span::styled("  ", text_style),
             ];
 
-            // Simple highlight: split on query match
-            let text_lower = text.to_lowercase();
-            if let Some(pos) = text_lower.find(&query_lower) {
-                let before = &text[..pos];
-                let matched = &text[pos..pos + query_lower.len()];
-                let after = &text[pos + query_lower.len()..];
-                spans.push(Span::styled(before.to_string(), text_style));
+            // Simple highlight: find match by char index for UTF-8 safety
+            let text_chars: Vec<char> = text.chars().collect();
+            let query_chars: Vec<char> = query_lower.chars().collect();
+            let text_lower_chars: Vec<char> = text.to_lowercase().chars().collect();
+
+            let match_pos = text_lower_chars
+                .windows(query_chars.len())
+                .position(|w| w == query_chars.as_slice());
+
+            if let Some(pos) = match_pos {
+                let before: String = text_chars[..pos].iter().collect();
+                let matched: String = text_chars[pos..pos + query_chars.len()].iter().collect();
+                let after: String = text_chars[pos + query_chars.len()..].iter().collect();
+                spans.push(Span::styled(before, text_style));
                 spans.push(Span::styled(
-                    matched.to_string(),
+                    matched,
                     Style::default().fg(theme.search_match).add_modifier(Modifier::BOLD),
                 ));
-                spans.push(Span::styled(after.to_string(), text_style));
+                spans.push(Span::styled(after, text_style));
             } else {
                 spans.push(Span::styled(text, text_style));
             }
@@ -665,10 +672,12 @@ fn render_quit_popup(frame: &mut Frame, area: Rect, theme: &Theme) {
     frame.render_widget(popup, popup_area);
 }
 
-fn truncate_result_text(text: &str, max_len: usize) -> String {
-    if text.len() <= max_len {
+fn truncate_result_text(text: &str, max_chars: usize) -> String {
+    let char_count = text.chars().count();
+    if char_count <= max_chars {
         text.to_string()
     } else {
-        format!("{}...", &text[..max_len - 3])
+        let truncated: String = text.chars().take(max_chars - 3).collect();
+        format!("{}...", truncated)
     }
 }
