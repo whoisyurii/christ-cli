@@ -4,6 +4,9 @@ version = "0.1.0"
 edition = "2021"
 description = "A beautiful Bible TUI for Christian developers"
 license = "MIT"
+repository = "https://github.com/whoisyurii/christ-cli"
+homepage = "https://github.com/whoisyurii/christ-cli"
+readme = "README.md"
 
 [[bin]]
 name = "christ"
@@ -27,3 +30,24 @@ once_cell = "1"
 opt-level = "z"
 lto = true
 strip = true
+
+# The profile that 'dist' will build with
+[profile.dist]
+inherits = "release"
+lto = "thin"
+
+# Config for 'dist'
+[workspace.metadata.dist]
+cargo-dist-version = "0.31.0"
+ci = "github"
+installers = ["shell", "homebrew", "npm"]
+targets = [
+    "aarch64-apple-darwin",
+    "x86_64-apple-darwin",
+    "x86_64-unknown-linux-gnu",
+    "aarch64-unknown-linux-gnu",
+    "x86_64-pc-windows-msvc",
+]
+install-path = "CARGO_HOME"
+tap = "whoisyurii/homebrew-tap"
+publish-jobs = ["homebrew"]
