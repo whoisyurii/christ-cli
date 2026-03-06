@@ -100,6 +100,10 @@ impl Resolver {
         }
     }
 
+    pub async fn get_book_names(&self, translation: &str) -> Result<Vec<String>, String> {
+        self.bolls.get_book_names(translation).await
+    }
+
     pub async fn get_random_verse(&self, translation: &str) -> Result<Verse, String> {
         if translation.eq_ignore_ascii_case("KJV") {
             return Ok(kjv::random_verse());

@@ -6,6 +6,7 @@ mod cli;
 mod data;
 mod store;
 mod ui;
+mod update;
 
 use crate::api::Resolver;
 use crate::data::reference;
@@ -43,6 +44,12 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         }
         Some(Commands::Intro) => {
             run_intro().await?;
+        }
+        Some(Commands::Update { check }) => {
+            if let Err(e) = update::run_update(check).await {
+                eprintln!("Update failed: {}", e);
+                std::process::exit(1);
+            }
         }
     }
 

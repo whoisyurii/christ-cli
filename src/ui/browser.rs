@@ -32,21 +32,52 @@ pub enum SearchMode {
 pub struct TranslationInfo {
     pub code: &'static str,
     pub name: &'static str,
+    pub lang: &'static str,
     pub offline: bool,
 }
 
 pub const TRANSLATIONS: &[TranslationInfo] = &[
-    TranslationInfo { code: "KJV", name: "King James Version", offline: true },
-    TranslationInfo { code: "WEB", name: "World English Bible", offline: false },
-    TranslationInfo { code: "NKJV", name: "New King James Version", offline: false },
-    TranslationInfo { code: "ESV", name: "English Standard Version", offline: false },
-    TranslationInfo { code: "NIV", name: "New International Version", offline: false },
-    TranslationInfo { code: "NLT", name: "New Living Translation", offline: false },
-    TranslationInfo { code: "NASB", name: "New American Standard Bible", offline: false },
-    TranslationInfo { code: "BSB", name: "Berean Standard Bible", offline: false },
-    TranslationInfo { code: "NET", name: "New English Translation", offline: false },
-    TranslationInfo { code: "MSG", name: "The Message", offline: false },
-    TranslationInfo { code: "YLT", name: "Young's Literal Translation", offline: false },
+    // English
+    TranslationInfo { code: "KJV", name: "King James Version", lang: "English", offline: true },
+    TranslationInfo { code: "WEB", name: "World English Bible", lang: "English", offline: false },
+    TranslationInfo { code: "NKJV", name: "New King James Version", lang: "English", offline: false },
+    TranslationInfo { code: "ESV", name: "English Standard Version", lang: "English", offline: false },
+    TranslationInfo { code: "NIV", name: "New International Version", lang: "English", offline: false },
+    TranslationInfo { code: "NLT", name: "New Living Translation", lang: "English", offline: false },
+    TranslationInfo { code: "NASB", name: "New American Standard Bible", lang: "English", offline: false },
+    TranslationInfo { code: "BSB", name: "Berean Standard Bible", lang: "English", offline: false },
+    TranslationInfo { code: "NET", name: "New English Translation", lang: "English", offline: false },
+    TranslationInfo { code: "MSG", name: "The Message", lang: "English", offline: false },
+    TranslationInfo { code: "YLT", name: "Young's Literal Translation", lang: "English", offline: false },
+    // Українська
+    TranslationInfo { code: "UBIO", name: "Переклад Огієнка", lang: "Українська", offline: false },
+    TranslationInfo { code: "UKRK", name: "Переклад Куліша", lang: "Українська", offline: false },
+    // Español
+    TranslationInfo { code: "RV1960", name: "Reina-Valera 1960", lang: "Español", offline: false },
+    TranslationInfo { code: "NVI", name: "Nueva Versión Internacional", lang: "Español", offline: false },
+    // Português
+    TranslationInfo { code: "ARA", name: "Almeida Revista e Atualizada", lang: "Português", offline: false },
+    TranslationInfo { code: "NVIPT", name: "NVI Português", lang: "Português", offline: false },
+    // Français
+    TranslationInfo { code: "FRLSG", name: "Louis Segond 1910", lang: "Français", offline: false },
+    TranslationInfo { code: "NBS", name: "Nouvelle Bible Segond", lang: "Français", offline: false },
+    // Deutsch
+    TranslationInfo { code: "LUT", name: "Luther Bibel", lang: "Deutsch", offline: false },
+    TranslationInfo { code: "ELB", name: "Elberfelder Bibel", lang: "Deutsch", offline: false },
+    // Русский
+    TranslationInfo { code: "SYNOD", name: "Синодальный перевод", lang: "Русский", offline: false },
+    TranslationInfo { code: "NRT", name: "Новый Русский Перевод", lang: "Русский", offline: false },
+    // 中文
+    TranslationInfo { code: "CUV", name: "和合本 (Traditional)", lang: "中文", offline: false },
+    TranslationInfo { code: "CUNPS", name: "和合本 (Simplified)", lang: "中文", offline: false },
+    // 한국어
+    TranslationInfo { code: "KRV", name: "개역한글판", lang: "한국어", offline: false },
+    // 日本語
+    TranslationInfo { code: "JPKJV", name: "口語訳聖書", lang: "日本語", offline: false },
+    // Italiano
+    TranslationInfo { code: "NR06", name: "Nuova Riveduta 2006", lang: "Italiano", offline: false },
+    // Nederlands
+    TranslationInfo { code: "HSV17", name: "Herziene Statenvertaling", lang: "Nederlands", offline: false },
 ];
 
 pub struct BrowserState {
@@ -62,6 +93,9 @@ pub struct BrowserState {
     pub translation: String,
     pub translation_picker: bool,
     pub translation_list: ListState,
+    /// Localized book names for the current translation (indexed by BOOKS order).
+    /// Empty vec means use English names (KJV / fallback).
+    pub localized_books: Vec<String>,
 }
 
 impl BrowserState {
@@ -84,6 +118,7 @@ impl BrowserState {
             translation: "KJV".to_string(),
             translation_picker: false,
             translation_list: ListState::default(),
+            localized_books: Vec::new(),
         }
     }
 
@@ -146,6 +181,16 @@ impl BrowserState {
 
     pub fn selected_book_name(&self) -> &'static str {
         BOOKS[self.selected_book_idx].name
+    }
+
+    /// Get the display name for a book (localized if available).
+    pub fn book_display_name(&self, idx: usize) -> &str {
+        if let Some(name) = self.localized_books.get(idx) {
+            if !name.is_empty() {
+                return name.as_str();
+            }
+        }
+        BOOKS[idx].name
     }
 
     pub fn selected_book_chapters(&self) -> u32 {
@@ -365,7 +410,7 @@ fn render_books_panel(frame: &mut Frame, area: Rect, state: &mut BrowserState, t
     let items: Vec<ListItem> = BOOKS
         .iter()
         .enumerate()
-        .map(|(i, book)| {
+        .map(|(i, _book)| {
             let style = if Some(i) == state.book_list.selected() {
                 Style::default()
                     .fg(theme.accent)
@@ -374,7 +419,7 @@ fn render_books_panel(frame: &mut Frame, area: Rect, state: &mut BrowserState, t
             } else {
                 Style::default().fg(theme.text)
             };
-            ListItem::new(Span::styled(book.name, style))
+            ListItem::new(Span::styled(state.book_display_name(i).to_string(), style))
         })
         .collect();
 
@@ -422,8 +467,9 @@ fn render_chapters_panel(frame: &mut Frame, area: Rect, state: &mut BrowserState
 fn render_scripture_panel(frame: &mut Frame, area: Rect, state: &mut BrowserState, theme: &Theme) {
     let is_active = state.active_panel == Panel::Scripture && matches!(state.search, SearchMode::Off);
 
-    let title = if let Some(ref ch) = state.current_chapter {
-        format!(" {} {} ", ch.book, ch.chapter)
+    let title = if state.current_chapter.is_some() {
+        let book_name = state.book_display_name(state.selected_book_idx);
+        format!(" {} {} ", book_name, state.selected_chapter)
     } else {
         " Scripture ".to_string()
     };
@@ -669,8 +715,8 @@ fn render_search_input(frame: &mut Frame, area: Rect, state: &BrowserState, them
 
 fn render_status_bar(frame: &mut Frame, area: Rect, theme: &Theme, theme_name: ThemeName, translation: &str) {
     let keybinds = vec![
-        ("\u{2190}\u{2192}", "panels"),
-        ("\u{2191}\u{2193}", "navigate"),
+        ("\u{2190}\u{2192}/hl", "panels"),
+        ("\u{2191}\u{2193}/jk", "navigate"),
         ("Enter", "select"),
         ("/", "search"),
         ("t", theme_name.label()),
@@ -705,8 +751,54 @@ fn render_translation_picker(
     state: &mut BrowserState,
     theme: &Theme,
 ) {
-    let popup_width = 46u16;
-    let popup_height = (TRANSLATIONS.len() as u16 + 4).min(area.height.saturating_sub(4));
+    // Build display lines with language headers
+    let mut lines: Vec<Line> = Vec::new();
+    let mut last_lang = "";
+    let mut selected_display_row: u16 = 0;
+
+    for (i, t) in TRANSLATIONS.iter().enumerate() {
+        if t.lang != last_lang {
+            if !last_lang.is_empty() {
+                lines.push(Line::default()); // blank separator between groups
+            }
+            lines.push(Line::from(Span::styled(
+                format!("  {}", t.lang),
+                Style::default().fg(theme.text_muted).add_modifier(Modifier::BOLD),
+            )));
+            last_lang = t.lang;
+        }
+
+        if Some(i) == state.translation_list.selected() {
+            selected_display_row = lines.len() as u16;
+        }
+
+        let is_selected = Some(i) == state.translation_list.selected();
+        let is_current = t.code.eq_ignore_ascii_case(&state.translation);
+        let style = if is_selected {
+            Style::default()
+                .fg(theme.accent)
+                .bg(theme.highlight_bg)
+                .add_modifier(Modifier::BOLD)
+        } else if is_current {
+            Style::default().fg(theme.accent_soft).bold()
+        } else {
+            Style::default().fg(theme.text)
+        };
+
+        let prefix = if is_selected { " \u{25b8} " } else { "   " };
+        let suffix = if t.offline { " (offline)" } else { "" };
+        let marker = if is_current { " \u{2713}" } else { "" };
+        lines.push(Line::from(vec![
+            Span::styled(prefix.to_string(), style),
+            Span::styled(format!("{:<8}", t.code), style),
+            Span::styled(t.name.to_string(), style),
+            Span::styled(suffix.to_string(), Style::default().fg(theme.text_muted)),
+            Span::styled(marker.to_string(), Style::default().fg(theme.search_match).bold()),
+        ]));
+    }
+
+    let popup_width = 54u16;
+    let popup_height = (lines.len() as u16 + 4).min(area.height.saturating_sub(4));
 
     let horizontal = Layout::horizontal([Constraint::Length(popup_width)])
         .flex(Flex::Center)
@@ -729,36 +821,18 @@ fn render_translation_picker(
         .padding(Padding::horizontal(1))
         .style(Style::default().bg(theme.surface));
 
-    let items: Vec<ListItem> = TRANSLATIONS
-        .iter()
-        .enumerate()
-        .map(|(i, t)| {
-            let is_selected = Some(i) == state.translation_list.selected();
-            let is_current = t.code.eq_ignore_ascii_case(&state.translation);
-            let style = if is_selected {
-                Style::default()
-                    .fg(theme.accent)
-                    .bg(theme.highlight_bg)
-                    .add_modifier(Modifier::BOLD)
-            } else if is_current {
-                Style::default().fg(theme.accent_soft).bold()
-            } else {
-                Style::default().fg(theme.text)
-            };
+    let inner_height = block.inner(popup_area).height;
+    let scroll = if selected_display_row >= inner_height {
+        selected_display_row.saturating_sub(inner_height / 2)
+    } else {
+        0
+    };
 
-            let suffix = if t.offline { " (offline)" } else { "" };
-            let marker = if is_current { " \u{2713}" } else { "" };
-            ListItem::new(Line::from(vec![
-                Span::styled(format!("{:<6}", t.code), style),
-                Span::styled(t.name, style),
-                Span::styled(suffix, Style::default().fg(theme.text_muted)),
-                Span::styled(marker, Style::default().fg(theme.search_match).bold()),
-            ]))
-        })
-        .collect();
+    let paragraph = Paragraph::new(lines)
+        .block(block)
+        .scroll((scroll, 0));
 
-    let list = List::new(items).block(block).highlight_symbol("  ");
-    frame.render_stateful_widget(list, popup_area, &mut state.translation_list);
+    frame.render_widget(paragraph, popup_area);
 }
 
 fn render_quit_popup(frame: &mut Frame, area: Rect, theme: &Theme) {

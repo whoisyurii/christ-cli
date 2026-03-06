@@ -52,4 +52,11 @@ pub enum Commands {
 
     /// Replay the startup animation
     Intro,
+
+    /// Update christ-cli to the latest version
+    Update {
+        /// Check for updates without installing
+        #[arg(long)]
+        check: bool,
+    },
 }

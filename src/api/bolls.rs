@@ -17,6 +17,12 @@ struct BollsVerse {
 }
 
 #[derive(Deserialize)]
+struct BollsBook {
+    bookid: u32,
+    name: String,
+}
+
+#[derive(Deserialize)]
 struct BollsSearchResult {
     #[serde(default)]
     book: u32,
@@ -39,24 +45,9 @@ impl BollsProvider {
     }
 
     fn translation_code(translation: &str) -> &str {
-        // Bolls uses uppercase translation codes
-        match translation.to_uppercase().as_str() {
-            "KJV" => "KJV",
-            "WEB" => "WEB",
-            "ASV" => "ASV",
-            "YLT" => "YLT",
-            "ESV" => "ESV",
-            "NIV" => "NIV",
-            "NLT" => "NLT",
-            "NASB" => "NASB",
-            "NKJV" => "NKJV",
-            "BSB" => "BSB",
-            "NET" => "NET",
-            "MSG" => "MSG",
-            other => {
-                Box::leak(other.to_string().into_boxed_str())
-            }
-        }
+        // Bolls uses the code as-is (already uppercase in our TRANSLATIONS list)
+        // Leak is fine — these are a small fixed set of user-selected codes
+        Box::leak(translation.to_uppercase().into_boxed_str())
     }
 
     pub async fn get_verse(
@@ -216,6 +207,32 @@ impl BollsProvider {
             text: clean_html(&resp.text),
             translation: translation.to_uppercase(),
         })
+    }
+
+    /// Fetch localized book names for a translation.
+    /// Returns a Vec of 66 names indexed by (bolls_id - 1).
+    pub async fn get_book_names(&self, translation: &str) -> Result<Vec<String>, String> {
+        let trans = Self::translation_code(translation);
+        let url = format!("{}/get-books/{}/", BASE_URL, trans);
+
+        let resp: Vec<BollsBook> = self
+            .client
+            .get(&url)
+            .send()
+            .await
+            .map_err(|e| e.to_string())?
+            .json()
+            .await
+            .map_err(|e| e.to_string())?;
+
+        // Build a vec indexed by (bookid - 1), matching our BOOKS order
+        let mut names = vec![String::new(); 66];
+        for b in resp {
+            if b.bookid >= 1 && b.bookid <= 66 {
+                names[(b.bookid - 1) as usize] = b.name;
+            }
+        }
+        Ok(names)
     }
 }
 

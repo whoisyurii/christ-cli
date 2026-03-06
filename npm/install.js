@@ -47,9 +47,30 @@ function download(url, dest) {
           reject(new Error(`Download failed: HTTP ${res.statusCode}`));
           return;
         }
+
+        const total = parseInt(res.headers["content-length"], 10) || 0;
+        let downloaded = 0;
         const file = fs.createWriteStream(dest);
-        res.pipe(file);
-        file.on("finish", () => file.close(resolve));
+
+        res.on("data", (chunk) => {
+          downloaded += chunk.length;
+          file.write(chunk);
+          if (total > 0) {
+            const pct = Math.round((downloaded / total) * 100);
+            const mb = (downloaded / 1024 / 1024).toFixed(1);
+            const totalMb = (total / 1024 / 1024).toFixed(1);
+            const barLen = 24;
+            const filled = Math.round((downloaded / total) * barLen);
+            const bar = "\u2588".repeat(filled) + "\u2591".repeat(barLen - filled);
+            process.stderr.write(`\r  [${bar}] ${mb}MB / ${totalMb}MB  ${pct}%`);
+          }
+        });
+
+        res.on("end", () => {
+          file.end();
+          if (total > 0) process.stderr.write("\n");
+          resolve();
+        });
       }).on("error", reject);
     };
     follow(url);
@@ -62,7 +83,7 @@ async function main() {
   const ext = isWindows ? "zip" : "tar.gz";
   const url = `https://github.com/${REPO}/releases/download/v${version}/${BINARY}-${target}.${ext}`;
 
-  console.log(`Downloading christ-cli v${version} for ${target}...`);
+  console.log(`\n  Installing christ-cli v${version} for ${target}...\n`);
 
   const binDir = path.join(__dirname, "bin");
   fs.mkdirSync(binDir, { recursive: true });
@@ -70,18 +91,20 @@ async function main() {
   const archivePath = path.join(binDir, `christ.${ext}`);
   await download(url, archivePath);
 
+  console.log("  Extracting...");
+
   if (isWindows) {
-    execSync(`tar -xf "${archivePath}" -C "${binDir}"`, { stdio: "inherit" });
+    execSync(`tar -xf "${archivePath}" -C "${binDir}"`, { stdio: "pipe" });
   } else {
-    execSync(`tar xzf "${archivePath}" -C "${binDir}"`, { stdio: "inherit" });
+    execSync(`tar xzf "${archivePath}" -C "${binDir}"`, { stdio: "pipe" });
     fs.chmodSync(path.join(binDir, BINARY), 0o755);
   }
 
   fs.unlinkSync(archivePath);
-  console.log("christ-cli installed successfully!");
+  console.log("  christ-cli installed successfully! Run: christ\n");
 }
 
 main().catch((err) => {
-  console.error("Installation failed:", err.message);
+  console.error("\n  Installation failed:", err.message);
   process.exit(1);
 });

@@ -67,17 +67,25 @@ impl App {
             .await
             .ok();
 
+        // Fetch localized book names for non-KJV translations
+        let localized_books = if !translation.eq_ignore_ascii_case("KJV") {
+            self.resolver.get_book_names(translation).await.unwrap_or_default()
+        } else {
+            Vec::new()
+        };
+
         match &mut self.mode {
             AppMode::Browser(ref mut state) => {
                 if has_saved_session {
                     state.restore(&saved);
                 }
                 state.current_chapter = initial_chapter.clone();
+                state.localized_books = localized_books.clone();
             }
             _ => {}
         }
 
-        let mut pending_initial = Some((initial_chapter, saved));
+        let mut pending_initial = Some((initial_chapter, saved, localized_books));
 
         while !self.should_quit {
             terminal.draw(|frame| self.draw(frame))?;
@@ -98,12 +106,13 @@ impl App {
                     state.tick();
                     if state.done {
                         let mut browser = BrowserState::new();
-                        if let Some((ch, ref saved)) = pending_initial {
+                        if let Some((ch, ref saved, ref books)) = pending_initial {
                             let has_saved = saved.book_index > 0 || saved.chapter > 1;
                             if has_saved {
                                 browser.restore(saved);
                             }
                             browser.current_chapter = ch;
+                            browser.localized_books = books.clone();
                         }
                         pending_initial = None;
                         self.mode = AppMode::Browser(browser);
@@ -213,13 +222,13 @@ impl App {
                         KeyCode::Esc | KeyCode::Char('v') => {
                             state.translation_picker = false;
                         }
-                        KeyCode::Up => {
+                        KeyCode::Up | KeyCode::Char('k') => {
                             let i = state.translation_list.selected().unwrap_or(0);
                             if i > 0 {
                                 state.translation_list.select(Some(i - 1));
                             }
                         }
-                        KeyCode::Down => {
+                        KeyCode::Down | KeyCode::Char('j') => {
                             let i = state.translation_list.selected().unwrap_or(0);
                             if i < TRANSLATIONS.len() - 1 {
                                 state.translation_list.select(Some(i + 1));
@@ -228,6 +237,7 @@ impl App {
                         KeyCode::Enter => {
                             let changed = state.pick_translation();
                             if changed {
+                                self.load_book_names().await;
                                 self.load_chapter().await;
                             }
                         }
@@ -261,19 +271,19 @@ impl App {
                     KeyCode::Char('v') => {
                         state.open_translation_picker();
                     }
-                    KeyCode::Left => {
+                    KeyCode::Left | KeyCode::Char('h') => {
                         state.prev_panel();
                     }
-                    KeyCode::Right => {
+                    KeyCode::Right | KeyCode::Char('l') => {
                         let should_load = state.next_panel_or_select();
                         if should_load {
                             self.load_chapter().await;
                         }
                     }
-                    KeyCode::Up => {
+                    KeyCode::Up | KeyCode::Char('k') => {
                         state.move_up();
                     }
-                    KeyCode::Down => {
+                    KeyCode::Down | KeyCode::Char('j') => {
                         state.move_down();
                     }
                     KeyCode::Enter => {
@@ -307,6 +317,20 @@ impl App {
                 } else {
                     results.clear();
                     list_state.select(None);
+                }
+            }
+        }
+    }
+
+    async fn load_book_names(&mut self) {
+        if let AppMode::Browser(ref mut state) = self.mode {
+            let translation = state.translation.clone();
+            if translation.eq_ignore_ascii_case("KJV") {
+                state.localized_books = Vec::new(); // Use English names
+            } else {
+                match self.resolver.get_book_names(&translation).await {
+                    Ok(names) => state.localized_books = names,
+                    Err(_) => state.localized_books = Vec::new(), // Fallback to English
                 }
             }
         }
