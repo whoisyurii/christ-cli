@@ -102,6 +102,8 @@ pub struct BrowserState {
     pub download: Option<cache::DownloadHandle>,
     /// Verse to highlight after jumping from search results.
     pub highlight_verse: Option<u32>,
+    /// Error message to display in the scripture panel.
+    pub error: Option<String>,
 }
 
 impl BrowserState {
@@ -127,6 +129,7 @@ impl BrowserState {
             localized_books: Vec::new(),
             download: None,
             highlight_verse: None,
+            error: None,
         }
     }
 
@@ -168,8 +171,10 @@ impl BrowserState {
     }
 
     /// Returns true if the current translation is available offline (KJV or fully cached).
+    /// Returns true if the translation has local data (bundled KJV or any cached chapters).
+    /// Used to decide whether search can run locally (instant) vs needing API.
     pub fn is_offline(&self) -> bool {
-        cache::is_fully_cached(&self.translation)
+        cache::has_cached_data(&self.translation)
     }
 
     /// Check if download is done and clean up the handle.
@@ -440,6 +445,9 @@ fn render_books_panel(frame: &mut Frame, area: Rect, state: &mut BrowserState, t
         .padding(Padding::horizontal(1))
         .style(Style::default().bg(theme.surface));
 
+    // Available width for book names: area - borders(2) - padding(2) - highlight_symbol(3)
+    let max_name_width = (area.width as usize).saturating_sub(7);
+
     let items: Vec<ListItem> = BOOKS
         .iter()
         .enumerate()
@@ -452,11 +460,12 @@ fn render_books_panel(frame: &mut Frame, area: Rect, state: &mut BrowserState, t
             } else {
                 Style::default().fg(theme.text)
             };
-            ListItem::new(Span::styled(state.book_display_name(i).to_string(), style))
+            let name = truncate_display_name(&state.book_display_name(i), max_name_width);
+            ListItem::new(Span::styled(name, style))
         })
         .collect();
 
-    let list = List::new(items).block(block).highlight_symbol("  ");
+    let list = List::new(items).block(block).highlight_symbol(" > ");
 
     frame.render_stateful_widget(list, area, &mut state.book_list);
 }
@@ -492,7 +501,7 @@ fn render_chapters_panel(frame: &mut Frame, area: Rect, state: &mut BrowserState
         })
         .collect();
 
-    let list = List::new(items).block(block).highlight_symbol("  ");
+    let list = List::new(items).block(block).highlight_symbol(" > ");
 
     frame.render_stateful_widget(list, area, &mut state.chapter_list);
 }
@@ -531,6 +540,26 @@ fn render_scripture_panel(frame: &mut Frame, area: Rect, state: &mut BrowserStat
         return;
     }
 
+    if let Some(ref err) = state.error {
+        let error_msg = Paragraph::new(vec![
+            Line::default(),
+            Line::from(Span::styled(
+                format!("Error: {}", err),
+                Style::default().fg(theme.search_match),
+            )),
+            Line::default(),
+            Line::from(Span::styled(
+                "Press Enter to retry",
+                Style::default().fg(theme.text_dim),
+            )),
+        ])
+        .block(block)
+        .alignment(Alignment::Center)
+        .wrap(Wrap { trim: false });
+        frame.render_widget(error_msg, area);
+        return;
+    }
+
     if let Some(ref chapter) = state.current_chapter {
         let highlight = state.highlight_verse;
         let lines: Vec<Line> = chapter
@@ -542,7 +571,7 @@ fn render_scripture_panel(frame: &mut Frame, area: Rect, state: &mut BrowserStat
                     Span::styled(
                         format!(" {} ", v.verse),
                         if is_highlighted {
-                            Style::default().fg(theme.accent).bold()
+                            Style::default().fg(theme.search_match)
                         } else {
                             Style::default().fg(theme.text_muted)
                         },
@@ -550,7 +579,7 @@ fn render_scripture_panel(frame: &mut Frame, area: Rect, state: &mut BrowserStat
                     Span::styled(
                         &v.text,
                         if is_highlighted {
-                            Style::default().fg(theme.accent_soft).add_modifier(Modifier::BOLD)
+                            Style::default().fg(theme.search_match)
                         } else {
                             Style::default().fg(theme.text)
                         },
@@ -828,6 +857,28 @@ fn render_status_bar(
 
     let bar = Paragraph::new(Line::from(spans)).style(Style::default().bg(theme.bg));
     frame.render_widget(bar, area);
+}
+
+fn truncate_display_name(name: &str, max_width: usize) -> String {
+    use unicode_width::UnicodeWidthStr;
+    let w = name.width();
+    if w <= max_width {
+        return name.to_string();
+    }
+    // Truncate to fit within max_width, leaving room for ellipsis
+    let target = max_width.saturating_sub(1); // 1 for ellipsis character
+    let mut truncated = String::new();
+    let mut current_w = 0;
+    for ch in name.chars() {
+        let cw = unicode_width::UnicodeWidthChar::width(ch).unwrap_or(0);
+        if current_w + cw > target {
+            break;
+        }
+        truncated.push(ch);
+        current_w += cw;
+    }
+    truncated.push('\u{2026}');
+    truncated
 }
 
 fn render_translation_picker(

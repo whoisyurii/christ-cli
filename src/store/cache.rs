@@ -56,6 +56,15 @@ fn mark_complete(translation: &str) {
     }
 }
 
+/// Remove the .complete marker (cache was found to be incomplete).
+pub fn remove_complete_marker(translation: &str) {
+    if let Some(dir) = cache_dir() {
+        let _ = fs::remove_file(
+            dir.join(translation.to_uppercase()).join(".complete"),
+        );
+    }
+}
+
 pub fn save_book_names(translation: &str, names: &[String]) {
     if let Some(dir) = cache_dir() {
         let trans_dir = dir.join(translation.to_uppercase());
@@ -73,6 +82,26 @@ pub fn load_book_names(translation: &str) -> Option<Vec<String>> {
     )
     .ok()?;
     serde_json::from_str(&data).ok()
+}
+
+/// Returns true if any cached chapter files exist for this translation.
+pub fn has_cached_data(translation: &str) -> bool {
+    if translation.eq_ignore_ascii_case("KJV") {
+        return true;
+    }
+    let Some(dir) = cache_dir() else {
+        return false;
+    };
+    let trans_dir = dir.join(translation.to_uppercase());
+    trans_dir
+        .read_dir()
+        .ok()
+        .map(|mut entries| entries.any(|e| {
+            e.ok()
+                .map(|e| e.file_name().to_string_lossy().ends_with(".json"))
+                .unwrap_or(false)
+        }))
+        .unwrap_or(false)
 }
 
 /// Search all cached chapters of a translation on disk.
@@ -161,7 +190,35 @@ async fn download_translation(
         .build()
         .unwrap();
 
+    // Fetch and cache localized book names first
+    if load_book_names(translation).is_none() {
+        let url = format!("https://bolls.life/get-books/{}/", translation);
+        if let Ok(resp) = client.get(&url).send().await {
+            if let Ok(books_json) = resp.json::<Vec<serde_json::Value>>().await {
+                let mut names = vec![String::new(); 66];
+                for b in &books_json {
+                    if let (Some(id), Some(name)) = (
+                        b.get("bookid").and_then(|v| v.as_u64()),
+                        b.get("name").and_then(|v| v.as_str()),
+                    ) {
+                        if id >= 1 && id <= 66 {
+                            names[(id - 1) as usize] = name.to_string();
+                        }
+                    }
+                }
+                if names.iter().any(|n| !n.is_empty()) {
+                    save_book_names(translation, &names);
+                }
+            }
+        }
+    }
+
+    if cancel.load(Ordering::Relaxed) {
+        return;
+    }
+
     let sem = Arc::new(tokio::sync::Semaphore::new(5));
+    let failures = Arc::new(AtomicUsize::new(0));
     let mut handles = Vec::new();
 
     for book in BOOKS {
@@ -170,6 +227,7 @@ async fn download_translation(
             let sem = sem.clone();
             let progress = progress.clone();
             let cancel = cancel.clone();
+            let failures = failures.clone();
             let trans = translation.to_string();
             let book_name = book.name.to_string();
             let book_id = book.bolls_id;
@@ -199,6 +257,7 @@ async fn download_translation(
                     trans, book_id, ch_num
                 );
 
+                let mut saved = false;
                 if let Ok(resp) = client.get(&url).send().await {
                     if let Ok(verses_raw) = resp.json::<Vec<serde_json::Value>>().await {
                         let verses: Vec<Verse> = verses_raw
@@ -224,10 +283,14 @@ async fn download_translation(
                                 translation: trans.clone(),
                             };
                             save_chapter(&trans, book_id, &chapter);
+                            saved = true;
                         }
                     }
                 }
 
+                if !saved {
+                    failures.fetch_add(1, Ordering::Relaxed);
+                }
                 progress.fetch_add(1, Ordering::Relaxed);
             }));
         }
@@ -237,7 +300,8 @@ async fn download_translation(
         let _ = handle.await;
     }
 
-    if !cancel.load(Ordering::Relaxed) {
+    // Only mark complete if all chapters were successfully downloaded
+    if !cancel.load(Ordering::Relaxed) && failures.load(Ordering::Relaxed) == 0 {
         mark_complete(translation);
     }
 }

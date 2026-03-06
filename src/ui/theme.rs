@@ -69,7 +69,7 @@ const SLATE: Theme = Theme {
     text_muted: Color::Rgb(100, 116, 139), // slate-500
     accent: Color::Rgb(255, 255, 255),     // white
     accent_soft: Color::Rgb(203, 213, 225),// slate-300
-    highlight_bg: Color::Rgb(51, 65, 85),  // slate-700
+    highlight_bg: Color::Rgb(55, 70, 95),  // slate-700 (boosted)
     search_match: Color::Rgb(251, 191, 36),// amber-400
 };
 
@@ -84,7 +84,7 @@ const MIDNIGHT: Theme = Theme {
     text_muted: Color::Rgb(82, 82, 82),   // neutral-600
     accent: Color::Rgb(255, 255, 255),    // white
     accent_soft: Color::Rgb(212, 212, 212), // neutral-300
-    highlight_bg: Color::Rgb(23, 23, 23), // neutral-900
+    highlight_bg: Color::Rgb(35, 35, 35), // neutral-800 (boosted)
     search_match: Color::Rgb(234, 179, 8),// yellow-500
 };
 
@@ -99,7 +99,7 @@ const PARCHMENT: Theme = Theme {
     text_muted: Color::Rgb(168, 155, 132),// light brown
     accent: Color::Rgb(40, 32, 20),       // near-black brown
     accent_soft: Color::Rgb(100, 85, 60), // medium brown
-    highlight_bg: Color::Rgb(228, 218, 194), // highlighted cream
+    highlight_bg: Color::Rgb(210, 195, 160), // warm tan (high contrast)
     search_match: Color::Rgb(180, 100, 30), // warm orange
 };
 
@@ -114,6 +114,6 @@ const GOSPEL: Theme = Theme {
     text_muted: Color::Rgb(156, 163, 175),// gray-400
     accent: Color::Rgb(0, 0, 0),          // black
     accent_soft: Color::Rgb(75, 85, 99),  // gray-600
-    highlight_bg: Color::Rgb(243, 244, 246), // gray-100
+    highlight_bg: Color::Rgb(220, 225, 235), // blue-gray (high contrast)
     search_match: Color::Rgb(217, 119, 6),// amber-600
 };

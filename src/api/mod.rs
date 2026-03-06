@@ -39,6 +39,11 @@ impl Resolver {
             }
         }
 
+        // Cache miss on a "fully cached" translation — cache is incomplete, invalidate
+        if cache::is_fully_cached(translation) {
+            cache::remove_complete_marker(translation);
+        }
+
         // Try Bolls API
         match self.bolls.get_verse(book, chapter, verse, translation).await {
             Ok(v) => Ok(v),
@@ -64,6 +69,11 @@ impl Resolver {
             if let Some(c) = cache::load_chapter(translation, book_info.bolls_id, chapter) {
                 return Ok(c);
             }
+        }
+
+        // Cache miss on a "fully cached" translation — cache is incomplete, invalidate
+        if cache::is_fully_cached(translation) {
+            cache::remove_complete_marker(translation);
         }
 
         // Fetch from Bolls API and cache the result
@@ -94,7 +104,21 @@ impl Resolver {
             }
         }
 
-        // Try Bolls API (caching happens at chapter level via get_chapter)
+        // Try disk cache
+        if let Some(book_info) = books::normalize_book(book) {
+            if let Some(ch) = cache::load_chapter(translation, book_info.bolls_id, chapter) {
+                let verses: Vec<Verse> = ch
+                    .verses
+                    .into_iter()
+                    .filter(|v| v.verse >= verse_start && v.verse <= verse_end)
+                    .collect();
+                if !verses.is_empty() {
+                    return Ok(verses);
+                }
+            }
+        }
+
+        // Try Bolls API
         match self
             .bolls
             .get_verse_range(book, chapter, verse_start, verse_end, translation)
@@ -115,12 +139,13 @@ impl Resolver {
             return Ok(kjv::search(query));
         }
 
-        // For fully cached translations, search on disk
-        if cache::is_fully_cached(translation) {
-            return Ok(cache::search(translation, query));
+        // Always try local cache first — instant for any cached chapters
+        let cached = cache::search(translation, query);
+        if !cached.is_empty() || cache::has_cached_data(translation) {
+            return Ok(cached);
         }
 
-        // For other translations, use Bolls API
+        // No cached data at all — use Bolls API
         match self.bolls.search(query, translation).await {
             Ok(results) => Ok(results),
             Err(e) => Err(format!("Search failed: {}", e)),
@@ -131,6 +156,11 @@ impl Resolver {
         // Try disk cache first
         if let Some(names) = cache::load_book_names(translation) {
             return Ok(names);
+        }
+
+        // Don't hit network if fully cached — fallback to English names
+        if cache::is_fully_cached(translation) {
+            return Ok(Vec::new());
         }
 
         // Fetch and cache

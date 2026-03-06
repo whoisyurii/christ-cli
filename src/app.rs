@@ -433,9 +433,10 @@ impl App {
                 Ok(ch) => {
                     state.current_chapter = Some(ch);
                     state.scripture_scroll = 0;
+                    state.error = None;
                 }
                 Err(e) => {
-                    eprintln!("Error loading chapter: {}", e);
+                    state.error = Some(e);
                 }
             }
             state.loading = false;
