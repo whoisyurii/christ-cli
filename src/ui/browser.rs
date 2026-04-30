@@ -3,6 +3,7 @@ use crate::data::books::BOOKS;
 use crate::store::cache;
 use crate::ui::theme::{Theme, ThemeName};
 use std::sync::atomic::Ordering;
+use unicode_width::UnicodeWidthStr;
 use ratatui::{
     layout::{Alignment, Constraint, Flex, Layout, Rect},
     style::{Modifier, Style, Stylize},
@@ -58,8 +59,11 @@ pub const TRANSLATIONS: &[TranslationInfo] = &[
     TranslationInfo { code: "RV1960", name: "Reina-Valera 1960", lang: "Español", offline: false },
     TranslationInfo { code: "NVI", name: "Nueva Versión Internacional", lang: "Español", offline: false },
     // Português
-    TranslationInfo { code: "ARA", name: "Almeida Revista e Atualizada", lang: "Português", offline: false },
-    TranslationInfo { code: "NVIPT", name: "NVI Português", lang: "Português", offline: false },
+    TranslationInfo { code: "NAA", name: "Nova Almeida Atualizada (2017)", lang: "Português", offline: false },
+    TranslationInfo { code: "ARA", name: "Almeida Revista e Atualizada (1993)", lang: "Português", offline: false },
+    TranslationInfo { code: "ACF11", name: "Almeida Corrigida Fiel (2011)", lang: "Português", offline: false },
+    TranslationInfo { code: "NVIPT", name: "Nova Versão Internacional", lang: "Português", offline: false },
+    TranslationInfo { code: "NVT", name: "Nova Versão Transformadora (2016)", lang: "Português", offline: false },
     // Français
     TranslationInfo { code: "FRLSG", name: "Louis Segond 1910", lang: "Français", offline: false },
     TranslationInfo { code: "NBS", name: "Nouvelle Bible Segond", lang: "Français", offline: false },
@@ -239,15 +243,27 @@ impl BrowserState {
                 self.active_panel = Panel::Chapters;
                 false
             }
-            Panel::Chapters => {
-                let ch = self.chapter_list.selected().unwrap_or(0) as u32 + 1;
-                self.selected_chapter = ch;
-                self.scripture_scroll = 0;
-                self.active_panel = Panel::Scripture;
-                true // Signal to load chapter
-            }
+            Panel::Chapters => self.commit_chapter_selection(),
             Panel::Scripture => false, // Already rightmost
         }
+    }
+
+    /// Commit the chapter highlighted in the Chapters panel and switch to
+    /// Scripture. Skips reload + scroll-reset when the chapter is unchanged
+    /// so panel-hopping back to Scripture preserves the reader's position.
+    fn commit_chapter_selection(&mut self) -> bool {
+        let ch = self.chapter_list.selected().unwrap_or(0) as u32 + 1;
+        let target_book = self.selected_book_name();
+        let needs_reload = match &self.current_chapter {
+            Some(c) => c.chapter != ch || c.book != target_book,
+            None => true,
+        };
+        self.selected_chapter = ch;
+        self.active_panel = Panel::Scripture;
+        if needs_reload {
+            self.scripture_scroll = 0;
+        }
+        needs_reload
     }
 
     pub fn prev_panel(&mut self) {
@@ -312,13 +328,7 @@ impl BrowserState {
                 self.active_panel = Panel::Chapters;
                 false
             }
-            Panel::Chapters => {
-                let ch = self.chapter_list.selected().unwrap_or(0) as u32 + 1;
-                self.selected_chapter = ch;
-                self.scripture_scroll = 0;
-                self.active_panel = Panel::Scripture;
-                true
-            }
+            Panel::Chapters => self.commit_chapter_selection(),
             Panel::Scripture => false,
         }
     }
@@ -736,9 +746,13 @@ fn render_search_results_panel(
                 Style::default().fg(theme.text_dim)
             };
 
-            // Highlight matching text
             let ref_str = format!("{} {}:{}", r.book, r.chapter, r.verse);
-            let text = truncate_result_text(&r.text, 60);
+            // chrome = borders(2) + padding(2) + highlight_symbol(2)
+            // + ref display width + 2-space gap. Display width (not codepoints)
+            // matters for CJK book names that occupy two columns each.
+            let chrome = 6 + UnicodeWidthStr::width(ref_str.as_str());
+            let max_chars = (area.width as usize).saturating_sub(chrome).max(20);
+            let text = truncate_result_text(&r.text, max_chars);
 
             let mut spans = vec![
                 Span::styled(ref_str, ref_style),
@@ -860,7 +874,6 @@ fn render_status_bar(
 }
 
 fn truncate_display_name(name: &str, max_width: usize) -> String {
-    use unicode_width::UnicodeWidthStr;
     let w = name.width();
     if w <= max_width {
         return name.to_string();
