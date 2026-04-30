@@ -150,13 +150,7 @@ async fn cmd_search(query: &str, translation: &str) -> Result<(), Box<dyn std::e
         query
     );
     for r in &results {
-        println!(
-            "  {} {}:{} - {}",
-            r.book,
-            r.chapter,
-            r.verse,
-            truncate_text(&r.text, 80)
-        );
+        println!("  {} {}:{} - {}", r.book, r.chapter, r.verse, r.text);
     }
 
     Ok(())
@@ -261,12 +255,3 @@ fn format_verse_plain(verse: &api::types::Verse) -> String {
     )
 }
 
-fn truncate_text(text: &str, max_chars: usize) -> String {
-    let char_count = text.chars().count();
-    if char_count <= max_chars {
-        text.to_string()
-    } else {
-        let truncated: String = text.chars().take(max_chars - 3).collect();
-        format!("{}...", truncated)
-    }
-}
