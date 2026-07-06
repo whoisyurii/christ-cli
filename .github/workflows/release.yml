@@ -121,11 +121,24 @@ jobs:
           cp npm/install.js npm-pkg/
           cp npm/bin/run.js npm-pkg/bin/
           cd npm-pkg
-          # Set version from git tag
-          VERSION=${GITHUB_REF#refs/tags/v}
-          node -e "const p=require('./package.json'); p.version='$VERSION'; require('fs').writeFileSync('package.json', JSON.stringify(p,null,2))"
+          # On tag builds, take the version from the tag; otherwise keep
+          # the version committed in npm/package.json (workflow_dispatch).
+          if [[ "$GITHUB_REF" == refs/tags/v* ]]; then
+            VERSION=${GITHUB_REF#refs/tags/v}
+            node -e "const p=require('./package.json'); p.version='$VERSION'; require('fs').writeFileSync('package.json', JSON.stringify(p,null,2))"
+          fi
 
       - name: Publish
-        run: cd npm-pkg && npm publish || echo "Version already published, skipping"
+        # Skip only when this exact version is already on the registry;
+        # any other publish error (expired NPM_TOKEN returns 404 too) must
+        # fail the job instead of being silently swallowed.
+        run: |
+          cd npm-pkg
+          VERSION=$(node -p "require('./package.json').version")
+          if npm view "christ-cli@$VERSION" version >/dev/null 2>&1; then
+            echo "christ-cli@$VERSION already on the registry, skipping"
+          else
+            npm publish
+          fi
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
