@@ -1,0 +1,7698 @@
+[
+ {
+  "lang": "pt",
+  "label": "Portuguese",
+  "entries": [
+   {
+    "index": 0,
+    "names": [
+     "Gênesis"
+    ],
+    "abbrevs": [
+     "gn",
+     "gen"
+    ]
+   },
+   {
+    "index": 1,
+    "names": [
+     "Êxodo"
+    ],
+    "abbrevs": [
+     "ex",
+     "êx",
+     "exo"
+    ]
+   },
+   {
+    "index": 2,
+    "names": [
+     "Levítico"
+    ],
+    "abbrevs": [
+     "lv",
+     "lev"
+    ]
+   },
+   {
+    "index": 3,
+    "names": [
+     "Números"
+    ],
+    "abbrevs": [
+     "nm",
+     "num"
+    ]
+   },
+   {
+    "index": 4,
+    "names": [
+     "Deuteronômio"
+    ],
+    "abbrevs": [
+     "dt",
+     "deut"
+    ]
+   },
+   {
+    "index": 5,
+    "names": [
+     "Josué"
+    ],
+    "abbrevs": [
+     "js",
+     "jos"
+    ]
+   },
+   {
+    "index": 6,
+    "names": [
+     "Juízes"
+    ],
+    "abbrevs": [
+     "jz",
+     "juiz"
+    ]
+   },
+   {
+    "index": 7,
+    "names": [
+     "Rute"
+    ],
+    "abbrevs": [
+     "rt",
+     "rute"
+    ]
+   },
+   {
+    "index": 8,
+    "names": [
+     "1 Samuel",
+     "1Samuel"
+    ],
+    "abbrevs": [
+     "1sm",
+     "1sa",
+     "1sam"
+    ]
+   },
+   {
+    "index": 9,
+    "names": [
+     "2 Samuel",
+     "2Samuel"
+    ],
+    "abbrevs": [
+     "2sm",
+     "2sa",
+     "2sam"
+    ]
+   },
+   {
+    "index": 10,
+    "names": [
+     "1 Reis",
+     "1Reis"
+    ],
+    "abbrevs": [
+     "1rs",
+     "1re",
+     "1reis"
+    ]
+   },
+   {
+    "index": 11,
+    "names": [
+     "2 Reis",
+     "2Reis"
+    ],
+    "abbrevs": [
+     "2rs",
+     "2re",
+     "2reis"
+    ]
+   },
+   {
+    "index": 12,
+    "names": [
+     "1 Crônicas",
+     "1Crônicas"
+    ],
+    "abbrevs": [
+     "1cr",
+     "1cro"
+    ]
+   },
+   {
+    "index": 13,
+    "names": [
+     "2 Crônicas",
+     "2Crônicas"
+    ],
+    "abbrevs": [
+     "2cr",
+     "2cro"
+    ]
+   },
+   {
+    "index": 14,
+    "names": [
+     "Esdras"
+    ],
+    "abbrevs": [
+     "ed",
+     "esd"
+    ]
+   },
+   {
+    "index": 15,
+    "names": [
+     "Neemias"
+    ],
+    "abbrevs": [
+     "ne",
+     "nee"
+    ]
+   },
+   {
+    "index": 16,
+    "names": [
+     "Ester"
+    ],
+    "abbrevs": [
+     "et",
+     "est"
+    ]
+   },
+   {
+    "index": 17,
+    "names": [
+     "Jó"
+    ],
+    "abbrevs": [
+     "jó"
+    ]
+   },
+   {
+    "index": 18,
+    "names": [
+     "Salmos"
+    ],
+    "abbrevs": [
+     "sl",
+     "sal",
+     "slm"
+    ]
+   },
+   {
+    "index": 19,
+    "names": [
+     "Provérbios"
+    ],
+    "abbrevs": [
+     "pv",
+     "pro",
+     "prov"
+    ]
+   },
+   {
+    "index": 20,
+    "names": [
+     "Eclesiastes"
+    ],
+    "abbrevs": [
+     "ec",
+     "ecl"
+    ]
+   },
+   {
+    "index": 21,
+    "names": [
+     "Cântico dos Cânticos",
+     "Cantares de Salomão",
+     "Cânticos"
+    ],
+    "abbrevs": [
+     "ct",
+     "cnt",
+     "cant"
+    ]
+   },
+   {
+    "index": 22,
+    "names": [
+     "Isaías"
+    ],
+    "abbrevs": [
+     "is",
+     "isa"
+    ]
+   },
+   {
+    "index": 23,
+    "names": [
+     "Jeremias"
+    ],
+    "abbrevs": [
+     "jr",
+     "jer"
+    ]
+   },
+   {
+    "index": 24,
+    "names": [
+     "Lamentações",
+     "Lamentações de Jeremias"
+    ],
+    "abbrevs": [
+     "lm",
+     "lam"
+    ]
+   },
+   {
+    "index": 25,
+    "names": [
+     "Ezequiel"
+    ],
+    "abbrevs": [
+     "ez",
+     "eze",
+     "ezq"
+    ]
+   },
+   {
+    "index": 26,
+    "names": [
+     "Daniel"
+    ],
+    "abbrevs": [
+     "dn",
+     "dan"
+    ]
+   },
+   {
+    "index": 27,
+    "names": [
+     "Oseias",
+     "Oséias"
+    ],
+    "abbrevs": [
+     "os",
+     "ose"
+    ]
+   },
+   {
+    "index": 28,
+    "names": [
+     "Joel"
+    ],
+    "abbrevs": [
+     "jl",
+     "joel"
+    ]
+   },
+   {
+    "index": 29,
+    "names": [
+     "Amós"
+    ],
+    "abbrevs": [
+     "am",
+     "amós"
+    ]
+   },
+   {
+    "index": 30,
+    "names": [
+     "Obadias"
+    ],
+    "abbrevs": [
+     "ob",
+     "oba"
+    ]
+   },
+   {
+    "index": 31,
+    "names": [
+     "Jonas"
+    ],
+    "abbrevs": [
+     "jn",
+     "jon"
+    ]
+   },
+   {
+    "index": 32,
+    "names": [
+     "Miqueias",
+     "Miquéias"
+    ],
+    "abbrevs": [
+     "mq",
+     "miq"
+    ]
+   },
+   {
+    "index": 33,
+    "names": [
+     "Naum"
+    ],
+    "abbrevs": [
+     "na",
+     "naum"
+    ]
+   },
+   {
+    "index": 34,
+    "names": [
+     "Habacuque"
+    ],
+    "abbrevs": [
+     "hc",
+     "hab"
+    ]
+   },
+   {
+    "index": 35,
+    "names": [
+     "Sofonias"
+    ],
+    "abbrevs": [
+     "sf",
+     "sof"
+    ]
+   },
+   {
+    "index": 36,
+    "names": [
+     "Ageu"
+    ],
+    "abbrevs": [
+     "ag",
+     "ageu"
+    ]
+   },
+   {
+    "index": 37,
+    "names": [
+     "Zacarias"
+    ],
+    "abbrevs": [
+     "zc",
+     "zac"
+    ]
+   },
+   {
+    "index": 38,
+    "names": [
+     "Malaquias"
+    ],
+    "abbrevs": [
+     "ml",
+     "mal"
+    ]
+   },
+   {
+    "index": 39,
+    "names": [
+     "Mateus"
+    ],
+    "abbrevs": [
+     "mt",
+     "mat"
+    ]
+   },
+   {
+    "index": 40,
+    "names": [
+     "Marcos"
+    ],
+    "abbrevs": [
+     "mc",
+     "mr",
+     "marc"
+    ]
+   },
+   {
+    "index": 41,
+    "names": [
+     "Lucas"
+    ],
+    "abbrevs": [
+     "lc",
+     "luc"
+    ]
+   },
+   {
+    "index": 42,
+    "names": [
+     "João"
+    ],
+    "abbrevs": [
+     "jo",
+     "joão"
+    ]
+   },
+   {
+    "index": 43,
+    "names": [
+     "Atos",
+     "Atos dos Apóstolos"
+    ],
+    "abbrevs": [
+     "at",
+     "atos"
+    ]
+   },
+   {
+    "index": 44,
+    "names": [
+     "Romanos"
+    ],
+    "abbrevs": [
+     "rm",
+     "rom"
+    ]
+   },
+   {
+    "index": 45,
+    "names": [
+     "1 Coríntios",
+     "1Coríntios"
+    ],
+    "abbrevs": [
+     "1co",
+     "1cor"
+    ]
+   },
+   {
+    "index": 46,
+    "names": [
+     "2 Coríntios",
+     "2Coríntios"
+    ],
+    "abbrevs": [
+     "2co",
+     "2cor"
+    ]
+   },
+   {
+    "index": 47,
+    "names": [
+     "Gálatas"
+    ],
+    "abbrevs": [
+     "gl",
+     "gal"
+    ]
+   },
+   {
+    "index": 48,
+    "names": [
+     "Efésios"
+    ],
+    "abbrevs": [
+     "ef",
+     "efe"
+    ]
+   },
+   {
+    "index": 49,
+    "names": [
+     "Filipenses"
+    ],
+    "abbrevs": [
+     "fp",
+     "flp"
+    ]
+   },
+   {
+    "index": 50,
+    "names": [
+     "Colossenses"
+    ],
+    "abbrevs": [
+     "cl",
+     "col"
+    ]
+   },
+   {
+    "index": 51,
+    "names": [
+     "1 Tessalonicenses",
+     "1Tessalonicenses"
+    ],
+    "abbrevs": [
+     "1ts",
+     "1tes"
+    ]
+   },
+   {
+    "index": 52,
+    "names": [
+     "2 Tessalonicenses",
+     "2Tessalonicenses"
+    ],
+    "abbrevs": [
+     "2ts",
+     "2tes"
+    ]
+   },
+   {
+    "index": 53,
+    "names": [
+     "1 Timóteo",
+     "1Timóteo"
+    ],
+    "abbrevs": [
+     "1tm",
+     "1tim"
+    ]
+   },
+   {
+    "index": 54,
+    "names": [
+     "2 Timóteo",
+     "2Timóteo"
+    ],
+    "abbrevs": [
+     "2tm",
+     "2tim"
+    ]
+   },
+   {
+    "index": 55,
+    "names": [
+     "Tito"
+    ],
+    "abbrevs": [
+     "tt",
+     "tito"
+    ]
+   },
+   {
+    "index": 56,
+    "names": [
+     "Filemom",
+     "Filemon"
+    ],
+    "abbrevs": [
+     "fm",
+     "flm"
+    ]
+   },
+   {
+    "index": 57,
+    "names": [
+     "Hebreus"
+    ],
+    "abbrevs": [
+     "hb",
+     "heb"
+    ]
+   },
+   {
+    "index": 58,
+    "names": [
+     "Tiago"
+    ],
+    "abbrevs": [
+     "tg",
+     "tia"
+    ]
+   },
+   {
+    "index": 59,
+    "names": [
+     "1 Pedro",
+     "1Pedro"
+    ],
+    "abbrevs": [
+     "1pe",
+     "1pd"
+    ]
+   },
+   {
+    "index": 60,
+    "names": [
+     "2 Pedro",
+     "2Pedro"
+    ],
+    "abbrevs": [
+     "2pe",
+     "2pd"
+    ]
+   },
+   {
+    "index": 61,
+    "names": [
+     "1 João",
+     "1João"
+    ],
+    "abbrevs": [
+     "1jo"
+    ]
+   },
+   {
+    "index": 62,
+    "names": [
+     "2 João",
+     "2João"
+    ],
+    "abbrevs": [
+     "2jo"
+    ]
+   },
+   {
+    "index": 63,
+    "names": [
+     "3 João",
+     "3João"
+    ],
+    "abbrevs": [
+     "3jo"
+    ]
+   },
+   {
+    "index": 64,
+    "names": [
+     "Judas"
+    ],
+    "abbrevs": [
+     "jd",
+     "jud"
+    ]
+   },
+   {
+    "index": 65,
+    "names": [
+     "Apocalipse",
+     "Apocalipse de João"
+    ],
+    "abbrevs": [
+     "ap",
+     "apc",
+     "apoc"
+    ]
+   }
+  ]
+ },
+ {
+  "lang": "es",
+  "label": "Spanish",
+  "entries": [
+   {
+    "index": 0,
+    "names": [
+     "Génesis"
+    ],
+    "abbrevs": [
+     "gn",
+     "gén",
+     "gen"
+    ]
+   },
+   {
+    "index": 1,
+    "names": [
+     "Éxodo",
+     "Exodo"
+    ],
+    "abbrevs": [
+     "ex",
+     "éx",
+     "exo"
+    ]
+   },
+   {
+    "index": 2,
+    "names": [
+     "Levítico"
+    ],
+    "abbrevs": [
+     "lv",
+     "lev"
+    ]
+   },
+   {
+    "index": 3,
+    "names": [
+     "Números"
+    ],
+    "abbrevs": [
+     "nm",
+     "núm",
+     "num"
+    ]
+   },
+   {
+    "index": 4,
+    "names": [
+     "Deuteronomio"
+    ],
+    "abbrevs": [
+     "dt",
+     "deut"
+    ]
+   },
+   {
+    "index": 5,
+    "names": [
+     "Josué"
+    ],
+    "abbrevs": [
+     "jos"
+    ]
+   },
+   {
+    "index": 6,
+    "names": [
+     "Jueces"
+    ],
+    "abbrevs": [
+     "jue"
+    ]
+   },
+   {
+    "index": 7,
+    "names": [
+     "Rut"
+    ],
+    "abbrevs": [
+     "rt",
+     "rut"
+    ]
+   },
+   {
+    "index": 8,
+    "names": [
+     "1 Samuel"
+    ],
+    "abbrevs": [
+     "1s",
+     "1sa",
+     "1sam"
+    ]
+   },
+   {
+    "index": 9,
+    "names": [
+     "2 Samuel"
+    ],
+    "abbrevs": [
+     "2s",
+     "2sa",
+     "2sam"
+    ]
+   },
+   {
+    "index": 10,
+    "names": [
+     "1 Reyes"
+    ],
+    "abbrevs": [
+     "1r",
+     "1re",
+     "1rey"
+    ]
+   },
+   {
+    "index": 11,
+    "names": [
+     "2 Reyes"
+    ],
+    "abbrevs": [
+     "2r",
+     "2re",
+     "2rey"
+    ]
+   },
+   {
+    "index": 12,
+    "names": [
+     "1 Crónicas"
+    ],
+    "abbrevs": [
+     "1cr",
+     "1cro",
+     "1crón"
+    ]
+   },
+   {
+    "index": 13,
+    "names": [
+     "2 Crónicas"
+    ],
+    "abbrevs": [
+     "2cr",
+     "2cro",
+     "2crón"
+    ]
+   },
+   {
+    "index": 14,
+    "names": [
+     "Esdras"
+    ],
+    "abbrevs": [
+     "esd"
+    ]
+   },
+   {
+    "index": 15,
+    "names": [
+     "Nehemías"
+    ],
+    "abbrevs": [
+     "ne",
+     "neh"
+    ]
+   },
+   {
+    "index": 16,
+    "names": [
+     "Ester",
+     "Esther"
+    ],
+    "abbrevs": [
+     "est"
+    ]
+   },
+   {
+    "index": 17,
+    "names": [
+     "Job"
+    ],
+    "abbrevs": [
+     "job"
+    ]
+   },
+   {
+    "index": 18,
+    "names": [
+     "Salmos"
+    ],
+    "abbrevs": [
+     "sal",
+     "sl",
+     "slm"
+    ]
+   },
+   {
+    "index": 19,
+    "names": [
+     "Proverbios"
+    ],
+    "abbrevs": [
+     "pr",
+     "prov",
+     "prv"
+    ]
+   },
+   {
+    "index": 20,
+    "names": [
+     "Eclesiastés"
+    ],
+    "abbrevs": [
+     "ec",
+     "ecl"
+    ]
+   },
+   {
+    "index": 21,
+    "names": [
+     "Cantares",
+     "Cantar de los Cantares",
+     "El Cantar de los Cantares"
+    ],
+    "abbrevs": [
+     "cnt",
+     "cant"
+    ]
+   },
+   {
+    "index": 22,
+    "names": [
+     "Isaías"
+    ],
+    "abbrevs": [
+     "is",
+     "isa"
+    ]
+   },
+   {
+    "index": 23,
+    "names": [
+     "Jeremías"
+    ],
+    "abbrevs": [
+     "jer",
+     "jr"
+    ]
+   },
+   {
+    "index": 24,
+    "names": [
+     "Lamentaciones"
+    ],
+    "abbrevs": [
+     "lm",
+     "lam"
+    ]
+   },
+   {
+    "index": 25,
+    "names": [
+     "Ezequiel"
+    ],
+    "abbrevs": [
+     "ez",
+     "eze",
+     "ezeq"
+    ]
+   },
+   {
+    "index": 26,
+    "names": [
+     "Daniel"
+    ],
+    "abbrevs": [
+     "dn",
+     "dan"
+    ]
+   },
+   {
+    "index": 27,
+    "names": [
+     "Oseas"
+    ],
+    "abbrevs": [
+     "os",
+     "ose"
+    ]
+   },
+   {
+    "index": 28,
+    "names": [
+     "Joel"
+    ],
+    "abbrevs": [
+     "jl",
+     "joel"
+    ]
+   },
+   {
+    "index": 29,
+    "names": [
+     "Amós",
+     "Amos"
+    ],
+    "abbrevs": [
+     "am",
+     "amós"
+    ]
+   },
+   {
+    "index": 30,
+    "names": [
+     "Abdías"
+    ],
+    "abbrevs": [
+     "ab",
+     "abd"
+    ]
+   },
+   {
+    "index": 31,
+    "names": [
+     "Jonás"
+    ],
+    "abbrevs": [
+     "jon"
+    ]
+   },
+   {
+    "index": 32,
+    "names": [
+     "Miqueas"
+    ],
+    "abbrevs": [
+     "mi",
+     "miq"
+    ]
+   },
+   {
+    "index": 33,
+    "names": [
+     "Nahúm",
+     "Nahum"
+    ],
+    "abbrevs": [
+     "na",
+     "nah"
+    ]
+   },
+   {
+    "index": 34,
+    "names": [
+     "Habacuc"
+    ],
+    "abbrevs": [
+     "hab"
+    ]
+   },
+   {
+    "index": 35,
+    "names": [
+     "Sofonías"
+    ],
+    "abbrevs": [
+     "sof"
+    ]
+   },
+   {
+    "index": 36,
+    "names": [
+     "Hageo"
+    ],
+    "abbrevs": [
+     "hag",
+     "ag"
+    ]
+   },
+   {
+    "index": 37,
+    "names": [
+     "Zacarías"
+    ],
+    "abbrevs": [
+     "za",
+     "zac"
+    ]
+   },
+   {
+    "index": 38,
+    "names": [
+     "Malaquías"
+    ],
+    "abbrevs": [
+     "ml",
+     "mal"
+    ]
+   },
+   {
+    "index": 39,
+    "names": [
+     "Mateo"
+    ],
+    "abbrevs": [
+     "mt",
+     "mat"
+    ]
+   },
+   {
+    "index": 40,
+    "names": [
+     "Marcos"
+    ],
+    "abbrevs": [
+     "mr",
+     "mc",
+     "mrc"
+    ]
+   },
+   {
+    "index": 41,
+    "names": [
+     "Lucas"
+    ],
+    "abbrevs": [
+     "lc",
+     "lu",
+     "luc"
+    ]
+   },
+   {
+    "index": 42,
+    "names": [
+     "Juan"
+    ],
+    "abbrevs": [
+     "jn",
+     "juan"
+    ]
+   },
+   {
+    "index": 43,
+    "names": [
+     "Hechos",
+     "Hechos de los Apóstoles"
+    ],
+    "abbrevs": [
+     "hch",
+     "hec"
+    ]
+   },
+   {
+    "index": 44,
+    "names": [
+     "Romanos"
+    ],
+    "abbrevs": [
+     "ro",
+     "rm",
+     "rom"
+    ]
+   },
+   {
+    "index": 45,
+    "names": [
+     "1 Corintios"
+    ],
+    "abbrevs": [
+     "1co",
+     "1cor"
+    ]
+   },
+   {
+    "index": 46,
+    "names": [
+     "2 Corintios"
+    ],
+    "abbrevs": [
+     "2co",
+     "2cor"
+    ]
+   },
+   {
+    "index": 47,
+    "names": [
+     "Gálatas"
+    ],
+    "abbrevs": [
+     "ga",
+     "gá",
+     "gal"
+    ]
+   },
+   {
+    "index": 48,
+    "names": [
+     "Efesios"
+    ],
+    "abbrevs": [
+     "ef",
+     "efe"
+    ]
+   },
+   {
+    "index": 49,
+    "names": [
+     "Filipenses"
+    ],
+    "abbrevs": [
+     "fil",
+     "flp"
+    ]
+   },
+   {
+    "index": 50,
+    "names": [
+     "Colosenses"
+    ],
+    "abbrevs": [
+     "col"
+    ]
+   },
+   {
+    "index": 51,
+    "names": [
+     "1 Tesalonicenses"
+    ],
+    "abbrevs": [
+     "1ts",
+     "1tes"
+    ]
+   },
+   {
+    "index": 52,
+    "names": [
+     "2 Tesalonicenses"
+    ],
+    "abbrevs": [
+     "2ts",
+     "2tes"
+    ]
+   },
+   {
+    "index": 53,
+    "names": [
+     "1 Timoteo"
+    ],
+    "abbrevs": [
+     "1ti",
+     "1tim"
+    ]
+   },
+   {
+    "index": 54,
+    "names": [
+     "2 Timoteo"
+    ],
+    "abbrevs": [
+     "2ti",
+     "2tim"
+    ]
+   },
+   {
+    "index": 55,
+    "names": [
+     "Tito"
+    ],
+    "abbrevs": [
+     "tit",
+     "tt"
+    ]
+   },
+   {
+    "index": 56,
+    "names": [
+     "Filemón"
+    ],
+    "abbrevs": [
+     "flm",
+     "filem"
+    ]
+   },
+   {
+    "index": 57,
+    "names": [
+     "Hebreos"
+    ],
+    "abbrevs": [
+     "heb"
+    ]
+   },
+   {
+    "index": 58,
+    "names": [
+     "Santiago"
+    ],
+    "abbrevs": [
+     "stg",
+     "sant"
+    ]
+   },
+   {
+    "index": 59,
+    "names": [
+     "1 Pedro"
+    ],
+    "abbrevs": [
+     "1p",
+     "1pe",
+     "1ped"
+    ]
+   },
+   {
+    "index": 60,
+    "names": [
+     "2 Pedro"
+    ],
+    "abbrevs": [
+     "2p",
+     "2pe",
+     "2ped"
+    ]
+   },
+   {
+    "index": 61,
+    "names": [
+     "1 Juan"
+    ],
+    "abbrevs": [
+     "1jn",
+     "1juan"
+    ]
+   },
+   {
+    "index": 62,
+    "names": [
+     "2 Juan"
+    ],
+    "abbrevs": [
+     "2jn",
+     "2juan"
+    ]
+   },
+   {
+    "index": 63,
+    "names": [
+     "3 Juan"
+    ],
+    "abbrevs": [
+     "3jn",
+     "3juan"
+    ]
+   },
+   {
+    "index": 64,
+    "names": [
+     "Judas"
+    ],
+    "abbrevs": [
+     "jud",
+     "judas"
+    ]
+   },
+   {
+    "index": 65,
+    "names": [
+     "Apocalipsis"
+    ],
+    "abbrevs": [
+     "ap",
+     "apoc",
+     "apc"
+    ]
+   }
+  ]
+ },
+ {
+  "lang": "fr",
+  "label": "French",
+  "entries": [
+   {
+    "index": 0,
+    "names": [
+     "Genèse"
+    ],
+    "abbrevs": [
+     "gen",
+     "ge",
+     "gn"
+    ]
+   },
+   {
+    "index": 1,
+    "names": [
+     "Exode"
+    ],
+    "abbrevs": [
+     "ex",
+     "exo"
+    ]
+   },
+   {
+    "index": 2,
+    "names": [
+     "Lévitique"
+    ],
+    "abbrevs": [
+     "lev",
+     "lv"
+    ]
+   },
+   {
+    "index": 3,
+    "names": [
+     "Nombres"
+    ],
+    "abbrevs": [
+     "nb",
+     "nom",
+     "nbr"
+    ]
+   },
+   {
+    "index": 4,
+    "names": [
+     "Deutéronome"
+    ],
+    "abbrevs": [
+     "dt",
+     "deut"
+    ]
+   },
+   {
+    "index": 5,
+    "names": [
+     "Josué"
+    ],
+    "abbrevs": [
+     "jos"
+    ]
+   },
+   {
+    "index": 6,
+    "names": [
+     "Juges"
+    ],
+    "abbrevs": [
+     "jg",
+     "jug"
+    ]
+   },
+   {
+    "index": 7,
+    "names": [
+     "Ruth"
+    ],
+    "abbrevs": [
+     "rt",
+     "ru"
+    ]
+   },
+   {
+    "index": 8,
+    "names": [
+     "1 Samuel"
+    ],
+    "abbrevs": [
+     "1s",
+     "1sa",
+     "1sam"
+    ]
+   },
+   {
+    "index": 9,
+    "names": [
+     "2 Samuel"
+    ],
+    "abbrevs": [
+     "2s",
+     "2sa",
+     "2sam"
+    ]
+   },
+   {
+    "index": 10,
+    "names": [
+     "1 Rois"
+    ],
+    "abbrevs": [
+     "1r",
+     "1roi"
+    ]
+   },
+   {
+    "index": 11,
+    "names": [
+     "2 Rois"
+    ],
+    "abbrevs": [
+     "2r",
+     "2roi"
+    ]
+   },
+   {
+    "index": 12,
+    "names": [
+     "1 Chroniques"
+    ],
+    "abbrevs": [
+     "1ch",
+     "1chr"
+    ]
+   },
+   {
+    "index": 13,
+    "names": [
+     "2 Chroniques"
+    ],
+    "abbrevs": [
+     "2ch",
+     "2chr"
+    ]
+   },
+   {
+    "index": 14,
+    "names": [
+     "Esdras"
+    ],
+    "abbrevs": [
+     "esd"
+    ]
+   },
+   {
+    "index": 15,
+    "names": [
+     "Néhémie"
+    ],
+    "abbrevs": [
+     "ne",
+     "neh"
+    ]
+   },
+   {
+    "index": 16,
+    "names": [
+     "Esther"
+    ],
+    "abbrevs": [
+     "est",
+     "esth"
+    ]
+   },
+   {
+    "index": 17,
+    "names": [
+     "Job"
+    ],
+    "abbrevs": [
+     "jb",
+     "job"
+    ]
+   },
+   {
+    "index": 18,
+    "names": [
+     "Psaumes"
+    ],
+    "abbrevs": [
+     "ps"
+    ]
+   },
+   {
+    "index": 19,
+    "names": [
+     "Proverbes"
+    ],
+    "abbrevs": [
+     "pr",
+     "prov"
+    ]
+   },
+   {
+    "index": 20,
+    "names": [
+     "Ecclésiaste",
+     "Qohéleth"
+    ],
+    "abbrevs": [
+     "ec",
+     "ecc",
+     "eccl"
+    ]
+   },
+   {
+    "index": 21,
+    "names": [
+     "Cantique des Cantiques",
+     "Cantique des cantiques",
+     "Cantique"
+    ],
+    "abbrevs": [
+     "ct",
+     "cant"
+    ]
+   },
+   {
+    "index": 22,
+    "names": [
+     "Ésaïe",
+     "Esaïe",
+     "Isaïe"
+    ],
+    "abbrevs": [
+     "es",
+     "esa"
+    ]
+   },
+   {
+    "index": 23,
+    "names": [
+     "Jérémie"
+    ],
+    "abbrevs": [
+     "jr",
+     "jer"
+    ]
+   },
+   {
+    "index": 24,
+    "names": [
+     "Lamentations"
+    ],
+    "abbrevs": [
+     "la",
+     "lam"
+    ]
+   },
+   {
+    "index": 25,
+    "names": [
+     "Ézéchiel",
+     "Ezéchiel"
+    ],
+    "abbrevs": [
+     "ez",
+     "eze"
+    ]
+   },
+   {
+    "index": 26,
+    "names": [
+     "Daniel"
+    ],
+    "abbrevs": [
+     "dn",
+     "da",
+     "dan"
+    ]
+   },
+   {
+    "index": 27,
+    "names": [
+     "Osée"
+    ],
+    "abbrevs": [
+     "os"
+    ]
+   },
+   {
+    "index": 28,
+    "names": [
+     "Joël"
+    ],
+    "abbrevs": [
+     "jl",
+     "joel"
+    ]
+   },
+   {
+    "index": 29,
+    "names": [
+     "Amos"
+    ],
+    "abbrevs": [
+     "am"
+    ]
+   },
+   {
+    "index": 30,
+    "names": [
+     "Abdias"
+    ],
+    "abbrevs": [
+     "ab",
+     "abd"
+    ]
+   },
+   {
+    "index": 31,
+    "names": [
+     "Jonas"
+    ],
+    "abbrevs": [
+     "jon"
+    ]
+   },
+   {
+    "index": 32,
+    "names": [
+     "Michée"
+    ],
+    "abbrevs": [
+     "mi",
+     "mic"
+    ]
+   },
+   {
+    "index": 33,
+    "names": [
+     "Nahum",
+     "Nahoum"
+    ],
+    "abbrevs": [
+     "na",
+     "nah"
+    ]
+   },
+   {
+    "index": 34,
+    "names": [
+     "Habacuc"
+    ],
+    "abbrevs": [
+     "ha",
+     "hab"
+    ]
+   },
+   {
+    "index": 35,
+    "names": [
+     "Sophonie"
+    ],
+    "abbrevs": [
+     "so",
+     "soph"
+    ]
+   },
+   {
+    "index": 36,
+    "names": [
+     "Aggée"
+    ],
+    "abbrevs": [
+     "ag"
+    ]
+   },
+   {
+    "index": 37,
+    "names": [
+     "Zacharie"
+    ],
+    "abbrevs": [
+     "za",
+     "zac"
+    ]
+   },
+   {
+    "index": 38,
+    "names": [
+     "Malachie"
+    ],
+    "abbrevs": [
+     "ml",
+     "mal"
+    ]
+   },
+   {
+    "index": 39,
+    "names": [
+     "Matthieu"
+    ],
+    "abbrevs": [
+     "mt",
+     "mat"
+    ]
+   },
+   {
+    "index": 40,
+    "names": [
+     "Marc"
+    ],
+    "abbrevs": [
+     "mc",
+     "marc"
+    ]
+   },
+   {
+    "index": 41,
+    "names": [
+     "Luc"
+    ],
+    "abbrevs": [
+     "lc",
+     "luc"
+    ]
+   },
+   {
+    "index": 42,
+    "names": [
+     "Jean"
+    ],
+    "abbrevs": [
+     "jn"
+    ]
+   },
+   {
+    "index": 43,
+    "names": [
+     "Actes",
+     "Actes des Apôtres"
+    ],
+    "abbrevs": [
+     "ac",
+     "act"
+    ]
+   },
+   {
+    "index": 44,
+    "names": [
+     "Romains"
+    ],
+    "abbrevs": [
+     "rm",
+     "ro",
+     "rom"
+    ]
+   },
+   {
+    "index": 45,
+    "names": [
+     "1 Corinthiens"
+    ],
+    "abbrevs": [
+     "1co",
+     "1cor"
+    ]
+   },
+   {
+    "index": 46,
+    "names": [
+     "2 Corinthiens"
+    ],
+    "abbrevs": [
+     "2co",
+     "2cor"
+    ]
+   },
+   {
+    "index": 47,
+    "names": [
+     "Galates"
+    ],
+    "abbrevs": [
+     "ga",
+     "gal"
+    ]
+   },
+   {
+    "index": 48,
+    "names": [
+     "Éphésiens",
+     "Ephésiens"
+    ],
+    "abbrevs": [
+     "ep",
+     "eph"
+    ]
+   },
+   {
+    "index": 49,
+    "names": [
+     "Philippiens"
+    ],
+    "abbrevs": [
+     "ph",
+     "php",
+     "phil"
+    ]
+   },
+   {
+    "index": 50,
+    "names": [
+     "Colossiens"
+    ],
+    "abbrevs": [
+     "col"
+    ]
+   },
+   {
+    "index": 51,
+    "names": [
+     "1 Thessaloniciens"
+    ],
+    "abbrevs": [
+     "1th",
+     "1thes"
+    ]
+   },
+   {
+    "index": 52,
+    "names": [
+     "2 Thessaloniciens"
+    ],
+    "abbrevs": [
+     "2th",
+     "2thes"
+    ]
+   },
+   {
+    "index": 53,
+    "names": [
+     "1 Timothée"
+    ],
+    "abbrevs": [
+     "1tm",
+     "1tim"
+    ]
+   },
+   {
+    "index": 54,
+    "names": [
+     "2 Timothée"
+    ],
+    "abbrevs": [
+     "2tm",
+     "2tim"
+    ]
+   },
+   {
+    "index": 55,
+    "names": [
+     "Tite"
+    ],
+    "abbrevs": [
+     "tt",
+     "tit"
+    ]
+   },
+   {
+    "index": 56,
+    "names": [
+     "Philémon"
+    ],
+    "abbrevs": [
+     "phm",
+     "phlm"
+    ]
+   },
+   {
+    "index": 57,
+    "names": [
+     "Hébreux"
+    ],
+    "abbrevs": [
+     "he",
+     "heb"
+    ]
+   },
+   {
+    "index": 58,
+    "names": [
+     "Jacques"
+    ],
+    "abbrevs": [
+     "jc",
+     "jac"
+    ]
+   },
+   {
+    "index": 59,
+    "names": [
+     "1 Pierre"
+    ],
+    "abbrevs": [
+     "1p",
+     "1pi"
+    ]
+   },
+   {
+    "index": 60,
+    "names": [
+     "2 Pierre"
+    ],
+    "abbrevs": [
+     "2p",
+     "2pi"
+    ]
+   },
+   {
+    "index": 61,
+    "names": [
+     "1 Jean"
+    ],
+    "abbrevs": [
+     "1jn",
+     "1j"
+    ]
+   },
+   {
+    "index": 62,
+    "names": [
+     "2 Jean"
+    ],
+    "abbrevs": [
+     "2jn",
+     "2j"
+    ]
+   },
+   {
+    "index": 63,
+    "names": [
+     "3 Jean"
+    ],
+    "abbrevs": [
+     "3jn",
+     "3j"
+    ]
+   },
+   {
+    "index": 64,
+    "names": [
+     "Jude"
+    ],
+    "abbrevs": [
+     "jude",
+     "jud"
+    ]
+   },
+   {
+    "index": 65,
+    "names": [
+     "Apocalypse"
+    ],
+    "abbrevs": [
+     "ap",
+     "apo",
+     "apoc"
+    ]
+   }
+  ]
+ },
+ {
+  "lang": "de",
+  "label": "German",
+  "entries": [
+   {
+    "index": 0,
+    "names": [
+     "1. Mose",
+     "Genesis"
+    ],
+    "abbrevs": [
+     "1mo",
+     "1 mose",
+     "gen"
+    ]
+   },
+   {
+    "index": 1,
+    "names": [
+     "2. Mose",
+     "Exodus"
+    ],
+    "abbrevs": [
+     "2mo",
+     "2 mose",
+     "ex"
+    ]
+   },
+   {
+    "index": 2,
+    "names": [
+     "3. Mose",
+     "Levitikus",
+     "Leviticus"
+    ],
+    "abbrevs": [
+     "3mo",
+     "3 mose",
+     "lev"
+    ]
+   },
+   {
+    "index": 3,
+    "names": [
+     "4. Mose",
+     "Numeri"
+    ],
+    "abbrevs": [
+     "4mo",
+     "4 mose",
+     "num"
+    ]
+   },
+   {
+    "index": 4,
+    "names": [
+     "5. Mose",
+     "Deuteronomium"
+    ],
+    "abbrevs": [
+     "5mo",
+     "5 mose",
+     "dtn"
+    ]
+   },
+   {
+    "index": 5,
+    "names": [
+     "Josua"
+    ],
+    "abbrevs": [
+     "jos"
+    ]
+   },
+   {
+    "index": 6,
+    "names": [
+     "Richter"
+    ],
+    "abbrevs": [
+     "ri",
+     "richt"
+    ]
+   },
+   {
+    "index": 7,
+    "names": [
+     "Rut",
+     "Ruth"
+    ],
+    "abbrevs": [
+     "rut",
+     "ruth"
+    ]
+   },
+   {
+    "index": 8,
+    "names": [
+     "1. Samuel"
+    ],
+    "abbrevs": [
+     "1sam",
+     "1 sam",
+     "1sa"
+    ]
+   },
+   {
+    "index": 9,
+    "names": [
+     "2. Samuel"
+    ],
+    "abbrevs": [
+     "2sam",
+     "2 sam",
+     "2sa"
+    ]
+   },
+   {
+    "index": 10,
+    "names": [
+     "1. Könige"
+    ],
+    "abbrevs": [
+     "1kön",
+     "1 kön",
+     "1koen"
+    ]
+   },
+   {
+    "index": 11,
+    "names": [
+     "2. Könige"
+    ],
+    "abbrevs": [
+     "2kön",
+     "2 kön",
+     "2koen"
+    ]
+   },
+   {
+    "index": 12,
+    "names": [
+     "1. Chronik"
+    ],
+    "abbrevs": [
+     "1chr",
+     "1 chr"
+    ]
+   },
+   {
+    "index": 13,
+    "names": [
+     "2. Chronik"
+    ],
+    "abbrevs": [
+     "2chr",
+     "2 chr"
+    ]
+   },
+   {
+    "index": 14,
+    "names": [
+     "Esra"
+    ],
+    "abbrevs": [
+     "esr",
+     "esra"
+    ]
+   },
+   {
+    "index": 15,
+    "names": [
+     "Nehemia"
+    ],
+    "abbrevs": [
+     "neh"
+    ]
+   },
+   {
+    "index": 16,
+    "names": [
+     "Ester",
+     "Esther"
+    ],
+    "abbrevs": [
+     "est"
+    ]
+   },
+   {
+    "index": 17,
+    "names": [
+     "Hiob",
+     "Ijob"
+    ],
+    "abbrevs": [
+     "hi",
+     "hiob",
+     "ijob"
+    ]
+   },
+   {
+    "index": 18,
+    "names": [
+     "Psalmen",
+     "Psalm"
+    ],
+    "abbrevs": [
+     "ps",
+     "psa"
+    ]
+   },
+   {
+    "index": 19,
+    "names": [
+     "Sprüche",
+     "Sprichwörter",
+     "Sprüche Salomos"
+    ],
+    "abbrevs": [
+     "spr",
+     "sprüche"
+    ]
+   },
+   {
+    "index": 20,
+    "names": [
+     "Prediger",
+     "Kohelet"
+    ],
+    "abbrevs": [
+     "pred",
+     "koh"
+    ]
+   },
+   {
+    "index": 21,
+    "names": [
+     "Hoheslied",
+     "Hohelied",
+     "Hohelied Salomos"
+    ],
+    "abbrevs": [
+     "hld",
+     "hl",
+     "hohelied"
+    ]
+   },
+   {
+    "index": 22,
+    "names": [
+     "Jesaja"
+    ],
+    "abbrevs": [
+     "jes"
+    ]
+   },
+   {
+    "index": 23,
+    "names": [
+     "Jeremia"
+    ],
+    "abbrevs": [
+     "jer"
+    ]
+   },
+   {
+    "index": 24,
+    "names": [
+     "Klagelieder"
+    ],
+    "abbrevs": [
+     "klgl",
+     "klag",
+     "kla"
+    ]
+   },
+   {
+    "index": 25,
+    "names": [
+     "Hesekiel",
+     "Ezechiel"
+    ],
+    "abbrevs": [
+     "hes",
+     "ez",
+     "hesek"
+    ]
+   },
+   {
+    "index": 26,
+    "names": [
+     "Daniel"
+    ],
+    "abbrevs": [
+     "dan"
+    ]
+   },
+   {
+    "index": 27,
+    "names": [
+     "Hosea"
+    ],
+    "abbrevs": [
+     "hos"
+    ]
+   },
+   {
+    "index": 28,
+    "names": [
+     "Joel"
+    ],
+    "abbrevs": [
+     "joe",
+     "jl"
+    ]
+   },
+   {
+    "index": 29,
+    "names": [
+     "Amos"
+    ],
+    "abbrevs": [
+     "am",
+     "amo"
+    ]
+   },
+   {
+    "index": 30,
+    "names": [
+     "Obadja"
+    ],
+    "abbrevs": [
+     "obd",
+     "ob",
+     "oba"
+    ]
+   },
+   {
+    "index": 31,
+    "names": [
+     "Jona"
+    ],
+    "abbrevs": [
+     "jon"
+    ]
+   },
+   {
+    "index": 32,
+    "names": [
+     "Micha"
+    ],
+    "abbrevs": [
+     "mi",
+     "mich"
+    ]
+   },
+   {
+    "index": 33,
+    "names": [
+     "Nahum"
+    ],
+    "abbrevs": [
+     "nah"
+    ]
+   },
+   {
+    "index": 34,
+    "names": [
+     "Habakuk"
+    ],
+    "abbrevs": [
+     "hab"
+    ]
+   },
+   {
+    "index": 35,
+    "names": [
+     "Zefanja",
+     "Zephanja"
+    ],
+    "abbrevs": [
+     "zef",
+     "zeph"
+    ]
+   },
+   {
+    "index": 36,
+    "names": [
+     "Haggai"
+    ],
+    "abbrevs": [
+     "hag"
+    ]
+   },
+   {
+    "index": 37,
+    "names": [
+     "Sacharja"
+    ],
+    "abbrevs": [
+     "sach"
+    ]
+   },
+   {
+    "index": 38,
+    "names": [
+     "Maleachi"
+    ],
+    "abbrevs": [
+     "mal"
+    ]
+   },
+   {
+    "index": 39,
+    "names": [
+     "Matthäus"
+    ],
+    "abbrevs": [
+     "mt",
+     "matth",
+     "mat"
+    ]
+   },
+   {
+    "index": 40,
+    "names": [
+     "Markus"
+    ],
+    "abbrevs": [
+     "mk",
+     "mark"
+    ]
+   },
+   {
+    "index": 41,
+    "names": [
+     "Lukas"
+    ],
+    "abbrevs": [
+     "lk",
+     "luk"
+    ]
+   },
+   {
+    "index": 42,
+    "names": [
+     "Johannes"
+    ],
+    "abbrevs": [
+     "joh"
+    ]
+   },
+   {
+    "index": 43,
+    "names": [
+     "Apostelgeschichte"
+    ],
+    "abbrevs": [
+     "apg"
+    ]
+   },
+   {
+    "index": 44,
+    "names": [
+     "Römer"
+    ],
+    "abbrevs": [
+     "röm",
+     "roem",
+     "rom"
+    ]
+   },
+   {
+    "index": 45,
+    "names": [
+     "1. Korinther"
+    ],
+    "abbrevs": [
+     "1kor",
+     "1 kor"
+    ]
+   },
+   {
+    "index": 46,
+    "names": [
+     "2. Korinther"
+    ],
+    "abbrevs": [
+     "2kor",
+     "2 kor"
+    ]
+   },
+   {
+    "index": 47,
+    "names": [
+     "Galater"
+    ],
+    "abbrevs": [
+     "gal"
+    ]
+   },
+   {
+    "index": 48,
+    "names": [
+     "Epheser"
+    ],
+    "abbrevs": [
+     "eph"
+    ]
+   },
+   {
+    "index": 49,
+    "names": [
+     "Philipper"
+    ],
+    "abbrevs": [
+     "phil"
+    ]
+   },
+   {
+    "index": 50,
+    "names": [
+     "Kolosser"
+    ],
+    "abbrevs": [
+     "kol"
+    ]
+   },
+   {
+    "index": 51,
+    "names": [
+     "1. Thessalonicher"
+    ],
+    "abbrevs": [
+     "1thess",
+     "1 thess",
+     "1th"
+    ]
+   },
+   {
+    "index": 52,
+    "names": [
+     "2. Thessalonicher"
+    ],
+    "abbrevs": [
+     "2thess",
+     "2 thess",
+     "2th"
+    ]
+   },
+   {
+    "index": 53,
+    "names": [
+     "1. Timotheus"
+    ],
+    "abbrevs": [
+     "1tim",
+     "1 tim"
+    ]
+   },
+   {
+    "index": 54,
+    "names": [
+     "2. Timotheus"
+    ],
+    "abbrevs": [
+     "2tim",
+     "2 tim"
+    ]
+   },
+   {
+    "index": 55,
+    "names": [
+     "Titus"
+    ],
+    "abbrevs": [
+     "tit"
+    ]
+   },
+   {
+    "index": 56,
+    "names": [
+     "Philemon"
+    ],
+    "abbrevs": [
+     "phlm",
+     "phm"
+    ]
+   },
+   {
+    "index": 57,
+    "names": [
+     "Hebräer"
+    ],
+    "abbrevs": [
+     "hebr",
+     "heb"
+    ]
+   },
+   {
+    "index": 58,
+    "names": [
+     "Jakobus"
+    ],
+    "abbrevs": [
+     "jak"
+    ]
+   },
+   {
+    "index": 59,
+    "names": [
+     "1. Petrus"
+    ],
+    "abbrevs": [
+     "1petr",
+     "1 petr",
+     "1pt"
+    ]
+   },
+   {
+    "index": 60,
+    "names": [
+     "2. Petrus"
+    ],
+    "abbrevs": [
+     "2petr",
+     "2 petr",
+     "2pt"
+    ]
+   },
+   {
+    "index": 61,
+    "names": [
+     "1. Johannes"
+    ],
+    "abbrevs": [
+     "1joh",
+     "1 joh",
+     "1jo"
+    ]
+   },
+   {
+    "index": 62,
+    "names": [
+     "2. Johannes"
+    ],
+    "abbrevs": [
+     "2joh",
+     "2 joh",
+     "2jo"
+    ]
+   },
+   {
+    "index": 63,
+    "names": [
+     "3. Johannes"
+    ],
+    "abbrevs": [
+     "3joh",
+     "3 joh",
+     "3jo"
+    ]
+   },
+   {
+    "index": 64,
+    "names": [
+     "Judas"
+    ],
+    "abbrevs": [
+     "jud"
+    ]
+   },
+   {
+    "index": 65,
+    "names": [
+     "Offenbarung"
+    ],
+    "abbrevs": [
+     "offb",
+     "off",
+     "apk"
+    ]
+   }
+  ]
+ },
+ {
+  "lang": "it",
+  "label": "Italian",
+  "entries": [
+   {
+    "index": 0,
+    "names": [
+     "Genesi"
+    ],
+    "abbrevs": [
+     "gen",
+     "ge"
+    ]
+   },
+   {
+    "index": 1,
+    "names": [
+     "Esodo"
+    ],
+    "abbrevs": [
+     "es",
+     "eso"
+    ]
+   },
+   {
+    "index": 2,
+    "names": [
+     "Levitico"
+    ],
+    "abbrevs": [
+     "lev",
+     "lv"
+    ]
+   },
+   {
+    "index": 3,
+    "names": [
+     "Numeri"
+    ],
+    "abbrevs": [
+     "num",
+     "nm"
+    ]
+   },
+   {
+    "index": 4,
+    "names": [
+     "Deuteronomio"
+    ],
+    "abbrevs": [
+     "deut",
+     "dt"
+    ]
+   },
+   {
+    "index": 5,
+    "names": [
+     "Giosuè"
+    ],
+    "abbrevs": [
+     "gios",
+     "gs"
+    ]
+   },
+   {
+    "index": 6,
+    "names": [
+     "Giudici"
+    ],
+    "abbrevs": [
+     "gdc"
+    ]
+   },
+   {
+    "index": 7,
+    "names": [
+     "Rut",
+     "Ruth"
+    ],
+    "abbrevs": [
+     "rut",
+     "rt"
+    ]
+   },
+   {
+    "index": 8,
+    "names": [
+     "1 Samuele"
+    ],
+    "abbrevs": [
+     "1sam",
+     "1sa",
+     "1s"
+    ]
+   },
+   {
+    "index": 9,
+    "names": [
+     "2 Samuele"
+    ],
+    "abbrevs": [
+     "2sam",
+     "2sa",
+     "2s"
+    ]
+   },
+   {
+    "index": 10,
+    "names": [
+     "1 Re"
+    ],
+    "abbrevs": [
+     "1re"
+    ]
+   },
+   {
+    "index": 11,
+    "names": [
+     "2 Re"
+    ],
+    "abbrevs": [
+     "2re"
+    ]
+   },
+   {
+    "index": 12,
+    "names": [
+     "1 Cronache"
+    ],
+    "abbrevs": [
+     "1cr",
+     "1cro",
+     "1cron"
+    ]
+   },
+   {
+    "index": 13,
+    "names": [
+     "2 Cronache"
+    ],
+    "abbrevs": [
+     "2cr",
+     "2cro",
+     "2cron"
+    ]
+   },
+   {
+    "index": 14,
+    "names": [
+     "Esdra"
+    ],
+    "abbrevs": [
+     "esd"
+    ]
+   },
+   {
+    "index": 15,
+    "names": [
+     "Neemia"
+    ],
+    "abbrevs": [
+     "ne",
+     "neem"
+    ]
+   },
+   {
+    "index": 16,
+    "names": [
+     "Ester"
+    ],
+    "abbrevs": [
+     "est"
+    ]
+   },
+   {
+    "index": 17,
+    "names": [
+     "Giobbe"
+    ],
+    "abbrevs": [
+     "gb",
+     "giob"
+    ]
+   },
+   {
+    "index": 18,
+    "names": [
+     "Salmi"
+    ],
+    "abbrevs": [
+     "sal",
+     "sl"
+    ]
+   },
+   {
+    "index": 19,
+    "names": [
+     "Proverbi"
+    ],
+    "abbrevs": [
+     "pr",
+     "prov",
+     "prv"
+    ]
+   },
+   {
+    "index": 20,
+    "names": [
+     "Ecclesiaste",
+     "Qoelet"
+    ],
+    "abbrevs": [
+     "ec",
+     "eccl",
+     "qo"
+    ]
+   },
+   {
+    "index": 21,
+    "names": [
+     "Cantico dei Cantici",
+     "Cantico"
+    ],
+    "abbrevs": [
+     "ct",
+     "cant"
+    ]
+   },
+   {
+    "index": 22,
+    "names": [
+     "Isaia"
+    ],
+    "abbrevs": [
+     "is",
+     "isa"
+    ]
+   },
+   {
+    "index": 23,
+    "names": [
+     "Geremia"
+    ],
+    "abbrevs": [
+     "ger"
+    ]
+   },
+   {
+    "index": 24,
+    "names": [
+     "Lamentazioni"
+    ],
+    "abbrevs": [
+     "lam",
+     "lm"
+    ]
+   },
+   {
+    "index": 25,
+    "names": [
+     "Ezechiele"
+    ],
+    "abbrevs": [
+     "ez",
+     "ezec"
+    ]
+   },
+   {
+    "index": 26,
+    "names": [
+     "Daniele"
+    ],
+    "abbrevs": [
+     "dan",
+     "dn"
+    ]
+   },
+   {
+    "index": 27,
+    "names": [
+     "Osea"
+    ],
+    "abbrevs": [
+     "os"
+    ]
+   },
+   {
+    "index": 28,
+    "names": [
+     "Gioele"
+    ],
+    "abbrevs": [
+     "gl",
+     "gioe"
+    ]
+   },
+   {
+    "index": 29,
+    "names": [
+     "Amos"
+    ],
+    "abbrevs": [
+     "am"
+    ]
+   },
+   {
+    "index": 30,
+    "names": [
+     "Abdia"
+    ],
+    "abbrevs": [
+     "abd"
+    ]
+   },
+   {
+    "index": 31,
+    "names": [
+     "Giona"
+    ],
+    "abbrevs": [
+     "gion"
+    ]
+   },
+   {
+    "index": 32,
+    "names": [
+     "Michea"
+    ],
+    "abbrevs": [
+     "mi",
+     "mic"
+    ]
+   },
+   {
+    "index": 33,
+    "names": [
+     "Naum"
+    ],
+    "abbrevs": [
+     "na"
+    ]
+   },
+   {
+    "index": 34,
+    "names": [
+     "Abacuc"
+    ],
+    "abbrevs": [
+     "ab",
+     "abac"
+    ]
+   },
+   {
+    "index": 35,
+    "names": [
+     "Sofonia"
+    ],
+    "abbrevs": [
+     "sof",
+     "sf"
+    ]
+   },
+   {
+    "index": 36,
+    "names": [
+     "Aggeo"
+    ],
+    "abbrevs": [
+     "ag",
+     "agg"
+    ]
+   },
+   {
+    "index": 37,
+    "names": [
+     "Zaccaria"
+    ],
+    "abbrevs": [
+     "zc",
+     "zac"
+    ]
+   },
+   {
+    "index": 38,
+    "names": [
+     "Malachia"
+    ],
+    "abbrevs": [
+     "ml",
+     "mal"
+    ]
+   },
+   {
+    "index": 39,
+    "names": [
+     "Matteo"
+    ],
+    "abbrevs": [
+     "mt",
+     "mat"
+    ]
+   },
+   {
+    "index": 40,
+    "names": [
+     "Marco"
+    ],
+    "abbrevs": [
+     "mc",
+     "mr"
+    ]
+   },
+   {
+    "index": 41,
+    "names": [
+     "Luca"
+    ],
+    "abbrevs": [
+     "lc",
+     "luc"
+    ]
+   },
+   {
+    "index": 42,
+    "names": [
+     "Giovanni"
+    ],
+    "abbrevs": [
+     "gv",
+     "giov"
+    ]
+   },
+   {
+    "index": 43,
+    "names": [
+     "Atti degli Apostoli",
+     "Atti"
+    ],
+    "abbrevs": [
+     "at",
+     "atti"
+    ]
+   },
+   {
+    "index": 44,
+    "names": [
+     "Romani"
+    ],
+    "abbrevs": [
+     "rm",
+     "rom"
+    ]
+   },
+   {
+    "index": 45,
+    "names": [
+     "1 Corinzi"
+    ],
+    "abbrevs": [
+     "1cor",
+     "1co"
+    ]
+   },
+   {
+    "index": 46,
+    "names": [
+     "2 Corinzi"
+    ],
+    "abbrevs": [
+     "2cor",
+     "2co"
+    ]
+   },
+   {
+    "index": 47,
+    "names": [
+     "Galati"
+    ],
+    "abbrevs": [
+     "gal"
+    ]
+   },
+   {
+    "index": 48,
+    "names": [
+     "Efesini"
+    ],
+    "abbrevs": [
+     "ef",
+     "efes"
+    ]
+   },
+   {
+    "index": 49,
+    "names": [
+     "Filippesi"
+    ],
+    "abbrevs": [
+     "fil",
+     "flp"
+    ]
+   },
+   {
+    "index": 50,
+    "names": [
+     "Colossesi"
+    ],
+    "abbrevs": [
+     "col"
+    ]
+   },
+   {
+    "index": 51,
+    "names": [
+     "1 Tessalonicesi"
+    ],
+    "abbrevs": [
+     "1ts",
+     "1tess",
+     "1tes"
+    ]
+   },
+   {
+    "index": 52,
+    "names": [
+     "2 Tessalonicesi"
+    ],
+    "abbrevs": [
+     "2ts",
+     "2tess",
+     "2tes"
+    ]
+   },
+   {
+    "index": 53,
+    "names": [
+     "1 Timoteo"
+    ],
+    "abbrevs": [
+     "1tm",
+     "1tim"
+    ]
+   },
+   {
+    "index": 54,
+    "names": [
+     "2 Timoteo"
+    ],
+    "abbrevs": [
+     "2tm",
+     "2tim"
+    ]
+   },
+   {
+    "index": 55,
+    "names": [
+     "Tito"
+    ],
+    "abbrevs": [
+     "tt",
+     "tit"
+    ]
+   },
+   {
+    "index": 56,
+    "names": [
+     "Filemone"
+    ],
+    "abbrevs": [
+     "fm",
+     "flm",
+     "filem"
+    ]
+   },
+   {
+    "index": 57,
+    "names": [
+     "Ebrei"
+    ],
+    "abbrevs": [
+     "eb",
+     "ebr"
+    ]
+   },
+   {
+    "index": 58,
+    "names": [
+     "Giacomo"
+    ],
+    "abbrevs": [
+     "gc",
+     "giac"
+    ]
+   },
+   {
+    "index": 59,
+    "names": [
+     "1 Pietro"
+    ],
+    "abbrevs": [
+     "1pt",
+     "1pie"
+    ]
+   },
+   {
+    "index": 60,
+    "names": [
+     "2 Pietro"
+    ],
+    "abbrevs": [
+     "2pt",
+     "2pie"
+    ]
+   },
+   {
+    "index": 61,
+    "names": [
+     "1 Giovanni"
+    ],
+    "abbrevs": [
+     "1gv",
+     "1giov"
+    ]
+   },
+   {
+    "index": 62,
+    "names": [
+     "2 Giovanni"
+    ],
+    "abbrevs": [
+     "2gv",
+     "2giov"
+    ]
+   },
+   {
+    "index": 63,
+    "names": [
+     "3 Giovanni"
+    ],
+    "abbrevs": [
+     "3gv",
+     "3giov"
+    ]
+   },
+   {
+    "index": 64,
+    "names": [
+     "Giuda"
+    ],
+    "abbrevs": [
+     "gd"
+    ]
+   },
+   {
+    "index": 65,
+    "names": [
+     "Apocalisse",
+     "Apocalisse di Giovanni"
+    ],
+    "abbrevs": [
+     "ap",
+     "apoc"
+    ]
+   }
+  ]
+ },
+ {
+  "lang": "nl",
+  "label": "Dutch",
+  "entries": [
+   {
+    "index": 0,
+    "names": [
+     "Genesis"
+    ],
+    "abbrevs": [
+     "gen",
+     "gn"
+    ]
+   },
+   {
+    "index": 1,
+    "names": [
+     "Exodus"
+    ],
+    "abbrevs": [
+     "ex",
+     "exod"
+    ]
+   },
+   {
+    "index": 2,
+    "names": [
+     "Leviticus"
+    ],
+    "abbrevs": [
+     "lev",
+     "lv"
+    ]
+   },
+   {
+    "index": 3,
+    "names": [
+     "Numeri"
+    ],
+    "abbrevs": [
+     "num",
+     "nu"
+    ]
+   },
+   {
+    "index": 4,
+    "names": [
+     "Deuteronomium"
+    ],
+    "abbrevs": [
+     "deut",
+     "dt"
+    ]
+   },
+   {
+    "index": 5,
+    "names": [
+     "Jozua"
+    ],
+    "abbrevs": [
+     "joz"
+    ]
+   },
+   {
+    "index": 6,
+    "names": [
+     "Richteren",
+     "Rechters"
+    ],
+    "abbrevs": [
+     "richt",
+     "recht",
+     "ri"
+    ]
+   },
+   {
+    "index": 7,
+    "names": [
+     "Ruth"
+    ],
+    "abbrevs": [
+     "ruth",
+     "rt"
+    ]
+   },
+   {
+    "index": 8,
+    "names": [
+     "1 Samuel",
+     "1 Samuël"
+    ],
+    "abbrevs": [
+     "1 sam",
+     "1sam"
+    ]
+   },
+   {
+    "index": 9,
+    "names": [
+     "2 Samuel",
+     "2 Samuël"
+    ],
+    "abbrevs": [
+     "2 sam",
+     "2sam"
+    ]
+   },
+   {
+    "index": 10,
+    "names": [
+     "1 Koningen"
+    ],
+    "abbrevs": [
+     "1 kon",
+     "1kon"
+    ]
+   },
+   {
+    "index": 11,
+    "names": [
+     "2 Koningen"
+    ],
+    "abbrevs": [
+     "2 kon",
+     "2kon"
+    ]
+   },
+   {
+    "index": 12,
+    "names": [
+     "1 Kronieken"
+    ],
+    "abbrevs": [
+     "1 kron",
+     "1kron"
+    ]
+   },
+   {
+    "index": 13,
+    "names": [
+     "2 Kronieken"
+    ],
+    "abbrevs": [
+     "2 kron",
+     "2kron"
+    ]
+   },
+   {
+    "index": 14,
+    "names": [
+     "Ezra"
+    ],
+    "abbrevs": [
+     "ezra",
+     "ezr"
+    ]
+   },
+   {
+    "index": 15,
+    "names": [
+     "Nehemia"
+    ],
+    "abbrevs": [
+     "neh"
+    ]
+   },
+   {
+    "index": 16,
+    "names": [
+     "Esther",
+     "Ester"
+    ],
+    "abbrevs": [
+     "est",
+     "esth"
+    ]
+   },
+   {
+    "index": 17,
+    "names": [
+     "Job"
+    ],
+    "abbrevs": [
+     "job"
+    ]
+   },
+   {
+    "index": 18,
+    "names": [
+     "Psalmen",
+     "Psalm"
+    ],
+    "abbrevs": [
+     "ps",
+     "psalm"
+    ]
+   },
+   {
+    "index": 19,
+    "names": [
+     "Spreuken"
+    ],
+    "abbrevs": [
+     "spr"
+    ]
+   },
+   {
+    "index": 20,
+    "names": [
+     "Prediker"
+    ],
+    "abbrevs": [
+     "pred"
+    ]
+   },
+   {
+    "index": 21,
+    "names": [
+     "Hooglied"
+    ],
+    "abbrevs": [
+     "hoogl",
+     "hgl",
+     "hl"
+    ]
+   },
+   {
+    "index": 22,
+    "names": [
+     "Jesaja"
+    ],
+    "abbrevs": [
+     "jes"
+    ]
+   },
+   {
+    "index": 23,
+    "names": [
+     "Jeremia"
+    ],
+    "abbrevs": [
+     "jer"
+    ]
+   },
+   {
+    "index": 24,
+    "names": [
+     "Klaagliederen"
+    ],
+    "abbrevs": [
+     "klaagl",
+     "kl"
+    ]
+   },
+   {
+    "index": 25,
+    "names": [
+     "Ezechiël",
+     "Ezechiel"
+    ],
+    "abbrevs": [
+     "ezech"
+    ]
+   },
+   {
+    "index": 26,
+    "names": [
+     "Daniël",
+     "Daniel"
+    ],
+    "abbrevs": [
+     "dan"
+    ]
+   },
+   {
+    "index": 27,
+    "names": [
+     "Hosea"
+    ],
+    "abbrevs": [
+     "hos"
+    ]
+   },
+   {
+    "index": 28,
+    "names": [
+     "Joël",
+     "Joel"
+    ],
+    "abbrevs": [
+     "joël",
+     "joel",
+     "jl"
+    ]
+   },
+   {
+    "index": 29,
+    "names": [
+     "Amos"
+    ],
+    "abbrevs": [
+     "amos",
+     "am"
+    ]
+   },
+   {
+    "index": 30,
+    "names": [
+     "Obadja"
+    ],
+    "abbrevs": [
+     "obad",
+     "ob"
+    ]
+   },
+   {
+    "index": 31,
+    "names": [
+     "Jona"
+    ],
+    "abbrevs": [
+     "jona",
+     "jon"
+    ]
+   },
+   {
+    "index": 32,
+    "names": [
+     "Micha"
+    ],
+    "abbrevs": [
+     "micha",
+     "mi"
+    ]
+   },
+   {
+    "index": 33,
+    "names": [
+     "Nahum"
+    ],
+    "abbrevs": [
+     "nah"
+    ]
+   },
+   {
+    "index": 34,
+    "names": [
+     "Habakuk"
+    ],
+    "abbrevs": [
+     "hab"
+    ]
+   },
+   {
+    "index": 35,
+    "names": [
+     "Zefanja",
+     "Sefanja"
+    ],
+    "abbrevs": [
+     "zef",
+     "sef"
+    ]
+   },
+   {
+    "index": 36,
+    "names": [
+     "Haggaï",
+     "Haggai"
+    ],
+    "abbrevs": [
+     "hag"
+    ]
+   },
+   {
+    "index": 37,
+    "names": [
+     "Zacharia"
+    ],
+    "abbrevs": [
+     "zach",
+     "zac"
+    ]
+   },
+   {
+    "index": 38,
+    "names": [
+     "Maleachi"
+    ],
+    "abbrevs": [
+     "mal"
+    ]
+   },
+   {
+    "index": 39,
+    "names": [
+     "Mattheüs",
+     "Matteüs",
+     "Mattheus"
+    ],
+    "abbrevs": [
+     "matt",
+     "mat",
+     "mt"
+    ]
+   },
+   {
+    "index": 40,
+    "names": [
+     "Markus",
+     "Marcus"
+    ],
+    "abbrevs": [
+     "mark",
+     "marc",
+     "mk"
+    ]
+   },
+   {
+    "index": 41,
+    "names": [
+     "Lukas",
+     "Lucas"
+    ],
+    "abbrevs": [
+     "luk",
+     "luc",
+     "lk"
+    ]
+   },
+   {
+    "index": 42,
+    "names": [
+     "Johannes"
+    ],
+    "abbrevs": [
+     "joh"
+    ]
+   },
+   {
+    "index": 43,
+    "names": [
+     "Handelingen",
+     "Handelingen van de apostelen"
+    ],
+    "abbrevs": [
+     "hand",
+     "hnd"
+    ]
+   },
+   {
+    "index": 44,
+    "names": [
+     "Romeinen"
+    ],
+    "abbrevs": [
+     "rom",
+     "rm"
+    ]
+   },
+   {
+    "index": 45,
+    "names": [
+     "1 Korinthe",
+     "1 Korintiërs",
+     "1 Korinthiërs"
+    ],
+    "abbrevs": [
+     "1 kor",
+     "1kor"
+    ]
+   },
+   {
+    "index": 46,
+    "names": [
+     "2 Korinthe",
+     "2 Korintiërs",
+     "2 Korinthiërs"
+    ],
+    "abbrevs": [
+     "2 kor",
+     "2kor"
+    ]
+   },
+   {
+    "index": 47,
+    "names": [
+     "Galaten"
+    ],
+    "abbrevs": [
+     "gal"
+    ]
+   },
+   {
+    "index": 48,
+    "names": [
+     "Efeze",
+     "Efeziërs"
+    ],
+    "abbrevs": [
+     "ef",
+     "efez"
+    ]
+   },
+   {
+    "index": 49,
+    "names": [
+     "Filippenzen"
+    ],
+    "abbrevs": [
+     "fil",
+     "flp"
+    ]
+   },
+   {
+    "index": 50,
+    "names": [
+     "Kolossenzen"
+    ],
+    "abbrevs": [
+     "kol"
+    ]
+   },
+   {
+    "index": 51,
+    "names": [
+     "1 Thessalonicenzen",
+     "1 Tessalonicenzen"
+    ],
+    "abbrevs": [
+     "1 thess",
+     "1 tess",
+     "1thess"
+    ]
+   },
+   {
+    "index": 52,
+    "names": [
+     "2 Thessalonicenzen",
+     "2 Tessalonicenzen"
+    ],
+    "abbrevs": [
+     "2 thess",
+     "2 tess",
+     "2thess"
+    ]
+   },
+   {
+    "index": 53,
+    "names": [
+     "1 Timotheüs",
+     "1 Timoteüs"
+    ],
+    "abbrevs": [
+     "1 tim",
+     "1tim"
+    ]
+   },
+   {
+    "index": 54,
+    "names": [
+     "2 Timotheüs",
+     "2 Timoteüs"
+    ],
+    "abbrevs": [
+     "2 tim",
+     "2tim"
+    ]
+   },
+   {
+    "index": 55,
+    "names": [
+     "Titus"
+    ],
+    "abbrevs": [
+     "tit"
+    ]
+   },
+   {
+    "index": 56,
+    "names": [
+     "Filemon"
+    ],
+    "abbrevs": [
+     "filem",
+     "flm"
+    ]
+   },
+   {
+    "index": 57,
+    "names": [
+     "Hebreeën"
+    ],
+    "abbrevs": [
+     "hebr",
+     "heb"
+    ]
+   },
+   {
+    "index": 58,
+    "names": [
+     "Jakobus"
+    ],
+    "abbrevs": [
+     "jak"
+    ]
+   },
+   {
+    "index": 59,
+    "names": [
+     "1 Petrus"
+    ],
+    "abbrevs": [
+     "1 petr",
+     "1 pet",
+     "1petr"
+    ]
+   },
+   {
+    "index": 60,
+    "names": [
+     "2 Petrus"
+    ],
+    "abbrevs": [
+     "2 petr",
+     "2 pet",
+     "2petr"
+    ]
+   },
+   {
+    "index": 61,
+    "names": [
+     "1 Johannes"
+    ],
+    "abbrevs": [
+     "1 joh",
+     "1joh"
+    ]
+   },
+   {
+    "index": 62,
+    "names": [
+     "2 Johannes"
+    ],
+    "abbrevs": [
+     "2 joh",
+     "2joh"
+    ]
+   },
+   {
+    "index": 63,
+    "names": [
+     "3 Johannes"
+    ],
+    "abbrevs": [
+     "3 joh",
+     "3joh"
+    ]
+   },
+   {
+    "index": 64,
+    "names": [
+     "Judas"
+    ],
+    "abbrevs": [
+     "jud",
+     "jd"
+    ]
+   },
+   {
+    "index": 65,
+    "names": [
+     "Openbaring",
+     "Openbaring van Johannes"
+    ],
+    "abbrevs": [
+     "openb",
+     "opb",
+     "op"
+    ]
+   }
+  ]
+ },
+ {
+  "lang": "uk",
+  "label": "Ukrainian",
+  "entries": [
+   {
+    "index": 0,
+    "names": [
+     "Буття"
+    ],
+    "abbrevs": [
+     "бут",
+     "бт"
+    ]
+   },
+   {
+    "index": 1,
+    "names": [
+     "Вихід"
+    ],
+    "abbrevs": [
+     "вих"
+    ]
+   },
+   {
+    "index": 2,
+    "names": [
+     "Левит"
+    ],
+    "abbrevs": [
+     "лев",
+     "лв"
+    ]
+   },
+   {
+    "index": 3,
+    "names": [
+     "Числа"
+    ],
+    "abbrevs": [
+     "чис",
+     "числ"
+    ]
+   },
+   {
+    "index": 4,
+    "names": [
+     "Повторення Закону",
+     "Второзаконня"
+    ],
+    "abbrevs": [
+     "повт",
+     "втор"
+    ]
+   },
+   {
+    "index": 5,
+    "names": [
+     "Ісус Навин",
+     "Книга Ісуса Навина"
+    ],
+    "abbrevs": [
+     "нав",
+     "іс нав"
+    ]
+   },
+   {
+    "index": 6,
+    "names": [
+     "Судді",
+     "Книга Суддів"
+    ],
+    "abbrevs": [
+     "суд"
+    ]
+   },
+   {
+    "index": 7,
+    "names": [
+     "Рут",
+     "Руф"
+    ],
+    "abbrevs": [
+     "рут"
+    ]
+   },
+   {
+    "index": 8,
+    "names": [
+     "1 Самуїлова",
+     "1 Самуїла",
+     "Перша книга Самуїлова"
+    ],
+    "abbrevs": [
+     "1 сам",
+     "1сам"
+    ]
+   },
+   {
+    "index": 9,
+    "names": [
+     "2 Самуїлова",
+     "2 Самуїла",
+     "Друга книга Самуїлова"
+    ],
+    "abbrevs": [
+     "2 сам",
+     "2сам"
+    ]
+   },
+   {
+    "index": 10,
+    "names": [
+     "1 Царів",
+     "Перша книга царів"
+    ],
+    "abbrevs": [
+     "1 цар",
+     "1цар"
+    ]
+   },
+   {
+    "index": 11,
+    "names": [
+     "2 Царів",
+     "Друга книга царів"
+    ],
+    "abbrevs": [
+     "2 цар",
+     "2цар"
+    ]
+   },
+   {
+    "index": 12,
+    "names": [
+     "1 Хроніки",
+     "1 Параліпоменон",
+     "Перша книга хроніки"
+    ],
+    "abbrevs": [
+     "1 хр",
+     "1 хрон",
+     "1 пар"
+    ]
+   },
+   {
+    "index": 13,
+    "names": [
+     "2 Хроніки",
+     "2 Параліпоменон",
+     "Друга книга хроніки"
+    ],
+    "abbrevs": [
+     "2 хр",
+     "2 хрон",
+     "2 пар"
+    ]
+   },
+   {
+    "index": 14,
+    "names": [
+     "Ездра",
+     "Книга Ездри"
+    ],
+    "abbrevs": [
+     "езд",
+     "ездр"
+    ]
+   },
+   {
+    "index": 15,
+    "names": [
+     "Неемія",
+     "Книга Неемії"
+    ],
+    "abbrevs": [
+     "неем",
+     "нм"
+    ]
+   },
+   {
+    "index": 16,
+    "names": [
+     "Естер",
+     "Есфір"
+    ],
+    "abbrevs": [
+     "ест"
+    ]
+   },
+   {
+    "index": 17,
+    "names": [
+     "Йов",
+     "Іов"
+    ],
+    "abbrevs": [
+     "йов",
+     "іов"
+    ]
+   },
+   {
+    "index": 18,
+    "names": [
+     "Псалми",
+     "Псалтир",
+     "Книга Псалмів"
+    ],
+    "abbrevs": [
+     "пс",
+     "псал"
+    ]
+   },
+   {
+    "index": 19,
+    "names": [
+     "Приповісті",
+     "Притчі",
+     "Приповісті Соломонові"
+    ],
+    "abbrevs": [
+     "прип",
+     "притч"
+    ]
+   },
+   {
+    "index": 20,
+    "names": [
+     "Екклезіяст",
+     "Еклезіаст",
+     "Проповідник"
+    ],
+    "abbrevs": [
+     "еккл",
+     "екл"
+    ]
+   },
+   {
+    "index": 21,
+    "names": [
+     "Пісня над піснями",
+     "Пісня пісень"
+    ],
+    "abbrevs": [
+     "пісн",
+     "пнп"
+    ]
+   },
+   {
+    "index": 22,
+    "names": [
+     "Ісая",
+     "Книга пророка Ісаї"
+    ],
+    "abbrevs": [
+     "іс",
+     "ісая"
+    ]
+   },
+   {
+    "index": 23,
+    "names": [
+     "Єремія",
+     "Книга пророка Єремії"
+    ],
+    "abbrevs": [
+     "єр",
+     "єрем"
+    ]
+   },
+   {
+    "index": 24,
+    "names": [
+     "Плач Єремії",
+     "Плач"
+    ],
+    "abbrevs": [
+     "плач",
+     "пл єр"
+    ]
+   },
+   {
+    "index": 25,
+    "names": [
+     "Єзекіїль",
+     "Книга пророка Єзекіїля"
+    ],
+    "abbrevs": [
+     "єз",
+     "єзек"
+    ]
+   },
+   {
+    "index": 26,
+    "names": [
+     "Даниїл",
+     "Даніїл"
+    ],
+    "abbrevs": [
+     "дан",
+     "дн"
+    ]
+   },
+   {
+    "index": 27,
+    "names": [
+     "Осія"
+    ],
+    "abbrevs": [
+     "ос",
+     "осія"
+    ]
+   },
+   {
+    "index": 28,
+    "names": [
+     "Йоіл",
+     "Йоїл",
+     "Іоїл"
+    ],
+    "abbrevs": [
+     "йоіл",
+     "йоїл"
+    ]
+   },
+   {
+    "index": 29,
+    "names": [
+     "Амос"
+    ],
+    "abbrevs": [
+     "ам",
+     "амос"
+    ]
+   },
+   {
+    "index": 30,
+    "names": [
+     "Овдій",
+     "Авдій"
+    ],
+    "abbrevs": [
+     "овд",
+     "авд"
+    ]
+   },
+   {
+    "index": 31,
+    "names": [
+     "Йона",
+     "Іона"
+    ],
+    "abbrevs": [
+     "йон",
+     "йона"
+    ]
+   },
+   {
+    "index": 32,
+    "names": [
+     "Михей"
+    ],
+    "abbrevs": [
+     "мих",
+     "мх"
+    ]
+   },
+   {
+    "index": 33,
+    "names": [
+     "Наум"
+    ],
+    "abbrevs": [
+     "наум"
+    ]
+   },
+   {
+    "index": 34,
+    "names": [
+     "Авакум"
+    ],
+    "abbrevs": [
+     "авак",
+     "авк"
+    ]
+   },
+   {
+    "index": 35,
+    "names": [
+     "Софонія"
+    ],
+    "abbrevs": [
+     "соф"
+    ]
+   },
+   {
+    "index": 36,
+    "names": [
+     "Огій",
+     "Аггей"
+    ],
+    "abbrevs": [
+     "ог",
+     "огій",
+     "агг"
+    ]
+   },
+   {
+    "index": 37,
+    "names": [
+     "Захарій",
+     "Захарія"
+    ],
+    "abbrevs": [
+     "зах",
+     "зх"
+    ]
+   },
+   {
+    "index": 38,
+    "names": [
+     "Малахія"
+    ],
+    "abbrevs": [
+     "мал",
+     "млх"
+    ]
+   },
+   {
+    "index": 39,
+    "names": [
+     "Матвій",
+     "Від Матвія",
+     "Матей"
+    ],
+    "abbrevs": [
+     "мт",
+     "матв",
+     "мат"
+    ]
+   },
+   {
+    "index": 40,
+    "names": [
+     "Марко",
+     "Від Марка"
+    ],
+    "abbrevs": [
+     "мк",
+     "мар",
+     "марк"
+    ]
+   },
+   {
+    "index": 41,
+    "names": [
+     "Лука",
+     "Від Луки"
+    ],
+    "abbrevs": [
+     "лк",
+     "лук"
+    ]
+   },
+   {
+    "index": 42,
+    "names": [
+     "Іван",
+     "Від Івана",
+     "Йоан"
+    ],
+    "abbrevs": [
+     "ів",
+     "іван"
+    ]
+   },
+   {
+    "index": 43,
+    "names": [
+     "Дії",
+     "Дії апостолів",
+     "Діяння апостолів"
+    ],
+    "abbrevs": [
+     "дії",
+     "діян"
+    ]
+   },
+   {
+    "index": 44,
+    "names": [
+     "Римлян",
+     "До римлян"
+    ],
+    "abbrevs": [
+     "рим",
+     "рм"
+    ]
+   },
+   {
+    "index": 45,
+    "names": [
+     "1 Коринтян",
+     "1 до коринтян",
+     "1 Коринфян"
+    ],
+    "abbrevs": [
+     "1 кор",
+     "1кор"
+    ]
+   },
+   {
+    "index": 46,
+    "names": [
+     "2 Коринтян",
+     "2 до коринтян",
+     "2 Коринфян"
+    ],
+    "abbrevs": [
+     "2 кор",
+     "2кор"
+    ]
+   },
+   {
+    "index": 47,
+    "names": [
+     "Галатів",
+     "До галатів",
+     "Галатам"
+    ],
+    "abbrevs": [
+     "гал",
+     "гл"
+    ]
+   },
+   {
+    "index": 48,
+    "names": [
+     "Ефесян",
+     "До ефесян",
+     "Ефесянам"
+    ],
+    "abbrevs": [
+     "еф",
+     "ефес"
+    ]
+   },
+   {
+    "index": 49,
+    "names": [
+     "Филип'ян",
+     "До филип'ян",
+     "Филипійців"
+    ],
+    "abbrevs": [
+     "флп",
+     "филип"
+    ]
+   },
+   {
+    "index": 50,
+    "names": [
+     "Колосян",
+     "До колосян"
+    ],
+    "abbrevs": [
+     "кол",
+     "кл"
+    ]
+   },
+   {
+    "index": 51,
+    "names": [
+     "1 Солунян",
+     "1 до солунян",
+     "1 Фессалонікійців"
+    ],
+    "abbrevs": [
+     "1 сол",
+     "1 фес",
+     "1сол"
+    ]
+   },
+   {
+    "index": 52,
+    "names": [
+     "2 Солунян",
+     "2 до солунян",
+     "2 Фессалонікійців"
+    ],
+    "abbrevs": [
+     "2 сол",
+     "2 фес",
+     "2сол"
+    ]
+   },
+   {
+    "index": 53,
+    "names": [
+     "1 Тимофія",
+     "1 до Тимофія",
+     "1 Тимофію"
+    ],
+    "abbrevs": [
+     "1 тим",
+     "1тим"
+    ]
+   },
+   {
+    "index": 54,
+    "names": [
+     "2 Тимофія",
+     "2 до Тимофія",
+     "2 Тимофію"
+    ],
+    "abbrevs": [
+     "2 тим",
+     "2тим"
+    ]
+   },
+   {
+    "index": 55,
+    "names": [
+     "Тита",
+     "До Тита",
+     "Тит"
+    ],
+    "abbrevs": [
+     "тит",
+     "тт"
+    ]
+   },
+   {
+    "index": 56,
+    "names": [
+     "Филимона",
+     "До Филимона",
+     "Филимон"
+    ],
+    "abbrevs": [
+     "флм",
+     "филим"
+    ]
+   },
+   {
+    "index": 57,
+    "names": [
+     "Євреїв",
+     "До євреїв"
+    ],
+    "abbrevs": [
+     "євр"
+    ]
+   },
+   {
+    "index": 58,
+    "names": [
+     "Якова",
+     "Послання Якова",
+     "Яків"
+    ],
+    "abbrevs": [
+     "як",
+     "яков"
+    ]
+   },
+   {
+    "index": 59,
+    "names": [
+     "1 Петра"
+    ],
+    "abbrevs": [
+     "1 пет",
+     "1 пт",
+     "1пет"
+    ]
+   },
+   {
+    "index": 60,
+    "names": [
+     "2 Петра"
+    ],
+    "abbrevs": [
+     "2 пет",
+     "2 пт",
+     "2пет"
+    ]
+   },
+   {
+    "index": 61,
+    "names": [
+     "1 Івана",
+     "1 Йоана"
+    ],
+    "abbrevs": [
+     "1 ів",
+     "1ів"
+    ]
+   },
+   {
+    "index": 62,
+    "names": [
+     "2 Івана",
+     "2 Йоана"
+    ],
+    "abbrevs": [
+     "2 ів",
+     "2ів"
+    ]
+   },
+   {
+    "index": 63,
+    "names": [
+     "3 Івана",
+     "3 Йоана"
+    ],
+    "abbrevs": [
+     "3 ів",
+     "3ів"
+    ]
+   },
+   {
+    "index": 64,
+    "names": [
+     "Юди",
+     "Послання Юди",
+     "Юда"
+    ],
+    "abbrevs": [
+     "юд",
+     "юди"
+    ]
+   },
+   {
+    "index": 65,
+    "names": [
+     "Об'явлення",
+     "Одкровення",
+     "Апокаліпсис"
+    ],
+    "abbrevs": [
+     "об",
+     "одкр",
+     "апок"
+    ]
+   }
+  ]
+ },
+ {
+  "lang": "ru",
+  "label": "Russian",
+  "entries": [
+   {
+    "index": 0,
+    "names": [
+     "Бытие"
+    ],
+    "abbrevs": [
+     "быт"
+    ]
+   },
+   {
+    "index": 1,
+    "names": [
+     "Исход"
+    ],
+    "abbrevs": [
+     "исх"
+    ]
+   },
+   {
+    "index": 2,
+    "names": [
+     "Левит"
+    ],
+    "abbrevs": [
+     "лев"
+    ]
+   },
+   {
+    "index": 3,
+    "names": [
+     "Числа"
+    ],
+    "abbrevs": [
+     "чис",
+     "числ"
+    ]
+   },
+   {
+    "index": 4,
+    "names": [
+     "Второзаконие"
+    ],
+    "abbrevs": [
+     "втор"
+    ]
+   },
+   {
+    "index": 5,
+    "names": [
+     "Иисус Навин",
+     "Книга Иисуса Навина"
+    ],
+    "abbrevs": [
+     "нав",
+     "иис нав"
+    ]
+   },
+   {
+    "index": 6,
+    "names": [
+     "Судьи",
+     "Книга Судей",
+     "Книга Судей Израилевых"
+    ],
+    "abbrevs": [
+     "суд"
+    ]
+   },
+   {
+    "index": 7,
+    "names": [
+     "Руфь"
+    ],
+    "abbrevs": [
+     "руф",
+     "руфь"
+    ]
+   },
+   {
+    "index": 8,
+    "names": [
+     "1 Царств",
+     "Первая книга Царств",
+     "1 Самуила"
+    ],
+    "abbrevs": [
+     "1цар",
+     "1 цар",
+     "1сам"
+    ]
+   },
+   {
+    "index": 9,
+    "names": [
+     "2 Царств",
+     "Вторая книга Царств",
+     "2 Самуила"
+    ],
+    "abbrevs": [
+     "2цар",
+     "2 цар",
+     "2сам"
+    ]
+   },
+   {
+    "index": 10,
+    "names": [
+     "3 Царств",
+     "Третья книга Царств",
+     "1 Царей"
+    ],
+    "abbrevs": [
+     "3цар",
+     "3 цар"
+    ]
+   },
+   {
+    "index": 11,
+    "names": [
+     "4 Царств",
+     "Четвёртая книга Царств",
+     "2 Царей"
+    ],
+    "abbrevs": [
+     "4цар",
+     "4 цар"
+    ]
+   },
+   {
+    "index": 12,
+    "names": [
+     "1 Паралипоменон",
+     "Первая книга Паралипоменон",
+     "1 Летопись",
+     "1 Хроник"
+    ],
+    "abbrevs": [
+     "1пар",
+     "1 пар",
+     "1лет"
+    ]
+   },
+   {
+    "index": 13,
+    "names": [
+     "2 Паралипоменон",
+     "Вторая книга Паралипоменон",
+     "2 Летопись",
+     "2 Хроник"
+    ],
+    "abbrevs": [
+     "2пар",
+     "2 пар",
+     "2лет"
+    ]
+   },
+   {
+    "index": 14,
+    "names": [
+     "Ездра",
+     "Книга Ездры",
+     "1 Ездры"
+    ],
+    "abbrevs": [
+     "езд",
+     "ездр"
+    ]
+   },
+   {
+    "index": 15,
+    "names": [
+     "Неемия",
+     "Книга Неемии"
+    ],
+    "abbrevs": [
+     "неем"
+    ]
+   },
+   {
+    "index": 16,
+    "names": [
+     "Есфирь",
+     "Эсфирь"
+    ],
+    "abbrevs": [
+     "есф",
+     "эсф"
+    ]
+   },
+   {
+    "index": 17,
+    "names": [
+     "Иов",
+     "Книга Иова"
+    ],
+    "abbrevs": [
+     "иов"
+    ]
+   },
+   {
+    "index": 18,
+    "names": [
+     "Псалтирь",
+     "Псалтырь",
+     "Псалмы"
+    ],
+    "abbrevs": [
+     "пс",
+     "псал",
+     "псалт"
+    ]
+   },
+   {
+    "index": 19,
+    "names": [
+     "Притчи",
+     "Притчи Соломона",
+     "Книга Притчей Соломоновых"
+    ],
+    "abbrevs": [
+     "притч",
+     "прит"
+    ]
+   },
+   {
+    "index": 20,
+    "names": [
+     "Екклесиаст",
+     "Экклезиаст",
+     "Книга Екклесиаста",
+     "Проповедник"
+    ],
+    "abbrevs": [
+     "еккл",
+     "екк"
+    ]
+   },
+   {
+    "index": 21,
+    "names": [
+     "Песнь песней",
+     "Песнь песней Соломона",
+     "Песня песней"
+    ],
+    "abbrevs": [
+     "песн"
+    ]
+   },
+   {
+    "index": 22,
+    "names": [
+     "Исаия",
+     "Исайя",
+     "Книга пророка Исаии"
+    ],
+    "abbrevs": [
+     "ис"
+    ]
+   },
+   {
+    "index": 23,
+    "names": [
+     "Иеремия",
+     "Книга пророка Иеремии"
+    ],
+    "abbrevs": [
+     "иер"
+    ]
+   },
+   {
+    "index": 24,
+    "names": [
+     "Плач Иеремии",
+     "Плач"
+    ],
+    "abbrevs": [
+     "плач"
+    ]
+   },
+   {
+    "index": 25,
+    "names": [
+     "Иезекииль",
+     "Книга пророка Иезекииля"
+    ],
+    "abbrevs": [
+     "иез"
+    ]
+   },
+   {
+    "index": 26,
+    "names": [
+     "Даниил",
+     "Книга пророка Даниила"
+    ],
+    "abbrevs": [
+     "дан"
+    ]
+   },
+   {
+    "index": 27,
+    "names": [
+     "Осия"
+    ],
+    "abbrevs": [
+     "ос"
+    ]
+   },
+   {
+    "index": 28,
+    "names": [
+     "Иоиль"
+    ],
+    "abbrevs": [
+     "иоил"
+    ]
+   },
+   {
+    "index": 29,
+    "names": [
+     "Амос"
+    ],
+    "abbrevs": [
+     "ам",
+     "амос"
+    ]
+   },
+   {
+    "index": 30,
+    "names": [
+     "Авдий"
+    ],
+    "abbrevs": [
+     "авд"
+    ]
+   },
+   {
+    "index": 31,
+    "names": [
+     "Иона"
+    ],
+    "abbrevs": [
+     "ион",
+     "иона"
+    ]
+   },
+   {
+    "index": 32,
+    "names": [
+     "Михей"
+    ],
+    "abbrevs": [
+     "мих"
+    ]
+   },
+   {
+    "index": 33,
+    "names": [
+     "Наум"
+    ],
+    "abbrevs": [
+     "наум"
+    ]
+   },
+   {
+    "index": 34,
+    "names": [
+     "Аввакум"
+    ],
+    "abbrevs": [
+     "авв"
+    ]
+   },
+   {
+    "index": 35,
+    "names": [
+     "Софония"
+    ],
+    "abbrevs": [
+     "соф"
+    ]
+   },
+   {
+    "index": 36,
+    "names": [
+     "Аггей"
+    ],
+    "abbrevs": [
+     "агг"
+    ]
+   },
+   {
+    "index": 37,
+    "names": [
+     "Захария"
+    ],
+    "abbrevs": [
+     "зах"
+    ]
+   },
+   {
+    "index": 38,
+    "names": [
+     "Малахия"
+    ],
+    "abbrevs": [
+     "мал"
+    ]
+   },
+   {
+    "index": 39,
+    "names": [
+     "От Матфея",
+     "Евангелие от Матфея",
+     "Матфей"
+    ],
+    "abbrevs": [
+     "мф",
+     "мат",
+     "матф"
+    ]
+   },
+   {
+    "index": 40,
+    "names": [
+     "От Марка",
+     "Евангелие от Марка",
+     "Марк"
+    ],
+    "abbrevs": [
+     "мк",
+     "мар",
+     "марк"
+    ]
+   },
+   {
+    "index": 41,
+    "names": [
+     "От Луки",
+     "Евангелие от Луки",
+     "Лука"
+    ],
+    "abbrevs": [
+     "лк",
+     "лук"
+    ]
+   },
+   {
+    "index": 42,
+    "names": [
+     "От Иоанна",
+     "Евангелие от Иоанна",
+     "Иоанн"
+    ],
+    "abbrevs": [
+     "ин",
+     "иоан"
+    ]
+   },
+   {
+    "index": 43,
+    "names": [
+     "Деяния",
+     "Деяния апостолов",
+     "Деяния святых апостолов"
+    ],
+    "abbrevs": [
+     "деян"
+    ]
+   },
+   {
+    "index": 44,
+    "names": [
+     "Римлянам",
+     "Послание к Римлянам",
+     "К Римлянам"
+    ],
+    "abbrevs": [
+     "рим"
+    ]
+   },
+   {
+    "index": 45,
+    "names": [
+     "1 Коринфянам",
+     "Первое послание к Коринфянам",
+     "1-е Коринфянам"
+    ],
+    "abbrevs": [
+     "1кор",
+     "1 кор"
+    ]
+   },
+   {
+    "index": 46,
+    "names": [
+     "2 Коринфянам",
+     "Второе послание к Коринфянам",
+     "2-е Коринфянам"
+    ],
+    "abbrevs": [
+     "2кор",
+     "2 кор"
+    ]
+   },
+   {
+    "index": 47,
+    "names": [
+     "Галатам",
+     "Послание к Галатам"
+    ],
+    "abbrevs": [
+     "гал"
+    ]
+   },
+   {
+    "index": 48,
+    "names": [
+     "Ефесянам",
+     "Послание к Ефесянам",
+     "Эфесянам"
+    ],
+    "abbrevs": [
+     "еф",
+     "ефес"
+    ]
+   },
+   {
+    "index": 49,
+    "names": [
+     "Филиппийцам",
+     "Послание к Филиппийцам"
+    ],
+    "abbrevs": [
+     "флп"
+    ]
+   },
+   {
+    "index": 50,
+    "names": [
+     "Колоссянам",
+     "Послание к Колоссянам"
+    ],
+    "abbrevs": [
+     "кол"
+    ]
+   },
+   {
+    "index": 51,
+    "names": [
+     "1 Фессалоникийцам",
+     "Первое послание к Фессалоникийцам",
+     "1 Солунянам"
+    ],
+    "abbrevs": [
+     "1фес",
+     "1 фес"
+    ]
+   },
+   {
+    "index": 52,
+    "names": [
+     "2 Фессалоникийцам",
+     "Второе послание к Фессалоникийцам",
+     "2 Солунянам"
+    ],
+    "abbrevs": [
+     "2фес",
+     "2 фес"
+    ]
+   },
+   {
+    "index": 53,
+    "names": [
+     "1 Тимофею",
+     "Первое послание к Тимофею"
+    ],
+    "abbrevs": [
+     "1тим",
+     "1 тим"
+    ]
+   },
+   {
+    "index": 54,
+    "names": [
+     "2 Тимофею",
+     "Второе послание к Тимофею"
+    ],
+    "abbrevs": [
+     "2тим",
+     "2 тим"
+    ]
+   },
+   {
+    "index": 55,
+    "names": [
+     "Титу",
+     "Послание к Титу",
+     "Тит"
+    ],
+    "abbrevs": [
+     "тит"
+    ]
+   },
+   {
+    "index": 56,
+    "names": [
+     "Филимону",
+     "Послание к Филимону"
+    ],
+    "abbrevs": [
+     "флм",
+     "филим"
+    ]
+   },
+   {
+    "index": 57,
+    "names": [
+     "Евреям",
+     "Послание к Евреям"
+    ],
+    "abbrevs": [
+     "евр"
+    ]
+   },
+   {
+    "index": 58,
+    "names": [
+     "Иакова",
+     "Послание Иакова",
+     "Иаков"
+    ],
+    "abbrevs": [
+     "иак"
+    ]
+   },
+   {
+    "index": 59,
+    "names": [
+     "1 Петра",
+     "Первое послание Петра"
+    ],
+    "abbrevs": [
+     "1пет",
+     "1 пет",
+     "1птр"
+    ]
+   },
+   {
+    "index": 60,
+    "names": [
+     "2 Петра",
+     "Второе послание Петра"
+    ],
+    "abbrevs": [
+     "2пет",
+     "2 пет",
+     "2птр"
+    ]
+   },
+   {
+    "index": 61,
+    "names": [
+     "1 Иоанна",
+     "Первое послание Иоанна"
+    ],
+    "abbrevs": [
+     "1ин",
+     "1 ин"
+    ]
+   },
+   {
+    "index": 62,
+    "names": [
+     "2 Иоанна",
+     "Второе послание Иоанна"
+    ],
+    "abbrevs": [
+     "2ин",
+     "2 ин"
+    ]
+   },
+   {
+    "index": 63,
+    "names": [
+     "3 Иоанна",
+     "Третье послание Иоанна"
+    ],
+    "abbrevs": [
+     "3ин",
+     "3 ин"
+    ]
+   },
+   {
+    "index": 64,
+    "names": [
+     "Иуды",
+     "Послание Иуды",
+     "Иуда"
+    ],
+    "abbrevs": [
+     "иуд"
+    ]
+   },
+   {
+    "index": 65,
+    "names": [
+     "Откровение",
+     "Откровение Иоанна Богослова",
+     "Апокалипсис"
+    ],
+    "abbrevs": [
+     "откр",
+     "отк",
+     "апок"
+    ]
+   }
+  ]
+ },
+ {
+  "lang": "zh",
+  "label": "Chinese",
+  "entries": [
+   {
+    "index": 0,
+    "names": [
+     "創世記",
+     "创世记"
+    ],
+    "abbrevs": [
+     "創",
+     "创"
+    ]
+   },
+   {
+    "index": 1,
+    "names": [
+     "出埃及記",
+     "出埃及记"
+    ],
+    "abbrevs": [
+     "出"
+    ]
+   },
+   {
+    "index": 2,
+    "names": [
+     "利未記",
+     "利未记"
+    ],
+    "abbrevs": [
+     "利"
+    ]
+   },
+   {
+    "index": 3,
+    "names": [
+     "民數記",
+     "民数记"
+    ],
+    "abbrevs": [
+     "民"
+    ]
+   },
+   {
+    "index": 4,
+    "names": [
+     "申命記",
+     "申命记"
+    ],
+    "abbrevs": [
+     "申"
+    ]
+   },
+   {
+    "index": 5,
+    "names": [
+     "約書亞記",
+     "约书亚记"
+    ],
+    "abbrevs": [
+     "書",
+     "书",
+     "約書亞",
+     "约书亚"
+    ]
+   },
+   {
+    "index": 6,
+    "names": [
+     "士師記",
+     "士师记"
+    ],
+    "abbrevs": [
+     "士"
+    ]
+   },
+   {
+    "index": 7,
+    "names": [
+     "路得記",
+     "路得记"
+    ],
+    "abbrevs": [
+     "得",
+     "路得"
+    ]
+   },
+   {
+    "index": 8,
+    "names": [
+     "撒母耳記上",
+     "撒母耳记上"
+    ],
+    "abbrevs": [
+     "撒上"
+    ]
+   },
+   {
+    "index": 9,
+    "names": [
+     "撒母耳記下",
+     "撒母耳记下"
+    ],
+    "abbrevs": [
+     "撒下"
+    ]
+   },
+   {
+    "index": 10,
+    "names": [
+     "列王紀上",
+     "列王纪上"
+    ],
+    "abbrevs": [
+     "王上"
+    ]
+   },
+   {
+    "index": 11,
+    "names": [
+     "列王紀下",
+     "列王纪下"
+    ],
+    "abbrevs": [
+     "王下"
+    ]
+   },
+   {
+    "index": 12,
+    "names": [
+     "歷代志上",
+     "历代志上"
+    ],
+    "abbrevs": [
+     "代上"
+    ]
+   },
+   {
+    "index": 13,
+    "names": [
+     "歷代志下",
+     "历代志下"
+    ],
+    "abbrevs": [
+     "代下"
+    ]
+   },
+   {
+    "index": 14,
+    "names": [
+     "以斯拉記",
+     "以斯拉记"
+    ],
+    "abbrevs": [
+     "拉",
+     "以斯拉"
+    ]
+   },
+   {
+    "index": 15,
+    "names": [
+     "尼希米記",
+     "尼希米记"
+    ],
+    "abbrevs": [
+     "尼",
+     "尼希米"
+    ]
+   },
+   {
+    "index": 16,
+    "names": [
+     "以斯帖記",
+     "以斯帖记"
+    ],
+    "abbrevs": [
+     "斯",
+     "以斯帖"
+    ]
+   },
+   {
+    "index": 17,
+    "names": [
+     "約伯記",
+     "约伯记"
+    ],
+    "abbrevs": [
+     "伯",
+     "約伯",
+     "约伯"
+    ]
+   },
+   {
+    "index": 18,
+    "names": [
+     "詩篇",
+     "诗篇"
+    ],
+    "abbrevs": [
+     "詩",
+     "诗"
+    ]
+   },
+   {
+    "index": 19,
+    "names": [
+     "箴言"
+    ],
+    "abbrevs": [
+     "箴"
+    ]
+   },
+   {
+    "index": 20,
+    "names": [
+     "傳道書",
+     "传道书"
+    ],
+    "abbrevs": [
+     "傳",
+     "传"
+    ]
+   },
+   {
+    "index": 21,
+    "names": [
+     "雅歌"
+    ],
+    "abbrevs": [
+     "歌"
+    ]
+   },
+   {
+    "index": 22,
+    "names": [
+     "以賽亞書",
+     "以赛亚书"
+    ],
+    "abbrevs": [
+     "賽",
+     "赛",
+     "以賽亞",
+     "以赛亚"
+    ]
+   },
+   {
+    "index": 23,
+    "names": [
+     "耶利米書",
+     "耶利米书"
+    ],
+    "abbrevs": [
+     "耶",
+     "耶利米"
+    ]
+   },
+   {
+    "index": 24,
+    "names": [
+     "耶利米哀歌",
+     "哀歌"
+    ],
+    "abbrevs": [
+     "哀"
+    ]
+   },
+   {
+    "index": 25,
+    "names": [
+     "以西結書",
+     "以西结书"
+    ],
+    "abbrevs": [
+     "結",
+     "结",
+     "以西結",
+     "以西结"
+    ]
+   },
+   {
+    "index": 26,
+    "names": [
+     "但以理書",
+     "但以理书"
+    ],
+    "abbrevs": [
+     "但",
+     "但以理"
+    ]
+   },
+   {
+    "index": 27,
+    "names": [
+     "何西阿書",
+     "何西阿书"
+    ],
+    "abbrevs": [
+     "何",
+     "何西阿"
+    ]
+   },
+   {
+    "index": 28,
+    "names": [
+     "約珥書",
+     "约珥书"
+    ],
+    "abbrevs": [
+     "珥",
+     "約珥",
+     "约珥"
+    ]
+   },
+   {
+    "index": 29,
+    "names": [
+     "阿摩司書",
+     "阿摩司书"
+    ],
+    "abbrevs": [
+     "摩",
+     "阿摩司"
+    ]
+   },
+   {
+    "index": 30,
+    "names": [
+     "俄巴底亞書",
+     "俄巴底亚书"
+    ],
+    "abbrevs": [
+     "俄",
+     "俄巴底亞",
+     "俄巴底亚"
+    ]
+   },
+   {
+    "index": 31,
+    "names": [
+     "約拿書",
+     "约拿书"
+    ],
+    "abbrevs": [
+     "拿",
+     "約拿",
+     "约拿"
+    ]
+   },
+   {
+    "index": 32,
+    "names": [
+     "彌迦書",
+     "弥迦书"
+    ],
+    "abbrevs": [
+     "彌",
+     "弥",
+     "彌迦",
+     "弥迦"
+    ]
+   },
+   {
+    "index": 33,
+    "names": [
+     "那鴻書",
+     "那鸿书"
+    ],
+    "abbrevs": [
+     "鴻",
+     "鸿",
+     "那鴻",
+     "那鸿"
+    ]
+   },
+   {
+    "index": 34,
+    "names": [
+     "哈巴谷書",
+     "哈巴谷书"
+    ],
+    "abbrevs": [
+     "哈",
+     "哈巴谷"
+    ]
+   },
+   {
+    "index": 35,
+    "names": [
+     "西番雅書",
+     "西番雅书"
+    ],
+    "abbrevs": [
+     "番",
+     "西番雅"
+    ]
+   },
+   {
+    "index": 36,
+    "names": [
+     "哈該書",
+     "哈该书"
+    ],
+    "abbrevs": [
+     "該",
+     "该",
+     "哈該",
+     "哈该"
+    ]
+   },
+   {
+    "index": 37,
+    "names": [
+     "撒迦利亞書",
+     "撒迦利亚书"
+    ],
+    "abbrevs": [
+     "亞",
+     "亚",
+     "撒迦利亞",
+     "撒迦利亚"
+    ]
+   },
+   {
+    "index": 38,
+    "names": [
+     "瑪拉基書",
+     "玛拉基书"
+    ],
+    "abbrevs": [
+     "瑪",
+     "玛",
+     "瑪拉基",
+     "玛拉基"
+    ]
+   },
+   {
+    "index": 39,
+    "names": [
+     "馬太福音",
+     "马太福音"
+    ],
+    "abbrevs": [
+     "太",
+     "馬太",
+     "马太"
+    ]
+   },
+   {
+    "index": 40,
+    "names": [
+     "馬可福音",
+     "马可福音"
+    ],
+    "abbrevs": [
+     "可",
+     "馬可",
+     "马可"
+    ]
+   },
+   {
+    "index": 41,
+    "names": [
+     "路加福音"
+    ],
+    "abbrevs": [
+     "路",
+     "路加"
+    ]
+   },
+   {
+    "index": 42,
+    "names": [
+     "約翰福音",
+     "约翰福音"
+    ],
+    "abbrevs": [
+     "約",
+     "约",
+     "約翰",
+     "约翰"
+    ]
+   },
+   {
+    "index": 43,
+    "names": [
+     "使徒行傳",
+     "使徒行传"
+    ],
+    "abbrevs": [
+     "徒"
+    ]
+   },
+   {
+    "index": 44,
+    "names": [
+     "羅馬書",
+     "罗马书"
+    ],
+    "abbrevs": [
+     "羅",
+     "罗",
+     "羅馬",
+     "罗马"
+    ]
+   },
+   {
+    "index": 45,
+    "names": [
+     "哥林多前書",
+     "哥林多前书"
+    ],
+    "abbrevs": [
+     "林前"
+    ]
+   },
+   {
+    "index": 46,
+    "names": [
+     "哥林多後書",
+     "哥林多后书"
+    ],
+    "abbrevs": [
+     "林後",
+     "林后"
+    ]
+   },
+   {
+    "index": 47,
+    "names": [
+     "加拉太書",
+     "加拉太书"
+    ],
+    "abbrevs": [
+     "加",
+     "加拉太"
+    ]
+   },
+   {
+    "index": 48,
+    "names": [
+     "以弗所書",
+     "以弗所书"
+    ],
+    "abbrevs": [
+     "弗",
+     "以弗所"
+    ]
+   },
+   {
+    "index": 49,
+    "names": [
+     "腓立比書",
+     "腓立比书"
+    ],
+    "abbrevs": [
+     "腓",
+     "腓立比"
+    ]
+   },
+   {
+    "index": 50,
+    "names": [
+     "歌羅西書",
+     "歌罗西书"
+    ],
+    "abbrevs": [
+     "西",
+     "歌羅西",
+     "歌罗西"
+    ]
+   },
+   {
+    "index": 51,
+    "names": [
+     "帖撒羅尼迦前書",
+     "帖撒罗尼迦前书"
+    ],
+    "abbrevs": [
+     "帖前"
+    ]
+   },
+   {
+    "index": 52,
+    "names": [
+     "帖撒羅尼迦後書",
+     "帖撒罗尼迦后书"
+    ],
+    "abbrevs": [
+     "帖後",
+     "帖后"
+    ]
+   },
+   {
+    "index": 53,
+    "names": [
+     "提摩太前書",
+     "提摩太前书"
+    ],
+    "abbrevs": [
+     "提前"
+    ]
+   },
+   {
+    "index": 54,
+    "names": [
+     "提摩太後書",
+     "提摩太后书"
+    ],
+    "abbrevs": [
+     "提後",
+     "提后"
+    ]
+   },
+   {
+    "index": 55,
+    "names": [
+     "提多書",
+     "提多书"
+    ],
+    "abbrevs": [
+     "多",
+     "提多"
+    ]
+   },
+   {
+    "index": 56,
+    "names": [
+     "腓利門書",
+     "腓利门书"
+    ],
+    "abbrevs": [
+     "門",
+     "门",
+     "腓利門",
+     "腓利门"
+    ]
+   },
+   {
+    "index": 57,
+    "names": [
+     "希伯來書",
+     "希伯来书"
+    ],
+    "abbrevs": [
+     "來",
+     "来",
+     "希伯來",
+     "希伯来"
+    ]
+   },
+   {
+    "index": 58,
+    "names": [
+     "雅各書",
+     "雅各书"
+    ],
+    "abbrevs": [
+     "雅",
+     "雅各"
+    ]
+   },
+   {
+    "index": 59,
+    "names": [
+     "彼得前書",
+     "彼得前书"
+    ],
+    "abbrevs": [
+     "彼前"
+    ]
+   },
+   {
+    "index": 60,
+    "names": [
+     "彼得後書",
+     "彼得后书"
+    ],
+    "abbrevs": [
+     "彼後",
+     "彼后"
+    ]
+   },
+   {
+    "index": 61,
+    "names": [
+     "約翰壹書",
+     "约翰一书",
+     "約翰一書"
+    ],
+    "abbrevs": [
+     "約壹",
+     "约壹",
+     "约一"
+    ]
+   },
+   {
+    "index": 62,
+    "names": [
+     "約翰貳書",
+     "约翰二书",
+     "約翰二書"
+    ],
+    "abbrevs": [
+     "約貳",
+     "约贰",
+     "约二"
+    ]
+   },
+   {
+    "index": 63,
+    "names": [
+     "約翰參書",
+     "约翰三书",
+     "約翰三書"
+    ],
+    "abbrevs": [
+     "約參",
+     "约参",
+     "约三"
+    ]
+   },
+   {
+    "index": 64,
+    "names": [
+     "猶大書",
+     "犹大书"
+    ],
+    "abbrevs": [
+     "猶",
+     "犹",
+     "猶大",
+     "犹大"
+    ]
+   },
+   {
+    "index": 65,
+    "names": [
+     "啟示錄",
+     "启示录"
+    ],
+    "abbrevs": [
+     "啟",
+     "启"
+    ]
+   }
+  ]
+ },
+ {
+  "lang": "ko",
+  "label": "Korean",
+  "entries": [
+   {
+    "index": 0,
+    "names": [
+     "창세기"
+    ],
+    "abbrevs": [
+     "창"
+    ]
+   },
+   {
+    "index": 1,
+    "names": [
+     "출애굽기",
+     "탈출기"
+    ],
+    "abbrevs": [
+     "출"
+    ]
+   },
+   {
+    "index": 2,
+    "names": [
+     "레위기"
+    ],
+    "abbrevs": [
+     "레"
+    ]
+   },
+   {
+    "index": 3,
+    "names": [
+     "민수기"
+    ],
+    "abbrevs": [
+     "민"
+    ]
+   },
+   {
+    "index": 4,
+    "names": [
+     "신명기"
+    ],
+    "abbrevs": [
+     "신"
+    ]
+   },
+   {
+    "index": 5,
+    "names": [
+     "여호수아",
+     "여호수아기"
+    ],
+    "abbrevs": [
+     "수"
+    ]
+   },
+   {
+    "index": 6,
+    "names": [
+     "사사기",
+     "판관기"
+    ],
+    "abbrevs": [
+     "삿"
+    ]
+   },
+   {
+    "index": 7,
+    "names": [
+     "룻기"
+    ],
+    "abbrevs": [
+     "룻"
+    ]
+   },
+   {
+    "index": 8,
+    "names": [
+     "사무엘상",
+     "사무엘기 상권"
+    ],
+    "abbrevs": [
+     "삼상"
+    ]
+   },
+   {
+    "index": 9,
+    "names": [
+     "사무엘하",
+     "사무엘기 하권"
+    ],
+    "abbrevs": [
+     "삼하"
+    ]
+   },
+   {
+    "index": 10,
+    "names": [
+     "열왕기상",
+     "열왕기 상권"
+    ],
+    "abbrevs": [
+     "왕상"
+    ]
+   },
+   {
+    "index": 11,
+    "names": [
+     "열왕기하",
+     "열왕기 하권"
+    ],
+    "abbrevs": [
+     "왕하"
+    ]
+   },
+   {
+    "index": 12,
+    "names": [
+     "역대상",
+     "역대기 상권"
+    ],
+    "abbrevs": [
+     "대상"
+    ]
+   },
+   {
+    "index": 13,
+    "names": [
+     "역대하",
+     "역대기 하권"
+    ],
+    "abbrevs": [
+     "대하"
+    ]
+   },
+   {
+    "index": 14,
+    "names": [
+     "에스라",
+     "에즈라기"
+    ],
+    "abbrevs": [
+     "스"
+    ]
+   },
+   {
+    "index": 15,
+    "names": [
+     "느헤미야",
+     "느헤미야기"
+    ],
+    "abbrevs": [
+     "느"
+    ]
+   },
+   {
+    "index": 16,
+    "names": [
+     "에스더",
+     "에스테르기"
+    ],
+    "abbrevs": [
+     "에"
+    ]
+   },
+   {
+    "index": 17,
+    "names": [
+     "욥기"
+    ],
+    "abbrevs": [
+     "욥"
+    ]
+   },
+   {
+    "index": 18,
+    "names": [
+     "시편"
+    ],
+    "abbrevs": [
+     "시"
+    ]
+   },
+   {
+    "index": 19,
+    "names": [
+     "잠언"
+    ],
+    "abbrevs": [
+     "잠"
+    ]
+   },
+   {
+    "index": 20,
+    "names": [
+     "전도서",
+     "코헬렛"
+    ],
+    "abbrevs": [
+     "전"
+    ]
+   },
+   {
+    "index": 21,
+    "names": [
+     "아가"
+    ],
+    "abbrevs": [
+     "아"
+    ]
+   },
+   {
+    "index": 22,
+    "names": [
+     "이사야",
+     "이사야서"
+    ],
+    "abbrevs": [
+     "사"
+    ]
+   },
+   {
+    "index": 23,
+    "names": [
+     "예레미야",
+     "예레미야서"
+    ],
+    "abbrevs": [
+     "렘"
+    ]
+   },
+   {
+    "index": 24,
+    "names": [
+     "예레미야애가",
+     "애가"
+    ],
+    "abbrevs": [
+     "애"
+    ]
+   },
+   {
+    "index": 25,
+    "names": [
+     "에스겔",
+     "에제키엘서"
+    ],
+    "abbrevs": [
+     "겔"
+    ]
+   },
+   {
+    "index": 26,
+    "names": [
+     "다니엘",
+     "다니엘서"
+    ],
+    "abbrevs": [
+     "단"
+    ]
+   },
+   {
+    "index": 27,
+    "names": [
+     "호세아",
+     "호세아서"
+    ],
+    "abbrevs": [
+     "호"
+    ]
+   },
+   {
+    "index": 28,
+    "names": [
+     "요엘",
+     "요엘서"
+    ],
+    "abbrevs": [
+     "욜"
+    ]
+   },
+   {
+    "index": 29,
+    "names": [
+     "아모스",
+     "아모스서"
+    ],
+    "abbrevs": [
+     "암"
+    ]
+   },
+   {
+    "index": 30,
+    "names": [
+     "오바댜",
+     "오바드야서"
+    ],
+    "abbrevs": [
+     "옵"
+    ]
+   },
+   {
+    "index": 31,
+    "names": [
+     "요나",
+     "요나서"
+    ],
+    "abbrevs": [
+     "욘"
+    ]
+   },
+   {
+    "index": 32,
+    "names": [
+     "미가",
+     "미카서"
+    ],
+    "abbrevs": [
+     "미"
+    ]
+   },
+   {
+    "index": 33,
+    "names": [
+     "나훔",
+     "나훔서"
+    ],
+    "abbrevs": [
+     "나"
+    ]
+   },
+   {
+    "index": 34,
+    "names": [
+     "하박국",
+     "하바쿡서"
+    ],
+    "abbrevs": [
+     "합"
+    ]
+   },
+   {
+    "index": 35,
+    "names": [
+     "스바냐",
+     "스바니야서"
+    ],
+    "abbrevs": [
+     "습"
+    ]
+   },
+   {
+    "index": 36,
+    "names": [
+     "학개",
+     "하까이서"
+    ],
+    "abbrevs": [
+     "학"
+    ]
+   },
+   {
+    "index": 37,
+    "names": [
+     "스가랴",
+     "즈카르야서"
+    ],
+    "abbrevs": [
+     "슥"
+    ]
+   },
+   {
+    "index": 38,
+    "names": [
+     "말라기",
+     "말라키서"
+    ],
+    "abbrevs": [
+     "말"
+    ]
+   },
+   {
+    "index": 39,
+    "names": [
+     "마태복음",
+     "마태오 복음서"
+    ],
+    "abbrevs": [
+     "마"
+    ]
+   },
+   {
+    "index": 40,
+    "names": [
+     "마가복음",
+     "마르코 복음서"
+    ],
+    "abbrevs": [
+     "막"
+    ]
+   },
+   {
+    "index": 41,
+    "names": [
+     "누가복음",
+     "루카 복음서"
+    ],
+    "abbrevs": [
+     "눅"
+    ]
+   },
+   {
+    "index": 42,
+    "names": [
+     "요한복음",
+     "요한 복음서"
+    ],
+    "abbrevs": [
+     "요"
+    ]
+   },
+   {
+    "index": 43,
+    "names": [
+     "사도행전"
+    ],
+    "abbrevs": [
+     "행"
+    ]
+   },
+   {
+    "index": 44,
+    "names": [
+     "로마서"
+    ],
+    "abbrevs": [
+     "롬"
+    ]
+   },
+   {
+    "index": 45,
+    "names": [
+     "고린도전서",
+     "코린토 1서"
+    ],
+    "abbrevs": [
+     "고전"
+    ]
+   },
+   {
+    "index": 46,
+    "names": [
+     "고린도후서",
+     "코린토 2서"
+    ],
+    "abbrevs": [
+     "고후"
+    ]
+   },
+   {
+    "index": 47,
+    "names": [
+     "갈라디아서",
+     "갈라티아서"
+    ],
+    "abbrevs": [
+     "갈"
+    ]
+   },
+   {
+    "index": 48,
+    "names": [
+     "에베소서",
+     "에페소서"
+    ],
+    "abbrevs": [
+     "엡"
+    ]
+   },
+   {
+    "index": 49,
+    "names": [
+     "빌립보서",
+     "필리피서"
+    ],
+    "abbrevs": [
+     "빌"
+    ]
+   },
+   {
+    "index": 50,
+    "names": [
+     "골로새서",
+     "콜로새서"
+    ],
+    "abbrevs": [
+     "골"
+    ]
+   },
+   {
+    "index": 51,
+    "names": [
+     "데살로니가전서",
+     "테살로니카 1서"
+    ],
+    "abbrevs": [
+     "살전"
+    ]
+   },
+   {
+    "index": 52,
+    "names": [
+     "데살로니가후서",
+     "테살로니카 2서"
+    ],
+    "abbrevs": [
+     "살후"
+    ]
+   },
+   {
+    "index": 53,
+    "names": [
+     "디모데전서",
+     "티모테오 1서"
+    ],
+    "abbrevs": [
+     "딤전"
+    ]
+   },
+   {
+    "index": 54,
+    "names": [
+     "디모데후서",
+     "티모테오 2서"
+    ],
+    "abbrevs": [
+     "딤후"
+    ]
+   },
+   {
+    "index": 55,
+    "names": [
+     "디도서",
+     "티토서"
+    ],
+    "abbrevs": [
+     "딛"
+    ]
+   },
+   {
+    "index": 56,
+    "names": [
+     "빌레몬서",
+     "필레몬서"
+    ],
+    "abbrevs": [
+     "몬"
+    ]
+   },
+   {
+    "index": 57,
+    "names": [
+     "히브리서"
+    ],
+    "abbrevs": [
+     "히"
+    ]
+   },
+   {
+    "index": 58,
+    "names": [
+     "야고보서"
+    ],
+    "abbrevs": [
+     "약"
+    ]
+   },
+   {
+    "index": 59,
+    "names": [
+     "베드로전서",
+     "베드로 1서"
+    ],
+    "abbrevs": [
+     "벧전"
+    ]
+   },
+   {
+    "index": 60,
+    "names": [
+     "베드로후서",
+     "베드로 2서"
+    ],
+    "abbrevs": [
+     "벧후"
+    ]
+   },
+   {
+    "index": 61,
+    "names": [
+     "요한일서",
+     "요한1서"
+    ],
+    "abbrevs": [
+     "요일"
+    ]
+   },
+   {
+    "index": 62,
+    "names": [
+     "요한이서",
+     "요한2서"
+    ],
+    "abbrevs": [
+     "요이"
+    ]
+   },
+   {
+    "index": 63,
+    "names": [
+     "요한삼서",
+     "요한3서"
+    ],
+    "abbrevs": [
+     "요삼"
+    ]
+   },
+   {
+    "index": 64,
+    "names": [
+     "유다서"
+    ],
+    "abbrevs": [
+     "유"
+    ]
+   },
+   {
+    "index": 65,
+    "names": [
+     "요한계시록",
+     "계시록",
+     "요한 묵시록"
+    ],
+    "abbrevs": [
+     "계"
+    ]
+   }
+  ]
+ },
+ {
+  "lang": "ja",
+  "label": "Japanese",
+  "entries": [
+   {
+    "index": 0,
+    "names": [
+     "創世記"
+    ],
+    "abbrevs": [
+     "創",
+     "創世"
+    ]
+   },
+   {
+    "index": 1,
+    "names": [
+     "出エジプト記"
+    ],
+    "abbrevs": [
+     "出",
+     "出エジプト"
+    ]
+   },
+   {
+    "index": 2,
+    "names": [
+     "レビ記"
+    ],
+    "abbrevs": [
+     "レビ"
+    ]
+   },
+   {
+    "index": 3,
+    "names": [
+     "民数記"
+    ],
+    "abbrevs": [
+     "民",
+     "民数"
+    ]
+   },
+   {
+    "index": 4,
+    "names": [
+     "申命記"
+    ],
+    "abbrevs": [
+     "申",
+     "申命"
+    ]
+   },
+   {
+    "index": 5,
+    "names": [
+     "ヨシュア記"
+    ],
+    "abbrevs": [
+     "ヨシュア",
+     "ヨシ"
+    ]
+   },
+   {
+    "index": 6,
+    "names": [
+     "士師記"
+    ],
+    "abbrevs": [
+     "士",
+     "士師"
+    ]
+   },
+   {
+    "index": 7,
+    "names": [
+     "ルツ記"
+    ],
+    "abbrevs": [
+     "ルツ"
+    ]
+   },
+   {
+    "index": 8,
+    "names": [
+     "サムエル記上",
+     "サムエル記第一"
+    ],
+    "abbrevs": [
+     "サム上",
+     "サムエル上",
+     "1サム"
+    ]
+   },
+   {
+    "index": 9,
+    "names": [
+     "サムエル記下",
+     "サムエル記第二"
+    ],
+    "abbrevs": [
+     "サム下",
+     "サムエル下",
+     "2サム"
+    ]
+   },
+   {
+    "index": 10,
+    "names": [
+     "列王記上",
+     "列王紀上",
+     "列王記第一"
+    ],
+    "abbrevs": [
+     "王上",
+     "列王上",
+     "1列王"
+    ]
+   },
+   {
+    "index": 11,
+    "names": [
+     "列王記下",
+     "列王紀下",
+     "列王記第二"
+    ],
+    "abbrevs": [
+     "王下",
+     "列王下",
+     "2列王"
+    ]
+   },
+   {
+    "index": 12,
+    "names": [
+     "歴代誌上",
+     "歴代志上",
+     "歴代誌第一"
+    ],
+    "abbrevs": [
+     "代上",
+     "歴代上",
+     "1歴代"
+    ]
+   },
+   {
+    "index": 13,
+    "names": [
+     "歴代誌下",
+     "歴代志下",
+     "歴代誌第二"
+    ],
+    "abbrevs": [
+     "代下",
+     "歴代下",
+     "2歴代"
+    ]
+   },
+   {
+    "index": 14,
+    "names": [
+     "エズラ記"
+    ],
+    "abbrevs": [
+     "エズラ",
+     "エズ"
+    ]
+   },
+   {
+    "index": 15,
+    "names": [
+     "ネヘミヤ記"
+    ],
+    "abbrevs": [
+     "ネヘミヤ",
+     "ネヘ"
+    ]
+   },
+   {
+    "index": 16,
+    "names": [
+     "エステル記"
+    ],
+    "abbrevs": [
+     "エステル",
+     "エス"
+    ]
+   },
+   {
+    "index": 17,
+    "names": [
+     "ヨブ記"
+    ],
+    "abbrevs": [
+     "ヨブ"
+    ]
+   },
+   {
+    "index": 18,
+    "names": [
+     "詩篇",
+     "詩編"
+    ],
+    "abbrevs": [
+     "詩"
+    ]
+   },
+   {
+    "index": 19,
+    "names": [
+     "箴言"
+    ],
+    "abbrevs": [
+     "箴"
+    ]
+   },
+   {
+    "index": 20,
+    "names": [
+     "伝道の書",
+     "伝道者の書",
+     "コヘレトの言葉"
+    ],
+    "abbrevs": [
+     "伝",
+     "伝道",
+     "コヘレト"
+    ]
+   },
+   {
+    "index": 21,
+    "names": [
+     "雅歌"
+    ],
+    "abbrevs": [
+     "雅"
+    ]
+   },
+   {
+    "index": 22,
+    "names": [
+     "イザヤ書"
+    ],
+    "abbrevs": [
+     "イザヤ",
+     "イザ"
+    ]
+   },
+   {
+    "index": 23,
+    "names": [
+     "エレミヤ書"
+    ],
+    "abbrevs": [
+     "エレミヤ",
+     "エレ"
+    ]
+   },
+   {
+    "index": 24,
+    "names": [
+     "哀歌",
+     "エレミヤの哀歌"
+    ],
+    "abbrevs": [
+     "哀"
+    ]
+   },
+   {
+    "index": 25,
+    "names": [
+     "エゼキエル書"
+    ],
+    "abbrevs": [
+     "エゼキエル",
+     "エゼ"
+    ]
+   },
+   {
+    "index": 26,
+    "names": [
+     "ダニエル書"
+    ],
+    "abbrevs": [
+     "ダニエル",
+     "ダニ"
+    ]
+   },
+   {
+    "index": 27,
+    "names": [
+     "ホセア書"
+    ],
+    "abbrevs": [
+     "ホセア",
+     "ホセ"
+    ]
+   },
+   {
+    "index": 28,
+    "names": [
+     "ヨエル書"
+    ],
+    "abbrevs": [
+     "ヨエル"
+    ]
+   },
+   {
+    "index": 29,
+    "names": [
+     "アモス書"
+    ],
+    "abbrevs": [
+     "アモス",
+     "アモ"
+    ]
+   },
+   {
+    "index": 30,
+    "names": [
+     "オバデヤ書"
+    ],
+    "abbrevs": [
+     "オバデヤ",
+     "オバ"
+    ]
+   },
+   {
+    "index": 31,
+    "names": [
+     "ヨナ書"
+    ],
+    "abbrevs": [
+     "ヨナ"
+    ]
+   },
+   {
+    "index": 32,
+    "names": [
+     "ミカ書"
+    ],
+    "abbrevs": [
+     "ミカ"
+    ]
+   },
+   {
+    "index": 33,
+    "names": [
+     "ナホム書"
+    ],
+    "abbrevs": [
+     "ナホム",
+     "ナホ"
+    ]
+   },
+   {
+    "index": 34,
+    "names": [
+     "ハバクク書"
+    ],
+    "abbrevs": [
+     "ハバクク",
+     "ハバ"
+    ]
+   },
+   {
+    "index": 35,
+    "names": [
+     "ゼパニヤ書"
+    ],
+    "abbrevs": [
+     "ゼパニヤ",
+     "ゼパ"
+    ]
+   },
+   {
+    "index": 36,
+    "names": [
+     "ハガイ書"
+    ],
+    "abbrevs": [
+     "ハガイ",
+     "ハガ"
+    ]
+   },
+   {
+    "index": 37,
+    "names": [
+     "ゼカリヤ書"
+    ],
+    "abbrevs": [
+     "ゼカリヤ",
+     "ゼカ"
+    ]
+   },
+   {
+    "index": 38,
+    "names": [
+     "マラキ書"
+    ],
+    "abbrevs": [
+     "マラキ",
+     "マラ"
+    ]
+   },
+   {
+    "index": 39,
+    "names": [
+     "マタイによる福音書",
+     "マタイの福音書",
+     "マタイ福音書",
+     "マタイ伝"
+    ],
+    "abbrevs": [
+     "マタイ",
+     "マタ"
+    ]
+   },
+   {
+    "index": 40,
+    "names": [
+     "マルコによる福音書",
+     "マルコの福音書",
+     "マルコ福音書",
+     "マルコ伝"
+    ],
+    "abbrevs": [
+     "マルコ",
+     "マコ"
+    ]
+   },
+   {
+    "index": 41,
+    "names": [
+     "ルカによる福音書",
+     "ルカの福音書",
+     "ルカ福音書",
+     "ルカ伝"
+    ],
+    "abbrevs": [
+     "ルカ"
+    ]
+   },
+   {
+    "index": 42,
+    "names": [
+     "ヨハネによる福音書",
+     "ヨハネの福音書",
+     "ヨハネ福音書",
+     "ヨハネ伝"
+    ],
+    "abbrevs": [
+     "ヨハネ",
+     "ヨハ"
+    ]
+   },
+   {
+    "index": 43,
+    "names": [
+     "使徒行伝",
+     "使徒の働き",
+     "使徒言行録"
+    ],
+    "abbrevs": [
+     "使徒",
+     "使",
+     "行伝"
+    ]
+   },
+   {
+    "index": 44,
+    "names": [
+     "ローマ人への手紙",
+     "ローマの信徒への手紙"
+    ],
+    "abbrevs": [
+     "ローマ",
+     "ロマ"
+    ]
+   },
+   {
+    "index": 45,
+    "names": [
+     "コリント人への手紙第一",
+     "コリント人への第一の手紙",
+     "コリントの信徒への手紙一"
+    ],
+    "abbrevs": [
+     "1コリント",
+     "1コリ",
+     "一コリント"
+    ]
+   },
+   {
+    "index": 46,
+    "names": [
+     "コリント人への手紙第二",
+     "コリント人への第二の手紙",
+     "コリントの信徒への手紙二"
+    ],
+    "abbrevs": [
+     "2コリント",
+     "2コリ",
+     "二コリント"
+    ]
+   },
+   {
+    "index": 47,
+    "names": [
+     "ガラテヤ人への手紙",
+     "ガラテヤの信徒への手紙"
+    ],
+    "abbrevs": [
+     "ガラテヤ",
+     "ガラ"
+    ]
+   },
+   {
+    "index": 48,
+    "names": [
+     "エペソ人への手紙",
+     "エフェソの信徒への手紙"
+    ],
+    "abbrevs": [
+     "エペソ",
+     "エフェソ",
+     "エペ"
+    ]
+   },
+   {
+    "index": 49,
+    "names": [
+     "ピリピ人への手紙",
+     "フィリピの信徒への手紙"
+    ],
+    "abbrevs": [
+     "ピリピ",
+     "フィリピ"
+    ]
+   },
+   {
+    "index": 50,
+    "names": [
+     "コロサイ人への手紙",
+     "コロサイの信徒への手紙"
+    ],
+    "abbrevs": [
+     "コロサイ",
+     "コロ"
+    ]
+   },
+   {
+    "index": 51,
+    "names": [
+     "テサロニケ人への手紙第一",
+     "テサロニケ人への第一の手紙",
+     "テサロニケの信徒への手紙一"
+    ],
+    "abbrevs": [
+     "1テサロニケ",
+     "1テサ",
+     "一テサロニケ"
+    ]
+   },
+   {
+    "index": 52,
+    "names": [
+     "テサロニケ人への手紙第二",
+     "テサロニケ人への第二の手紙",
+     "テサロニケの信徒への手紙二"
+    ],
+    "abbrevs": [
+     "2テサロニケ",
+     "2テサ",
+     "二テサロニケ"
+    ]
+   },
+   {
+    "index": 53,
+    "names": [
+     "テモテへの手紙第一",
+     "テモテへの第一の手紙",
+     "テモテへの手紙一"
+    ],
+    "abbrevs": [
+     "1テモテ",
+     "1テモ",
+     "一テモテ"
+    ]
+   },
+   {
+    "index": 54,
+    "names": [
+     "テモテへの手紙第二",
+     "テモテへの第二の手紙",
+     "テモテへの手紙二"
+    ],
+    "abbrevs": [
+     "2テモテ",
+     "2テモ",
+     "二テモテ"
+    ]
+   },
+   {
+    "index": 55,
+    "names": [
+     "テトスへの手紙"
+    ],
+    "abbrevs": [
+     "テトス",
+     "テト"
+    ]
+   },
+   {
+    "index": 56,
+    "names": [
+     "ピレモンへの手紙",
+     "フィレモンへの手紙"
+    ],
+    "abbrevs": [
+     "ピレモン",
+     "フィレモン",
+     "ピレ"
+    ]
+   },
+   {
+    "index": 57,
+    "names": [
+     "ヘブル人への手紙",
+     "ヘブライ人への手紙"
+    ],
+    "abbrevs": [
+     "ヘブル",
+     "ヘブライ",
+     "ヘブ"
+    ]
+   },
+   {
+    "index": 58,
+    "names": [
+     "ヤコブの手紙"
+    ],
+    "abbrevs": [
+     "ヤコブ",
+     "ヤコ"
+    ]
+   },
+   {
+    "index": 59,
+    "names": [
+     "ペテロの手紙第一",
+     "ペテロの第一の手紙",
+     "ペトロの手紙一"
+    ],
+    "abbrevs": [
+     "1ペテロ",
+     "1ペテ",
+     "一ペテロ"
+    ]
+   },
+   {
+    "index": 60,
+    "names": [
+     "ペテロの手紙第二",
+     "ペテロの第二の手紙",
+     "ペトロの手紙二"
+    ],
+    "abbrevs": [
+     "2ペテロ",
+     "2ペテ",
+     "二ペテロ"
+    ]
+   },
+   {
+    "index": 61,
+    "names": [
+     "ヨハネの手紙第一",
+     "ヨハネの第一の手紙",
+     "ヨハネの手紙一"
+    ],
+    "abbrevs": [
+     "1ヨハネ",
+     "1ヨハ",
+     "一ヨハネ"
+    ]
+   },
+   {
+    "index": 62,
+    "names": [
+     "ヨハネの手紙第二",
+     "ヨハネの第二の手紙",
+     "ヨハネの手紙二"
+    ],
+    "abbrevs": [
+     "2ヨハネ",
+     "2ヨハ",
+     "二ヨハネ"
+    ]
+   },
+   {
+    "index": 63,
+    "names": [
+     "ヨハネの手紙第三",
+     "ヨハネの第三の手紙",
+     "ヨハネの手紙三"
+    ],
+    "abbrevs": [
+     "3ヨハネ",
+     "3ヨハ",
+     "三ヨハネ"
+    ]
+   },
+   {
+    "index": 64,
+    "names": [
+     "ユダの手紙"
+    ],
+    "abbrevs": [
+     "ユダ"
+    ]
+   },
+   {
+    "index": 65,
+    "names": [
+     "ヨハネの黙示録",
+     "黙示録"
+    ],
+    "abbrevs": [
+     "黙示録",
+     "黙",
+     "黙示"
+    ]
+   }
+  ]
+ }
+]

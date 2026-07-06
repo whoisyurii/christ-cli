@@ -34,6 +34,8 @@ impl BibleReference {
 /// - "1 Cor 13"         -> book=1 Corinthians, chapter=13
 /// - "Ps 23:1-6"        -> book=Psalms, chapter=23, verses=1-6
 /// - "jn3:16"           -> book=John, chapter=3, verse=16 (no space)
+/// - "João 3.16"        -> localized book names, "." or "," separators
+/// - "1. Mose 3,16"     -> German-style numbered books
 pub fn parse(input: &str) -> Result<BibleReference, String> {
     let input = input.trim();
 
@@ -41,11 +43,22 @@ pub fn parse(input: &str) -> Result<BibleReference, String> {
         return Err("Empty reference".to_string());
     }
 
-    // Split into book part and chapter:verse part
-    // Handle numbered books like "1 Corinthians" or "1cor"
-    let (book_str, rest) = split_book_and_location(input)?;
+    // Book names may themselves contain digits ("요한1서" = 1 John), so
+    // every digit run is a candidate split point between book name and
+    // chapter/verse. Try them left to right; first fully valid parse wins.
+    let candidates = split_candidates(input)?;
+    let mut first_err: Option<String> = None;
+    for (book_str, rest) in &candidates {
+        match parse_candidate(book_str, rest) {
+            Ok(r) => return Ok(r),
+            Err(e) => first_err.get_or_insert(e),
+        };
+    }
+    Err(first_err.unwrap_or_else(|| "No book name found".to_string()))
+}
 
-    let book = books::normalize_book(&book_str)
+fn parse_candidate(book_str: &str, rest: &str) -> Result<BibleReference, String> {
+    let book = books::normalize_book(book_str)
         .ok_or_else(|| format!("Unknown book: '{}'", book_str))?;
 
     if rest.is_empty() {
@@ -58,8 +71,7 @@ pub fn parse(input: &str) -> Result<BibleReference, String> {
         });
     }
 
-    // Parse chapter:verse from the rest
-    let (chapter, verse_start, verse_end) = parse_chapter_verse(&rest)?;
+    let (chapter, verse_start, verse_end) = parse_chapter_verse(rest)?;
 
     if chapter == 0 || chapter > book.chapters {
         return Err(format!(
@@ -76,66 +88,72 @@ pub fn parse(input: &str) -> Result<BibleReference, String> {
     })
 }
 
-/// Split input into (book_name, chapter_verse_rest).
-fn split_book_and_location(input: &str) -> Result<(String, String), String> {
-    let chars: Vec<char> = input.chars().collect();
+/// Split input into (book_name, chapter_verse_rest) candidates, one per
+/// digit run (plus the whole input as a bare book name).
+fn split_candidates(input: &str) -> Result<Vec<(String, String)>, String> {
+    // Byte offsets alongside chars so slicing stays correct for
+    // multi-byte names like "João" or "Об'явлення".
+    let chars: Vec<(usize, char)> = input.char_indices().collect();
     let len = chars.len();
-
-    // Find where the book name ends and the chapter/verse begins.
-    // The chapter/verse part starts at the first digit that isn't part of a book number prefix.
-    // Book number prefixes: "1", "2", "3" followed by a letter or space.
-
     let mut i = 0;
 
-    // Skip leading numbered book prefix (e.g., "1 ", "2", "1")
-    if i < len && chars[i].is_ascii_digit() && chars[i] != '0' {
-        let _digit_start = i;
-        i += 1;
-        // Check if next char is a letter or space (making this a numbered book)
-        if i < len && (chars[i].is_alphabetic() || chars[i] == ' ') {
-            // This is a numbered book prefix, skip the space if present
-            if chars[i] == ' ' {
-                i += 1;
-            }
+    // Skip a leading numbered-book prefix: "1", "2", "3" followed by a
+    // letter, space, dot, or hyphen ("1 Cor", "1cor", "1. Mose", "1-а Царів").
+    if i < len && chars[i].1.is_ascii_digit() && chars[i].1 != '0' {
+        let mut j = i + 1;
+        if j < len && (chars[j].1 == '.' || chars[j].1 == '-') {
+            j += 1;
+        }
+        while j < len && chars[j].1 == ' ' {
+            j += 1;
+        }
+        if j < len && chars[j].1.is_alphabetic() {
+            i = j;
         } else {
-            // Not a numbered book — the digits are probably a chapter
-            return Ok(("".to_string(), input.to_string()));
+            // Bare digits ("3:16", "1.16") — no book name in the input.
+            return Err("No book name found".to_string());
         }
     }
 
-    // Now find where the book name ends (first digit after letters)
-    let book_start = 0;
-    while i < len && (chars[i].is_alphabetic() || chars[i] == ' ' || chars[i] == '.') {
-        i += 1;
-        // Stop at space if next char is a digit (that's the chapter)
-        if i < len && chars[i - 1] == ' ' && i < len && chars[i].is_ascii_digit() {
-            // The space before a digit means we've hit the chapter
-            i -= 1; // back up to not include the space
+    let mut candidates: Vec<(String, String)> = Vec::new();
+    while candidates.len() < 4 {
+        // Advance to the next digit run.
+        while i < len && !chars[i].1.is_ascii_digit() {
+            i += 1;
+        }
+        if i >= len {
             break;
         }
+        let split_at = chars[i].0;
+        let book_str = input[..split_at].trim();
+        if !book_str.is_empty() {
+            candidates.push((book_str.to_string(), input[split_at..].trim().to_string()));
+        }
+        // Step past this digit run and keep scanning.
+        while i < len && chars[i].1.is_ascii_digit() {
+            i += 1;
+        }
     }
 
-    let book_str = input[book_start..i].trim().to_string();
-    let rest = input[i..].trim().to_string();
+    // The whole input as a book name with no chapter ("Jude", "요한1서").
+    candidates.push((input.to_string(), String::new()));
 
-    if book_str.is_empty() {
-        return Err("No book name found".to_string());
-    }
-
-    Ok((book_str, rest))
+    Ok(candidates)
 }
 
-/// Parse "3:16", "3:16-18", "3" into (chapter, verse_start, verse_end).
+/// Parse "3:16", "3.16", "3,16", "3:16-18", "3" into
+/// (chapter, verse_start, verse_end). The chapter/verse separator may be
+/// ":", "." or "," — many languages write "João 3.16" or "Johannes 3,16".
 fn parse_chapter_verse(input: &str) -> Result<(u32, Option<u32>, Option<u32>), String> {
     let input = input.trim();
 
-    if let Some((chapter_str, verse_part)) = input.split_once(':') {
+    if let Some((chapter_str, verse_part)) = input.split_once([':', '.', ',']) {
         let chapter: u32 = chapter_str
             .trim()
             .parse()
             .map_err(|_| format!("Invalid chapter number: '{}'", chapter_str))?;
 
-        if let Some((start_str, end_str)) = verse_part.split_once('-') {
+        if let Some((start_str, end_str)) = verse_part.split_once(['-', '\u{2013}']) {
             let start: u32 = start_str
                 .trim()
                 .parse()
@@ -234,5 +252,101 @@ mod tests {
     #[test]
     fn test_invalid_book() {
         assert!(parse("Notabook 1:1").is_err());
+    }
+
+    #[test]
+    fn test_dot_separator() {
+        let r = parse("John 3.16").unwrap();
+        assert_eq!(r.book.name, "John");
+        assert_eq!(r.chapter, 3);
+        assert_eq!(r.verse_start, Some(16));
+    }
+
+    #[test]
+    fn test_comma_separator() {
+        let r = parse("John 3,16").unwrap();
+        assert_eq!(r.book.name, "John");
+        assert_eq!(r.chapter, 3);
+        assert_eq!(r.verse_start, Some(16));
+    }
+
+    #[test]
+    fn test_dot_separator_range() {
+        let r = parse("Ps 23.1-6").unwrap();
+        assert_eq!(r.book.name, "Psalms");
+        assert_eq!(r.chapter, 23);
+        assert_eq!(r.verse_start, Some(1));
+        assert_eq!(r.verse_end, Some(6));
+    }
+
+    #[test]
+    fn test_german_style_numbered_book() {
+        // "1." prefix before the book name (e.g. "1. Mose", "1. Korinther")
+        let r = parse("1. John 5:3").unwrap();
+        assert_eq!(r.book.name, "1 John");
+        assert_eq!(r.chapter, 5);
+        assert_eq!(r.verse_start, Some(3));
+    }
+
+    #[test]
+    fn test_bare_numbers_are_not_a_book() {
+        assert!(parse("1.16").is_err());
+        assert!(parse("3:16").is_err());
+    }
+
+    #[test]
+    fn test_multibyte_book_name_splits_cleanly() {
+        // Book/location splitting must be UTF-8 safe even for unknown names.
+        let err = parse("Жоао 3:16").unwrap_err();
+        assert!(err.contains("Жоао"), "book name preserved intact: {}", err);
+    }
+
+    #[test]
+    fn test_portuguese_reference() {
+        // The exact example from the issue: "João 3.16"
+        let r = parse("João 3.16").unwrap();
+        assert_eq!(r.book.name, "John");
+        assert_eq!(r.chapter, 3);
+        assert_eq!(r.verse_start, Some(16));
+    }
+
+    #[test]
+    fn test_german_reference() {
+        let r = parse("1. Mose 3,16").unwrap();
+        assert_eq!(r.book.name, "Genesis");
+        assert_eq!(r.chapter, 3);
+        assert_eq!(r.verse_start, Some(16));
+    }
+
+    #[test]
+    fn test_cyrillic_reference() {
+        let r = parse("Буття 1").unwrap();
+        assert_eq!(r.book.name, "Genesis");
+        let r = parse("Псалми 23").unwrap();
+        assert_eq!(r.book.name, "Psalms");
+    }
+
+    #[test]
+    fn test_cjk_reference() {
+        let r = parse("約翰福音 3:16").unwrap();
+        assert_eq!(r.book.name, "John");
+        let r = parse("요한복음 3.16").unwrap();
+        assert_eq!(r.book.name, "John");
+        assert_eq!(r.verse_start, Some(16));
+    }
+
+    #[test]
+    fn test_book_names_containing_digits() {
+        // Korean epistles are written with an embedded digit ("요한1서" =
+        // 1 John): the digit must not be mistaken for the chapter.
+        let r = parse("요한1서 5:3").unwrap();
+        assert_eq!(r.book.name, "1 John");
+        assert_eq!(r.chapter, 5);
+        assert_eq!(r.verse_start, Some(3));
+
+        // Bare book name with an embedded digit, no chapter.
+        let r = parse("요한1서").unwrap();
+        assert_eq!(r.book.name, "1 John");
+        assert_eq!(r.chapter, 1);
     }
 }

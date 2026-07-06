@@ -4,7 +4,7 @@ use crate::store::{cache, state as session};
 use crate::ui::banner::{self, BannerState};
 use crate::ui::browser::{self, BrowserState, SearchMode, TRANSLATIONS};
 use crate::ui::theme::{self, ThemeName};
-use crossterm::event::{self, Event, KeyCode, KeyEventKind};
+use crossterm::event::{self, Event, KeyCode, KeyEvent, KeyEventKind, KeyModifiers};
 use ratatui::widgets::ListState;
 use ratatui::{DefaultTerminal, Frame};
 use std::sync::atomic::Ordering;
@@ -41,25 +41,18 @@ impl App {
     }
 
     pub async fn run(mut self, mut terminal: DefaultTerminal) -> std::io::Result<()> {
-        // Load saved session state
+        // Load saved session state. A fresh install's defaults are
+        // Genesis 1, so restoring unconditionally is safe — and a session
+        // saved AT Genesis 1 must still restore view mode, verse cursor,
+        // and translation.
         let saved = session::load();
-        let has_saved_session = saved.book_index > 0 || saved.chapter > 1;
         self.theme_name = saved.theme;
 
-        // Load the chapter from the saved session (or Genesis 1 for first run)
-        let book_name = if has_saved_session {
-            crate::data::books::BOOKS
-                .get(saved.book_index)
-                .map(|b| b.name)
-                .unwrap_or("Genesis")
-        } else {
-            "Genesis"
-        };
-        let chapter_num = if has_saved_session {
-            saved.chapter.max(1)
-        } else {
-            1
-        };
+        let book_name = crate::data::books::BOOKS
+            .get(saved.book_index)
+            .map(|b| b.name)
+            .unwrap_or("Genesis");
+        let chapter_num = saved.chapter.max(1);
 
         let translation = &saved.translation;
         let initial_chapter = self
@@ -75,15 +68,10 @@ impl App {
             Vec::new()
         };
 
-        match &mut self.mode {
-            AppMode::Browser(ref mut state) => {
-                if has_saved_session {
-                    state.restore(&saved);
-                }
-                state.current_chapter = initial_chapter.clone();
-                state.localized_books = localized_books.clone();
-            }
-            _ => {}
+        if let AppMode::Browser(ref mut state) = self.mode {
+            state.restore(&saved);
+            state.current_chapter = initial_chapter.clone();
+            state.localized_books = localized_books.clone();
         }
 
         let mut pending_initial = Some((initial_chapter, saved, localized_books));
@@ -112,7 +100,7 @@ impl App {
             if event::poll(tick_rate)? {
                 if let Event::Key(key) = event::read()? {
                     if key.kind == KeyEventKind::Press {
-                        self.handle_key(key.code).await;
+                        self.handle_key(key).await;
                     }
                 }
             } else {
@@ -121,10 +109,7 @@ impl App {
                     if state.done {
                         let mut browser = BrowserState::new();
                         if let Some((ch, ref saved, ref books)) = pending_initial {
-                            let has_saved = saved.book_index > 0 || saved.chapter > 1;
-                            if has_saved {
-                                browser.restore(saved);
-                            }
+                            browser.restore(saved);
                             browser.current_chapter = ch;
                             browser.localized_books = books.clone();
                         }
@@ -160,6 +145,14 @@ impl App {
             }
         }
 
+        if let AppMode::Browser(ref mut state) = self.mode {
+            if let Some((_, t)) = state.copy_flash {
+                if t.elapsed() > Duration::from_secs(2) {
+                    state.copy_flash = None;
+                }
+            }
+        }
+
         match &mut self.mode {
             AppMode::Banner(state) => {
                 banner::render_banner(frame, area, state, &theme);
@@ -177,7 +170,18 @@ impl App {
         }
     }
 
-    async fn handle_key(&mut self, key: KeyCode) {
+    async fn handle_key(&mut self, key: KeyEvent) {
+        // Chorded character keys (Ctrl+C, Alt+anything) are not bindings —
+        // acting on their bare KeyCode would e.g. turn Ctrl+C into a copy.
+        if matches!(key.code, KeyCode::Char(_))
+            && key
+                .modifiers
+                .intersects(KeyModifiers::CONTROL | KeyModifiers::ALT | KeyModifiers::SUPER)
+        {
+            return;
+        }
+        let key = key.code;
+
         match &mut self.mode {
             AppMode::Banner(state) => {
                 state.done = true;
@@ -269,6 +273,26 @@ impl App {
                     return;
                 }
 
+                // Help overlay
+                if state.help_open {
+                    match key {
+                        KeyCode::Esc
+                        | KeyCode::Char('?')
+                        | KeyCode::Char('q')
+                        | KeyCode::Enter => {
+                            state.help_open = false;
+                        }
+                        KeyCode::Up | KeyCode::Char('k') => {
+                            state.help_scroll = state.help_scroll.saturating_sub(1);
+                        }
+                        KeyCode::Down | KeyCode::Char('j') => {
+                            state.help_scroll = state.help_scroll.saturating_add(1);
+                        }
+                        _ => {}
+                    }
+                    return;
+                }
+
                 // Normal browser mode
                 if key == KeyCode::Char('q') {
                     if self.quit_pending.is_some() {
@@ -294,6 +318,22 @@ impl App {
                     KeyCode::Char('v') => {
                         state.open_translation_picker();
                     }
+                    KeyCode::Char('p') => {
+                        state.toggle_view_mode();
+                    }
+                    KeyCode::Char('?') => {
+                        state.help_open = true;
+                        state.help_scroll = 0;
+                    }
+                    KeyCode::Char('y') | KeyCode::Char('c') => {
+                        self.copy_selection(false);
+                    }
+                    KeyCode::Char('Y') | KeyCode::Char('C') => {
+                        self.copy_selection(true);
+                    }
+                    KeyCode::Esc => {
+                        state.visual_anchor = None;
+                    }
                     KeyCode::Left | KeyCode::Char('h') => {
                         state.prev_panel();
                     }
@@ -318,6 +358,39 @@ impl App {
                     _ => {}
                 }
             }
+        }
+    }
+
+    /// Copy the current selection to the system clipboard: the selected
+    /// verse (or visual range) in verse-per-line view, the whole chapter in
+    /// paragraph view. `visual` (Y) starts a range selection first.
+    fn copy_selection(&mut self, visual: bool) {
+        if let AppMode::Browser(ref mut state) = self.mode {
+            if state.current_chapter.is_none() {
+                return;
+            }
+
+            if state.verse_count() == 0 {
+                return;
+            }
+
+            if visual
+                && state.view_mode == browser::ViewMode::VersePerLine
+                && state.visual_anchor.is_none()
+            {
+                state.visual_anchor = Some(state.selected_verse_idx());
+                state.flash("Selecting range \u{2014} Y copies, Esc cancels");
+                return;
+            }
+
+            let Some((text, label)) = state.copy_payload() else {
+                return;
+            };
+            match crate::clipboard::copy(&text) {
+                Ok(()) => state.flash(format!("Copied {}", label)),
+                Err(_) => state.flash("Copy failed \u{2014} clipboard unavailable"),
+            }
+            state.visual_anchor = None;
         }
     }
 
@@ -438,7 +511,14 @@ impl App {
                 Ok(ch) => {
                     state.current_chapter = Some(ch);
                     state.scripture_scroll = 0;
+                    state.visual_anchor = None;
                     state.error = None;
+                    // A search jump targets a verse NUMBER; now that the
+                    // chapter is loaded, resolve it to a list index
+                    // (translations can have numbering gaps).
+                    if let Some(hv) = state.highlight_verse {
+                        state.select_verse_by_number(hv);
+                    }
                 }
                 Err(e) => {
                     state.error = Some(e);

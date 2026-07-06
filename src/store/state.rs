@@ -14,6 +14,10 @@ pub struct SessionState {
     pub theme: ThemeName,
     #[serde(default = "default_translation")]
     pub translation: String,
+    #[serde(default)]
+    pub view_mode: u8, // 0 = verse-per-line, 1 = paragraph
+    #[serde(default)]
+    pub selected_verse: u32, // 0-based verse index in the current chapter
 }
 
 fn default_translation() -> String {

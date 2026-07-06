@@ -1,6 +1,6 @@
 {
   "name": "christ-cli",
-  "version": "0.5.6",
+  "version": "0.6.0",
   "description": "A beautiful Bible TUI for Christian developers",
   "license": "MIT",
   "repository": {
@@ -13,6 +13,13 @@
   "scripts": {
     "postinstall": "node install.js"
   },
-  "keywords": ["bible", "cli", "tui", "christian", "scripture", "kjv"],
+  "keywords": [
+    "bible",
+    "cli",
+    "tui",
+    "christian",
+    "scripture",
+    "kjv"
+  ],
   "author": "whoisyurii"
 }

@@ -3,6 +3,7 @@
 mod api;
 mod app;
 mod cli;
+mod clipboard;
 mod data;
 mod store;
 mod ui;
@@ -28,19 +29,19 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             reference: ref_parts,
             translation,
         }) => {
-            cmd_read(&ref_parts.join(" "), &translation).await?;
+            cmd_read(&ref_parts.join(" "), &resolve_translation(translation)).await?;
         }
         Some(Commands::Search {
             query,
             translation,
         }) => {
-            cmd_search(&query.join(" "), &translation).await?;
+            cmd_search(&query.join(" "), &resolve_translation(translation)).await?;
         }
         Some(Commands::Random { translation }) => {
-            cmd_random(&translation).await?;
+            cmd_random(&resolve_translation(translation)).await?;
         }
         Some(Commands::Today { translation }) => {
-            cmd_today(&translation).await?;
+            cmd_today(&resolve_translation(translation)).await?;
         }
         Some(Commands::Intro) => {
             run_intro().await?;
@@ -75,6 +76,12 @@ async fn run_intro() -> Result<(), Box<dyn std::error::Error>> {
 fn load_theme() -> theme::Theme {
     let saved = store::state::load();
     theme::get_theme(saved.theme)
+}
+
+/// Use the explicit -t flag, or fall back to the translation the user
+/// picked in the TUI (via 'v'), or KJV on a fresh install.
+fn resolve_translation(flag: Option<String>) -> String {
+    flag.unwrap_or_else(|| store::state::load().translation)
 }
 
 async fn cmd_read(ref_str: &str, translation: &str) -> Result<(), Box<dyn std::error::Error>> {
@@ -206,12 +213,24 @@ async fn render_verse_tui(
                 .style(ratatui::style::Style::default().bg(current_theme.bg));
             frame.render_widget(block, area);
 
-            // Center the verse card
-            let card_height = (verses.len() as u16 * 2 + 6).min(area.height - 4);
-            let card_width = (area.width - 8).min(80);
+            // Center the verse card, sized to the wrapped verse text so
+            // long verses are shown in full instead of being cut off.
+            let card_width = area.width.saturating_sub(8).clamp(20, 80).min(area.width);
+            let text_width = (card_width as usize).saturating_sub(6); // borders + padding
+            let text_rows: u16 = verses
+                .iter()
+                .map(|v| {
+                    ui::wrap::wrapped_height(&format!("{} {}", v.verse, v.text), text_width.max(10))
+                        as u16
+                })
+                .sum();
+            // borders(2) + vertical padding(2) + header(2) + badge(1)
+            let card_height = (text_rows + 7)
+                .min(area.height.saturating_sub(4).max(5))
+                .min(area.height);
             let card_area = ratatui::layout::Rect {
-                x: (area.width - card_width) / 2,
-                y: (area.height - card_height) / 2,
+                x: area.width.saturating_sub(card_width) / 2,
+                y: area.height.saturating_sub(card_height) / 2,
                 width: card_width,
                 height: card_height,
             };

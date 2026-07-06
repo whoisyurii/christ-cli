@@ -14,15 +14,15 @@ pub struct Cli {
 
 #[derive(Subcommand)]
 pub enum Commands {
-    /// Read a Bible verse, range, or chapter (e.g. "John 3:16", "Genesis 1", "Ps 23:1-6")
+    /// Read a Bible verse, range, or chapter (e.g. "John 3:16", "Genesis 1", "João 3.16")
     Read {
-        /// Bible reference (e.g. "John 3:16", "Genesis 1")
+        /// Bible reference (e.g. "John 3:16", "Genesis 1", "João 3.16")
         #[arg(required = true, num_args = 1..)]
         reference: Vec<String>,
 
-        /// Bible translation (default: KJV)
-        #[arg(short, long, default_value = "KJV")]
-        translation: String,
+        /// Bible translation (default: the one selected in the TUI, else KJV)
+        #[arg(short, long)]
+        translation: Option<String>,
     },
 
     /// Search the Bible for a phrase or keyword
@@ -31,23 +31,23 @@ pub enum Commands {
         #[arg(required = true, num_args = 1..)]
         query: Vec<String>,
 
-        /// Bible translation to search in
-        #[arg(short, long, default_value = "KJV")]
-        translation: String,
+        /// Bible translation to search in (default: the one selected in the TUI, else KJV)
+        #[arg(short, long)]
+        translation: Option<String>,
     },
 
     /// Display a random Bible verse
     Random {
-        /// Bible translation
-        #[arg(short, long, default_value = "KJV")]
-        translation: String,
+        /// Bible translation (default: the one selected in the TUI, else KJV)
+        #[arg(short, long)]
+        translation: Option<String>,
     },
 
     /// Show today's verse of the day
     Today {
-        /// Bible translation
-        #[arg(short, long, default_value = "KJV")]
-        translation: String,
+        /// Bible translation (default: the one selected in the TUI, else KJV)
+        #[arg(short, long)]
+        translation: Option<String>,
     },
 
     /// Replay the startup animation
