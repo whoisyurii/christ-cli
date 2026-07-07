@@ -22,8 +22,13 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     match cli.command {
         None => {
-            // Launch interactive TUI mode
-            run_tui(!cli.no_banner).await?;
+            // Launch interactive TUI mode. The banner plays on the first
+            // launch only (issue #10) — after that, straight to reading.
+            // --banner forces it on, --no-banner forces it off, and
+            // `christ intro` replays it any time.
+            let show_banner = !cli.no_banner
+                && (cli.banner || !store::state::load().banner_shown);
+            run_tui(show_banner).await?;
         }
         Some(Commands::Read {
             reference: ref_parts,

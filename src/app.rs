@@ -129,6 +129,7 @@ impl App {
             }
             let mut snapshot = state.snapshot();
             snapshot.theme = self.theme_name;
+            snapshot.banner_shown = true;
             session::save(&snapshot);
         }
 

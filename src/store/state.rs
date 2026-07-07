@@ -18,6 +18,10 @@ pub struct SessionState {
     pub view_mode: u8, // 0 = verse-per-line, 1 = paragraph
     #[serde(default)]
     pub selected_verse: u32, // 0-based verse index in the current chapter
+    /// The intro banner plays on the first launch only (#10); this flips to
+    /// true after any completed session. `christ intro` replays it.
+    #[serde(default)]
+    pub banner_shown: bool,
 }
 
 fn default_translation() -> String {
@@ -52,5 +56,22 @@ pub fn save(state: &SessionState) {
 
     if let Ok(json) = serde_json::to_string_pretty(state) {
         let _ = fs::write(&path, json);
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn legacy_state_defaults_to_showing_banner_once() {
+        // Pre-0.6.1 state files have no banner_shown field: it must
+        // default to false so the banner plays one more time, and to
+        // true-after-save from then on.
+        let legacy = r#"{"book_index":42,"chapter":3,"scroll_position":0,"active_panel":2}"#;
+        let state: SessionState = serde_json::from_str(legacy).unwrap();
+        assert!(!state.banner_shown);
+        assert_eq!(state.book_index, 42);
+        assert_eq!(state.translation, "KJV");
     }
 }

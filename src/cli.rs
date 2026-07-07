@@ -10,6 +10,11 @@ pub struct Cli {
     /// Skip the startup banner animation
     #[arg(long, global = true)]
     pub no_banner: bool,
+
+    /// Play the startup banner animation (it plays automatically on the
+    /// first launch only)
+    #[arg(long, global = true, conflicts_with = "no_banner")]
+    pub banner: bool,
 }
 
 #[derive(Subcommand)]

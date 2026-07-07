@@ -75,12 +75,16 @@ Replay the startup animation:
 christ intro
 ```
 
+The animated banner plays on your first launch only — after that, `christ`
+opens straight into reading. Use `--banner` to see it again on launch (or
+`--no-banner` to skip it even on the first run).
+
 ## Interactive TUI
 
 When you run `christ` with no arguments, it launches a full-screen terminal browser:
 
 - **Left/Right arrows / h l** - switch between panels (Books, Chapters, Scripture)
-- **Up/Down arrows / j k** - navigate within a panel (moves the verse cursor in the Scripture panel)
+- **Up/Down arrows / j k** - navigate within a panel (moves the verse cursor in the Scripture panel); the Scripture panel live-previews the highlighted book or chapter as you browse
 - **Enter** - select a book or chapter
 - **/** - live search the Bible (full text of the selected result shows in a preview pane)
 - **y** (or **c**) - copy the selected verse to the clipboard
