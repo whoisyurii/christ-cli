@@ -622,11 +622,14 @@ pub fn render_browser(
         .split(inner)
     };
 
-    // Three panels
+    // Three panels: the sidebars take what their content needs and the
+    // scripture panel gets everything else (#8) — percentages wasted huge
+    // sidebars on wide terminals and truncated localized names on narrow.
+    let books_width = books_panel_width(state, main_and_status[0].width);
     let panels = Layout::horizontal([
-        Constraint::Percentage(22), // Books
-        Constraint::Percentage(13), // Chapters
-        Constraint::Percentage(65), // Scripture
+        Constraint::Length(books_width), // Books: widest (localized) name
+        Constraint::Length(10),          // Chapters: 3 digits + chrome
+        Constraint::Min(0),              // Scripture: the rest
     ])
     .split(main_and_status[0]);
 
@@ -671,6 +674,18 @@ fn panel_border_style(active: bool, theme: &Theme) -> Style {
     } else {
         Style::default().fg(theme.border)
     }
+}
+
+/// Width for the Books panel: the widest (localized) book name plus chrome
+/// — borders(2) + padding(2) + highlight symbol(3). Capped so wide
+/// terminals give the space to scripture, bounded to a third of the screen
+/// on narrow ones, with a small floor for degenerate sizes.
+fn books_panel_width(state: &BrowserState, total: u16) -> u16 {
+    let widest = (0..BOOKS.len())
+        .map(|i| state.book_display_name(i).width() as u16)
+        .max()
+        .unwrap_or(0);
+    (widest + 7).min(32).min(total / 3).max(12)
 }
 
 fn render_books_panel(frame: &mut Frame, area: Rect, state: &mut BrowserState, theme: &Theme) {
@@ -1800,5 +1815,26 @@ mod tests {
         s.prev_panel(); // Books, cursor on Genesis (top)
         s.move_up(); // no-op at the edge
         assert!(s.preview_pending.is_none());
+    }
+
+    #[test]
+    fn books_panel_width_is_sized_to_content() {
+        let s = state_at(0, 1, 0);
+        // English: widest names are 15 cols ("Song of Solomon",
+        // "1/2 Thessalonians") + 7 cols of chrome.
+        assert_eq!(books_panel_width(&s, 200), 22);
+
+        // Localized names widen the panel — up to the cap.
+        let mut s = state_at(0, 1, 0);
+        s.localized_books = vec!["Четверта книга Мойсеєва".to_string(); BOOKS.len()];
+        assert_eq!(books_panel_width(&s, 200), 30);
+        s.localized_books = vec!["An improbably long book name that overflows".to_string(); BOOKS.len()];
+        assert_eq!(books_panel_width(&s, 200), 32, "hard cap");
+
+        // Narrow terminals: at most a third goes to the sidebar.
+        let mut s = state_at(0, 1, 0);
+        s.localized_books = vec!["Четверта книга Мойсеєва".to_string(); BOOKS.len()];
+        assert_eq!(books_panel_width(&s, 60), 20);
+        assert_eq!(books_panel_width(&s, 20), 12, "floor for tiny sizes");
     }
 }
