@@ -131,11 +131,13 @@ jobs:
       - name: Publish
         # Skip only when this exact version is already on the registry;
         # any other publish error (expired NPM_TOKEN returns 404 too) must
-        # fail the job instead of being silently swallowed.
+        # fail the job instead of being silently swallowed. The existence
+        # check hits the public registry endpoint anonymously so a broken
+        # token can't poison the check itself.
         run: |
           cd npm-pkg
           VERSION=$(node -p "require('./package.json').version")
-          if npm view "christ-cli@$VERSION" version >/dev/null 2>&1; then
+          if curl -fsSL "https://registry.npmjs.org/christ-cli/$VERSION" >/dev/null 2>&1; then
             echo "christ-cli@$VERSION already on the registry, skipping"
           else
             npm publish
