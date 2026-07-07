@@ -1,6 +1,6 @@
 {
   "name": "christ-cli",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "A beautiful Bible TUI for Christian developers",
   "license": "MIT",
   "repository": {
