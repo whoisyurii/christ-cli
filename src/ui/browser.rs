@@ -136,7 +136,15 @@ pub struct BrowserState {
     pub help_open: bool,
     /// Scroll offset inside the help overlay (small terminals).
     pub help_scroll: u16,
+    /// Set while browsing Books/Chapters: the scripture panel live-previews
+    /// the highlighted target after a short debounce (#7).
+    pub preview_pending: Option<std::time::Instant>,
 }
+
+/// How long Books/Chapters browsing must be still before the scripture
+/// panel loads a preview. Keeps held-down j/k from firing a request per
+/// keypress (online translations fetch over HTTP).
+pub const PREVIEW_DEBOUNCE: std::time::Duration = std::time::Duration::from_millis(150);
 
 impl BrowserState {
     pub fn new() -> Self {
@@ -172,6 +180,7 @@ impl BrowserState {
             pending_cursor_sync: false,
             help_open: false,
             help_scroll: 0,
+            preview_pending: None,
         }
     }
 
@@ -332,12 +341,14 @@ impl BrowserState {
                 if i > 0 {
                     self.book_list.select(Some(i - 1));
                     self.selected_book_idx = i - 1;
+                    self.request_preview();
                 }
             }
             Panel::Chapters => {
                 let i = self.chapter_list.selected().unwrap_or(0);
                 if i > 0 {
                     self.chapter_list.select(Some(i - 1));
+                    self.request_preview();
                 }
             }
             Panel::Scripture => {
@@ -366,6 +377,7 @@ impl BrowserState {
                 if i < BOOKS.len() - 1 {
                     self.book_list.select(Some(i + 1));
                     self.selected_book_idx = i + 1;
+                    self.request_preview();
                 }
             }
             Panel::Chapters => {
@@ -373,6 +385,7 @@ impl BrowserState {
                 let max = self.selected_book_chapters() as usize;
                 if i < max - 1 {
                     self.chapter_list.select(Some(i + 1));
+                    self.request_preview();
                 }
             }
             Panel::Scripture => {
@@ -390,6 +403,28 @@ impl BrowserState {
                 }
             }
         }
+    }
+
+    /// Arm the live-preview debounce timer (#7).
+    fn request_preview(&mut self) {
+        self.preview_pending = Some(std::time::Instant::now());
+    }
+
+    /// Whether the debounced live preview should load now.
+    pub fn preview_due(&self) -> bool {
+        self.preview_pending
+            .is_some_and(|t| t.elapsed() >= PREVIEW_DEBOUNCE)
+    }
+
+    /// The (book, chapter) the live preview should show: chapter 1 of the
+    /// highlighted book while browsing Books, the highlighted chapter while
+    /// browsing Chapters.
+    pub fn preview_target(&self) -> (usize, u32) {
+        let chapter = match self.active_panel {
+            Panel::Chapters => self.chapter_list.selected().unwrap_or(0) as u32 + 1,
+            _ => 1,
+        };
+        (self.selected_book_idx, chapter)
     }
 
     /// Number of verses in the loaded chapter.
@@ -1734,5 +1769,36 @@ mod tests {
         s.toggle_view_mode();
         assert_eq!(s.view_mode, ViewMode::VersePerLine);
         assert!(s.pending_cursor_sync, "cursor must be derived from paragraph scroll");
+    }
+
+    #[test]
+    fn browsing_books_or_chapters_arms_live_preview() {
+        let mut s = state_at(0, 1, 0);
+
+        // Moving the verse cursor in Scripture must NOT trigger a preview.
+        s.move_down();
+        assert!(s.preview_pending.is_none());
+
+        // Browsing chapters previews the highlighted chapter.
+        s.prev_panel();
+        s.move_down();
+        assert!(s.preview_pending.is_some());
+        assert_eq!(s.preview_target(), (0, 2));
+
+        // Browsing books previews chapter 1 of the highlighted book.
+        s.preview_pending = None;
+        s.prev_panel();
+        s.move_down();
+        assert!(s.preview_pending.is_some());
+        assert_eq!(s.preview_target(), (1, 1));
+    }
+
+    #[test]
+    fn moving_against_a_list_edge_does_not_arm_preview() {
+        let mut s = state_at(0, 1, 0);
+        s.prev_panel();
+        s.prev_panel(); // Books, cursor on Genesis (top)
+        s.move_up(); // no-op at the edge
+        assert!(s.preview_pending.is_none());
     }
 }

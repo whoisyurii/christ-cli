@@ -120,6 +120,19 @@ impl App {
                     }
                 }
             }
+
+            // Debounced live preview: the scripture panel follows the
+            // highlighted book/chapter while browsing (#7).
+            let preview_due = matches!(
+                self.mode,
+                AppMode::Browser(ref s) if s.preview_due()
+                    && matches!(s.search, SearchMode::Off)
+                    && !s.translation_picker
+                    && !s.help_open
+            );
+            if preview_due {
+                self.load_preview().await;
+            }
         }
 
         // Cancel any active download and save session state on quit
@@ -487,6 +500,33 @@ impl App {
         }
     }
 
+    /// Load the debounced live preview target into the scripture panel.
+    async fn load_preview(&mut self) {
+        if let AppMode::Browser(ref mut state) = self.mode {
+            state.preview_pending = None;
+            let (book_idx, chapter) = state.preview_target();
+
+            // Already showing the target (e.g. a quick j-k round trip) —
+            // keep the reading position instead of reloading.
+            if let Some(c) = &state.current_chapter {
+                if c.chapter == chapter
+                    && c.book == crate::data::books::BOOKS[book_idx].name
+                {
+                    return;
+                }
+            }
+
+            state.selected_chapter = chapter;
+            if state.active_panel == browser::Panel::Books {
+                state.chapter_list.select(Some(0));
+            }
+            // A preview starts reading a fresh chapter at verse 1.
+            state.verse_list.select(Some(0));
+            state.highlight_verse = None;
+            self.load_chapter().await;
+        }
+    }
+
     async fn load_book_names(&mut self) {
         if let AppMode::Browser(ref mut state) = self.mode {
             let translation = state.translation.clone();
@@ -504,6 +544,7 @@ impl App {
     async fn load_chapter(&mut self) {
         if let AppMode::Browser(ref mut state) = self.mode {
             state.loading = true;
+            state.preview_pending = None;
             let book = state.selected_book_name();
             let chapter = state.selected_chapter;
             let translation = state.translation.clone();
