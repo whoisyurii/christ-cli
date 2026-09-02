@@ -139,12 +139,76 @@ pub struct BrowserState {
     /// Set while browsing Books/Chapters: the scripture panel live-previews
     /// the highlighted target after a short debounce (#7).
     pub preview_pending: Option<std::time::Instant>,
+    verse_layout: VerseLayoutCache,
 }
 
 /// How long Books/Chapters browsing must be still before the scripture
-/// panel loads a preview. Keeps held-down j/k from firing a request per
-/// keypress (online translations fetch over HTTP).
-pub const PREVIEW_DEBOUNCE: std::time::Duration = std::time::Duration::from_millis(150);
+/// panel loads a preview for online translations (HTTP fetch).
+pub const PREVIEW_DEBOUNCE_ONLINE: std::time::Duration = std::time::Duration::from_millis(150);
+
+/// Offline translations load from bundled KJV or disk — one frame of
+/// debounce batches held-down j/k without adding perceptible lag.
+pub const PREVIEW_DEBOUNCE_OFFLINE: std::time::Duration = std::time::Duration::from_millis(16);
+
+/// Cached word-wrap layout for the scripture panel. Rebuilt only when the
+/// chapter or panel width changes so j/k verse navigation stays cheap.
+#[derive(Default)]
+struct VerseLayoutCache {
+    book: String,
+    chapter: u32,
+    translation: String,
+    text_w: u16,
+    entries: Vec<VerseLayoutEntry>,
+}
+
+#[derive(Clone)]
+struct VerseLayoutEntry {
+    verse: u32,
+    num: String,
+    num_w: usize,
+    wrapped: Vec<String>,
+    height: usize,
+}
+
+impl VerseLayoutCache {
+    fn ensure(&mut self, chapter: &Chapter, text_w: u16) {
+        let text_w = text_w.max(10);
+        if self.book == chapter.book
+            && self.chapter == chapter.chapter
+            && self.translation == chapter.translation
+            && self.text_w == text_w
+            && !self.entries.is_empty()
+        {
+            return;
+        }
+
+        self.book = chapter.book.clone();
+        self.chapter = chapter.chapter;
+        self.translation = chapter.translation.clone();
+        self.text_w = text_w;
+        self.entries.clear();
+        self.entries.reserve(chapter.verses.len());
+
+        for v in &chapter.verses {
+            let num = format!("{} ", v.verse);
+            let num_w = num.width();
+            let body_w = (text_w as usize).saturating_sub(num_w).max(10);
+            let wrapped = wrap::wrap_text(&v.text, body_w);
+            let height = wrapped.len() + 1;
+            self.entries.push(VerseLayoutEntry {
+                verse: v.verse,
+                num,
+                num_w,
+                wrapped,
+                height,
+            });
+        }
+    }
+
+    fn entries(&self) -> &[VerseLayoutEntry] {
+        &self.entries
+    }
+}
 
 impl BrowserState {
     pub fn new() -> Self {
@@ -181,6 +245,7 @@ impl BrowserState {
             help_open: false,
             help_scroll: 0,
             preview_pending: None,
+            verse_layout: VerseLayoutCache::default(),
         }
     }
 
@@ -231,11 +296,17 @@ impl BrowserState {
         }
     }
 
-    /// Returns true if the current translation is available offline (KJV or fully cached).
-    /// Returns true if the translation has local data (bundled KJV or any cached chapters).
-    /// Used to decide whether search can run locally (instant) vs needing API.
+    /// Returns true if the translation has local data (bundled KJV or any cached
+    /// chapters). Used to decide whether search can run locally vs needing API.
     pub fn is_offline(&self) -> bool {
         cache::has_cached_data(&self.translation)
+    }
+
+    /// KJV bundled or translation fully cached on disk. Live chapter previews
+    /// load synchronously; partial caches (e.g. books.json only) stay on the
+    /// online debounce path so j/k does not fire HTTP per keystroke.
+    pub fn is_fully_offline(&self) -> bool {
+        cache::is_fully_cached(&self.translation)
     }
 
     /// Check if download is done and clean up the handle.
@@ -410,10 +481,18 @@ impl BrowserState {
         self.preview_pending = Some(std::time::Instant::now());
     }
 
+    fn preview_debounce(&self) -> std::time::Duration {
+        if self.is_fully_offline() {
+            PREVIEW_DEBOUNCE_OFFLINE
+        } else {
+            PREVIEW_DEBOUNCE_ONLINE
+        }
+    }
+
     /// Whether the debounced live preview should load now.
     pub fn preview_due(&self) -> bool {
         self.preview_pending
-            .is_some_and(|t| t.elapsed() >= PREVIEW_DEBOUNCE)
+            .is_some_and(|t| t.elapsed() >= self.preview_debounce())
     }
 
     /// The (book, chapter) the live preview should show: chapter 1 of the
@@ -880,19 +959,16 @@ fn render_verse_list(frame: &mut Frame, area: Rect, block: Block, state: &mut Br
     let text_w = (inner.width as usize).saturating_sub(arrow_w);
 
     let chapter = state.current_chapter.as_ref().expect("chapter checked by caller");
-    let count = chapter.verses.len();
+    state.verse_layout.ensure(chapter, text_w as u16);
+    let layout = state.verse_layout.entries();
+    let count = layout.len();
     let mut items: Vec<ListItem> = Vec::with_capacity(count);
     let mut item_heights: Vec<usize> = Vec::with_capacity(count);
 
-    for (i, v) in chapter.verses.iter().enumerate() {
+    for (i, entry) in layout.iter().enumerate() {
         let is_selected = i == selected;
         let in_range = state.in_visual_range(i);
-        let is_highlighted = highlight == Some(v.verse);
-
-        let num = format!("{} ", v.verse);
-        let num_w = num.width();
-        let body_w = text_w.saturating_sub(num_w).max(10);
-        let wrapped = wrap::wrap_text(&v.text, body_w);
+        let is_highlighted = highlight == Some(entry.verse);
 
         let (num_style, text_style) = if is_highlighted {
             (
@@ -922,19 +998,19 @@ fn render_verse_list(frame: &mut Frame, area: Rect, block: Block, state: &mut Br
             Span::raw("  ")
         };
 
-        let mut lines: Vec<Line> = Vec::with_capacity(wrapped.len() + 1);
-        for (li, seg) in wrapped.iter().enumerate() {
+        let mut lines: Vec<Line> = Vec::with_capacity(entry.wrapped.len() + 1);
+        for (li, seg) in entry.wrapped.iter().enumerate() {
             let lead = if li == 0 { arrow.clone() } else { Span::raw("  ") };
             let num_span = if li == 0 {
-                Span::styled(num.clone(), num_style)
+                Span::styled(entry.num.clone(), num_style)
             } else {
-                Span::styled(" ".repeat(num_w), num_style)
+                Span::styled(" ".repeat(entry.num_w), num_style)
             };
             lines.push(Line::from(vec![lead, num_span, Span::styled(seg.clone(), text_style)]));
         }
         lines.push(Line::default());
 
-        item_heights.push(lines.len());
+        item_heights.push(entry.height);
         items.push(ListItem::new(ratatui::text::Text::from(lines)));
     }
 
@@ -1784,6 +1860,28 @@ mod tests {
         s.toggle_view_mode();
         assert_eq!(s.view_mode, ViewMode::VersePerLine);
         assert!(s.pending_cursor_sync, "cursor must be derived from paragraph scroll");
+    }
+
+    #[test]
+    fn get_chapter_sync_loads_kjv_genesis() {
+        let ch = crate::api::get_chapter_sync("Genesis", 1, "KJV").expect("genesis 1");
+        assert_eq!(ch.chapter, 1);
+        assert!(!ch.verses.is_empty());
+    }
+
+    #[test]
+    fn offline_preview_debounce_is_faster_than_online() {
+        let s = state_at(0, 1, 0);
+        assert_eq!(s.preview_debounce(), PREVIEW_DEBOUNCE_OFFLINE);
+        assert!(PREVIEW_DEBOUNCE_OFFLINE < PREVIEW_DEBOUNCE_ONLINE);
+    }
+
+    #[test]
+    fn uncached_translation_uses_online_preview_debounce() {
+        let mut s = state_at(0, 1, 0);
+        s.translation = "WEB".to_string();
+        assert!(!s.is_fully_offline());
+        assert_eq!(s.preview_debounce(), PREVIEW_DEBOUNCE_ONLINE);
     }
 
     #[test]

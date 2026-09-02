@@ -4,7 +4,7 @@ use serde::{Deserialize, Serialize};
 use std::fs;
 use std::path::PathBuf;
 
-#[derive(Debug, Clone, Serialize, Deserialize, Default)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct SessionState {
     pub book_index: usize,
     pub chapter: u32,
@@ -22,6 +22,22 @@ pub struct SessionState {
     /// true after any completed session. `christ intro` replays it.
     #[serde(default)]
     pub banner_shown: bool,
+}
+
+impl Default for SessionState {
+    fn default() -> Self {
+        Self {
+            book_index: 0,
+            chapter: 1,
+            scroll_position: 0,
+            active_panel: 0,
+            theme: ThemeName::default(),
+            translation: default_translation(),
+            view_mode: 0,
+            selected_verse: 0,
+            banner_shown: false,
+        }
+    }
 }
 
 fn default_translation() -> String {
@@ -73,5 +89,16 @@ mod tests {
         assert!(!state.banner_shown);
         assert_eq!(state.book_index, 42);
         assert_eq!(state.translation, "KJV");
+    }
+
+    #[test]
+    fn default_session_is_kjv_genesis_1() {
+        // Default::default() must match serde defaults — derive(Default)
+        // left translation as "" and chapter as 0, so a fresh install
+        // skipped the bundled KJV path and showed an empty scripture panel.
+        let state = SessionState::default();
+        assert_eq!(state.translation, "KJV");
+        assert_eq!(state.chapter, 1);
+        assert_eq!(state.book_index, 0);
     }
 }
