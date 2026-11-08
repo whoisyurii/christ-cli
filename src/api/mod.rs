@@ -9,6 +9,24 @@ pub struct Resolver {
     bolls: bolls::BollsProvider,
 }
 
+/// Bundled KJV or on-disk cache — no network. Used on the TUI hot path so
+/// chapter switches never flash "Loading..." for data we already have.
+pub fn get_chapter_sync(book: &str, chapter: u32, translation: &str) -> Option<Chapter> {
+    if translation.eq_ignore_ascii_case("KJV") {
+        if let Some(c) = kjv::get_chapter(book, chapter) {
+            return Some(c);
+        }
+    }
+
+    if let Some(book_info) = books::normalize_book(book) {
+        if let Some(c) = cache::load_chapter(translation, book_info.bolls_id, chapter) {
+            return Some(c);
+        }
+    }
+
+    None
+}
+
 impl Resolver {
     pub fn new() -> Self {
         Self {
@@ -57,18 +75,8 @@ impl Resolver {
         chapter: u32,
         translation: &str,
     ) -> Result<Chapter, String> {
-        // Try bundled KJV first
-        if translation.eq_ignore_ascii_case("KJV") {
-            if let Some(c) = kjv::get_chapter(book, chapter) {
-                return Ok(c);
-            }
-        }
-
-        // Try disk cache
-        if let Some(book_info) = books::normalize_book(book) {
-            if let Some(c) = cache::load_chapter(translation, book_info.bolls_id, chapter) {
-                return Ok(c);
-            }
+        if let Some(c) = get_chapter_sync(book, chapter, translation) {
+            return Ok(c);
         }
 
         // Cache miss on a "fully cached" translation — cache is incomplete, invalidate

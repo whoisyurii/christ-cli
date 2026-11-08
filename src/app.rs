@@ -1,4 +1,4 @@
-use crate::api::Resolver;
+use crate::api::{self, Resolver};
 use crate::data::kjv;
 use crate::store::{cache, state as session};
 use crate::ui::banner::{self, BannerState};
@@ -54,12 +54,21 @@ impl App {
             .unwrap_or("Genesis");
         let chapter_num = saved.chapter.max(1);
 
-        let translation = &saved.translation;
-        let initial_chapter = self
-            .resolver
-            .get_chapter(book_name, chapter_num, translation)
-            .await
-            .ok();
+        // Warm bundled KJV before the event loop so the first j/k preview
+        // does not stall on Lazy JSON parse.
+        kjv::warm();
+
+        let translation = if saved.translation.is_empty() {
+            "KJV"
+        } else {
+            saved.translation.as_str()
+        };
+        let initial_chapter = api::get_chapter_sync(book_name, chapter_num, translation).or({
+            self.resolver
+                .get_chapter(book_name, chapter_num, translation)
+                .await
+                .ok()
+        });
 
         // Fetch localized book names for non-KJV translations
         let localized_books = if !translation.eq_ignore_ascii_case("KJV") {
@@ -90,10 +99,11 @@ impl App {
                 state.check_download();
             }
 
-            terminal.draw(|frame| self.draw(frame))?;
-
             let tick_rate = match &self.mode {
                 AppMode::Banner(_) => Duration::from_millis(16),
+                AppMode::Browser(state) if state.preview_pending.is_some() || state.loading => {
+                    Duration::from_millis(16)
+                }
                 AppMode::Browser(_) => Duration::from_millis(50),
             };
 
@@ -133,6 +143,10 @@ impl App {
             if preview_due {
                 self.load_preview().await;
             }
+
+            // Draw after handling input so chapter text updates on the
+            // same keypress instead of one frame later.
+            terminal.draw(|frame| self.draw(frame))?;
         }
 
         // Cancel any active download and save session state on quit
@@ -359,9 +373,11 @@ impl App {
                     }
                     KeyCode::Up | KeyCode::Char('k') => {
                         state.move_up();
+                        self.maybe_load_preview().await;
                     }
                     KeyCode::Down | KeyCode::Char('j') => {
                         state.move_down();
+                        self.maybe_load_preview().await;
                     }
                     KeyCode::Enter => {
                         let should_load = state.select_current();
@@ -527,6 +543,22 @@ impl App {
         }
     }
 
+    /// Fully offline translations load from bundled KJV or a complete disk cache
+    /// — skip the idle debounce and refresh the scripture panel on the same
+    /// keypress. Partial caches keep the online debounce to avoid HTTP spam.
+    async fn maybe_load_preview(&mut self) {
+        let should = matches!(&self.mode, AppMode::Browser(state)
+            if state.is_fully_offline()
+                && state.preview_pending.is_some()
+                && matches!(state.active_panel, browser::Panel::Books | browser::Panel::Chapters)
+                && matches!(state.search, SearchMode::Off)
+                && !state.translation_picker
+                && !state.help_open);
+        if should {
+            self.load_preview().await;
+        }
+    }
+
     async fn load_book_names(&mut self) {
         if let AppMode::Browser(ref mut state) = self.mode {
             let translation = state.translation.clone();
@@ -543,30 +575,36 @@ impl App {
 
     async fn load_chapter(&mut self) {
         if let AppMode::Browser(ref mut state) = self.mode {
-            state.loading = true;
             state.preview_pending = None;
             let book = state.selected_book_name();
             let chapter = state.selected_chapter;
             let translation = state.translation.clone();
 
+            if let Some(ch) = api::get_chapter_sync(book, chapter, &translation) {
+                Self::apply_loaded_chapter(state, ch);
+                return;
+            }
+
+            state.loading = true;
+
             match self.resolver.get_chapter(book, chapter, &translation).await {
-                Ok(ch) => {
-                    state.current_chapter = Some(ch);
-                    state.scripture_scroll = 0;
-                    state.visual_anchor = None;
-                    state.error = None;
-                    // A search jump targets a verse NUMBER; now that the
-                    // chapter is loaded, resolve it to a list index
-                    // (translations can have numbering gaps).
-                    if let Some(hv) = state.highlight_verse {
-                        state.select_verse_by_number(hv);
-                    }
-                }
+                Ok(ch) => Self::apply_loaded_chapter(state, ch),
                 Err(e) => {
                     state.error = Some(e);
+                    state.loading = false;
                 }
             }
-            state.loading = false;
+        }
+    }
+
+    fn apply_loaded_chapter(state: &mut BrowserState, ch: api::types::Chapter) {
+        state.current_chapter = Some(ch);
+        state.scripture_scroll = 0;
+        state.visual_anchor = None;
+        state.error = None;
+        state.loading = false;
+        if let Some(hv) = state.highlight_verse {
+            state.select_verse_by_number(hv);
         }
     }
 }

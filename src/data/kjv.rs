@@ -37,6 +37,12 @@ fn find_book(book_name: &str) -> Option<&'static KjvBook> {
     KJV.get(&name)
 }
 
+/// Force-parse the bundled KJV so the first interactive chapter load
+/// does not pay the Lazy init cost on a keypress.
+pub fn warm() {
+    Lazy::force(&KJV);
+}
+
 pub fn get_verse(book_name: &str, chapter: u32, verse: u32) -> Option<Verse> {
     let book = find_book(book_name)?;
     let ch = book
